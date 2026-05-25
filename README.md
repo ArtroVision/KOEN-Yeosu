@@ -10,3 +10,11 @@
 - 배포 주소: <https://artrovision.github.io/KOEN-Yeosu/>
 
 GitHub Actions의 `Deploy GitHub Pages` 워크플로가 `main` 브랜치에 push될 때 `docs/` 폴더를 GitHub Pages로 배포합니다.
+## 첨부 원본 파일
+
+요청에 따라 전달받은 첨부 이미지를 변환 없이 그대로 저장했습니다.
+
+- [RFID 키 이미지](attachments/img_21894a2b368c.png)
+- [3D 경로 안내 이미지](attachments/img_67bfe7da30eb.png)
+- [블루프린트 경로 안내 이미지](attachments/img_97e677134975.jpeg)
+
