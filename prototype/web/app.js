@@ -1,10 +1,65 @@
 /* ??? JavaScript: Smart LOTO Kiosk App ??? */
 
 // ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??Screen Navigation ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??
+const checkoutStepLabels = [
+  '작업자 RFID',
+  'REG TAG',
+  '안전 검증',
+  '보관함 위치',
+  '경로 안내',
+  '반출 완료'
+];
+
+const checkoutStepByScreen = {
+  'checkout-rfid': 1,
+  checkout: 2,
+  'checkout-check': 3,
+  'loading-validate': 3,
+  'checkout-conflict': 3,
+  'checkout-mtr-solo': 3,
+  'checkout-mtr-solo-step2': 3,
+  'checkout-mtr-solo-step3': 3,
+  'checkout-normal': 4,
+  'checkout-insulation-map': 4,
+  'checkout-feedback': 5,
+  'checkout-end': 6
+};
+
+function ensureCheckoutStepNav(screen, name) {
+  const currentStep = checkoutStepByScreen[name];
+  if (!screen || !currentStep) return;
+
+  let nav = screen.querySelector('.checkout-step-nav');
+  if (!nav) {
+    nav = document.createElement('nav');
+    nav.className = 'checkout-step-nav';
+    nav.setAttribute('aria-label', '키 반출 진행 단계');
+    screen.appendChild(nav);
+  }
+
+  nav.innerHTML = `
+    <ol class="checkout-step-list">
+      ${checkoutStepLabels.map((label, index) => {
+        const stepNo = index + 1;
+        const stateClass = stepNo < currentStep ? ' is-complete' : stepNo === currentStep ? ' is-current' : '';
+        return `
+          <li class="checkout-step-item${stateClass}">
+            <span class="checkout-step-no">${String(stepNo).padStart(2, '0')}</span>
+            <span class="checkout-step-label">${label}</span>
+          </li>
+        `;
+      }).join('')}
+    </ol>
+  `;
+}
+
 function goScreen(name) {
   document.querySelectorAll('.kiosk-screen').forEach(s => s.classList.remove('active'));
   const target = document.getElementById('screen-' + name);
-  if (target) target.classList.add('active');
+  if (target) {
+    target.classList.add('active');
+    ensureCheckoutStepNav(target, name);
+  }
   if (name === 'status') buildKeyGrid();
 }
 
