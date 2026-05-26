@@ -1912,7 +1912,7 @@
 
             <!-- 하단 버튼들 -->
             <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-                <button class="btn-back" style="display: flex; justify-content: center; background: #38bdf8; color: #ffffff; border: none; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px; box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);" onclick="goScreen('emergency-return-rfid')">문 닫힘 확인 완료</button>
+                <button class="btn-back" style="display: flex; justify-content: center; background: #38bdf8; color: #ffffff; border: none; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px; box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);" onclick="goScreen('emergency-key-rfid')">문 닫힘 확인 완료</button>
                 <button class="btn-back" style="display: flex; justify-content: center; background: rgba(15, 23, 42, 0.6); color: #94a3b8; border: 2px solid #475569; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px;" onclick="goScreen('main')">취소 및 종료</button>
             </div>
         </div>
@@ -1943,8 +1943,8 @@
       </footer>
     </div>
 
-    <!-- ═══════════════ SCREEN: EMERGENCY RETURN RFID (Step 2) ═══════════════ -->
-    <div id="screen-emergency-return-rfid" class="kiosk-screen animated-bg-screen" style="background-color: #0d1117;">
+    <!-- ═══════════════ SCREEN: EMERGENCY KEY RFID (Step 2) ═══════════════ -->
+    <div id="screen-emergency-key-rfid" class="kiosk-screen animated-bg-screen" style="background-color: #0d1117;">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -1954,7 +1954,7 @@
           </div>
         </div>
         <div class="header-right">
-          <div class="header-clock" id="clock-emergency-return-rfid"></div>
+          <div class="header-clock" id="clock-emergency-key-rfid"></div>
           <button class="btn-theme" onclick="toggleTheme()" title="테마 전환">🌓</button>
         </div>
       </header>
@@ -2094,7 +2094,7 @@
           </div>
 
           <div class="checkout-bottom" style="display:flex; flex-direction: column; align-items: center; width: 100%; gap: 15px; margin-top: 20px;">
-            <button class="btn-finish" style="background: #10b981; color: white; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; border: none; cursor: pointer; min-width: 300px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);" onclick="goScreen('emergency-return-rfid')">다음 키 반환하기</button>
+            <button class="btn-finish" style="background: #10b981; color: white; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; border: none; cursor: pointer; min-width: 300px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);" onclick="goScreen('emergency-key-rfid')">다음 키 반환하기</button>
             <button class="btn-back" style="background: transparent; border: none; color: #94a3b8; padding: 10px 20px; font-size: 1.1rem; font-weight: 700; cursor: pointer; text-decoration: underline; transition: color 0.2s;" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#94a3b8'" onclick="goScreen('main')">모든 키 반환 종료하기</button>
           </div>
         </div>
