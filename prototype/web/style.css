@@ -300,8 +300,8 @@ body {
 }
 
 .footer-home-icon {
-  width: clamp(38px, 4.4vw, 54px);
-  height: clamp(38px, 4.4vw, 54px);
+  width: clamp(57px, 6.6vw, 81px);
+  height: clamp(57px, 6.6vw, 81px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -317,7 +317,7 @@ body {
 }
 
 .footer-home-caption {
-  font-size: clamp(0.65rem, 1vw, 0.85rem);
+  font-size: clamp(0.78rem, 1.2vw, 1.02rem);
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--text-muted);

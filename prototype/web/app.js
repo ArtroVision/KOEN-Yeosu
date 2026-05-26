@@ -375,10 +375,11 @@ function drawCheckoutBg() {
 
 // ?? Return Background: green flow particles (same style as checkout) ??
 const retCanvas = document.getElementById('canvas-return');
-const retCtx = retCanvas.getContext('2d');
+const retCtx = retCanvas ? retCanvas.getContext('2d') : null;
 let retParticles = [], retRaf, retT = 0;
 
 function initRetCanvas() {
+  if (!retCanvas) return;
   retCanvas.width = retCanvas.offsetWidth;
   retCanvas.height = retCanvas.offsetHeight;
   retParticles = Array.from({ length: 40 }, () => makeRetParticle(retCanvas.width, retCanvas.height));
@@ -398,6 +399,7 @@ function makeRetParticle(w, h) {
 }
 
 function drawReturnBg() {
+  if (!retCanvas || !retCtx) return;
   if (!retCanvas.width) initRetCanvas();
   const w = retCanvas.width, h = retCanvas.height;
   retT++;

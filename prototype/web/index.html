@@ -248,7 +248,7 @@
 
           <!-- Center: RFID Tap Animation -->
           <div class="checkout-center flex-col-center">
-            <div class="rfid-reader-wrap" onclick="goScreen('checkout')" title="시뮬레이션: RFID 카드 태깅">
+            <div class="rfid-reader-wrap" onclick="goScreen('return-key-rfid')" title="시뮬레이션: RFID 카드 태깅">
 
               <!-- NFC 파동 링 -->
               <div class="rfid-wave-ring rfid-ring-1"></div>
@@ -1053,232 +1053,7 @@
     </div>
 
     
-    <!-- ═══════════════ SCREEN: RETURN RFID (Step 1) ═══════════════ -->
-<div id="screen-return-rfid" class="kiosk-screen animated-bg-screen">
-      <header class="kiosk-header">
-        <div class="header-logo">
-          <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
-          <div class="header-title">
-            <span class="title-main">한국남동발전 여수발전본부</span>
-            <span class="title-sub">Smart LOTO System</span>
-          </div>
-        </div>
-        <div class="header-right">
-          <div class="header-clock" id="clock-return-rfid"></div>
-          <button class="btn-theme" onclick="toggleTheme()" title="테마 전환">🌓</button>
-        </div>
-      </header>
-
-      <main class="kiosk-main">
-        <div class="checkout-panel">
-          <!-- Top -->
-          <div class="checkout-top">
-            <div class="checkout-badge">STEP 01 : RFID AUTHENTICATION</div>
-            <h2 class="checkout-title">작업자 본인 인증</h2>
-            <p class="checkout-subtitle">RFID 카드를 아래 리더기에 태깅해 주세요.</p>
-          </div>
-
-          <!-- Center: RFID Tap Animation -->
-          <div class="checkout-center flex-col-center">
-            <div class="rfid-reader-wrap" onclick="goScreen('return')" title="시뮬레이션: RFID 카드 태깅">
-
-              <!-- NFC 파동 링 -->
-              <div class="rfid-wave-ring rfid-ring-1"></div>
-              <div class="rfid-wave-ring rfid-ring-2"></div>
-              <div class="rfid-wave-ring rfid-ring-3"></div>
-
-              <!-- 리더기 본체 -->
-              <div class="rfid-reader-body">
-                <div class="rfid-reader-top-bar"></div>
-                <!-- NFC 심볼 SVG -->
-                <svg class="rfid-nfc-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- 중앙 원 -->
-                  <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.9"/>
-                  <!-- Arc 1 -->
-                  <path d="M26 26 A19.8 19.8 0 0 1 54 26" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-                  <path d="M26 54 A19.8 19.8 0 0 0 54 54" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-                  <!-- Arc 2 -->
-                  <path d="M17 17 A32.5 32.5 0 0 1 63 17" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
-                  <path d="M17 63 A32.5 32.5 0 0 0 63 63" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
-                </svg>
-                <p class="rfid-reader-label">RFID READER</p>
-              </div>
-
-              <!-- RFID 카드 아이콘 -->
-              <div class="rfid-card-icon">
-                <svg viewBox="0 0 200 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- 카드 외형 -->
-                  <rect x="1" y="1" width="198" height="126" rx="12" stroke="currentColor" stroke-width="2.5" fill="rgba(255,255,255,0.04)"/>
-
-                  <!-- 중앙: NFC 심볼 (작게) + RFID 텍스트 -->
-                  <g transform="translate(72, 64)">
-                    <!-- NFC 웨이브: 중심 점 -->
-                    <circle cx="0" cy="0" r="3.5" fill="currentColor" opacity="0.95"/>
-                    <!-- Arc 1 -->
-                    <path d="M-10 -10 A14.1 14.1 0 0 1 10 -10" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none" opacity="0.9"/>
-                    <path d="M-10 10 A14.1 14.1 0 0 0 10 10" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none" opacity="0.9"/>
-                    <!-- Arc 2 -->
-                    <path d="M-18 -18 A25.5 25.5 0 0 1 18 -18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.55"/>
-                    <path d="M-18 18 A25.5 25.5 0 0 0 18 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.55"/>
-                  </g>
-
-                  <!-- RFID 텍스트 -->
-                  <text x="100" y="69" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="700" fill="currentColor" letter-spacing="3" opacity="0.9" dominant-baseline="middle">RFID</text>
-                </svg>
-              </div>
-            </div>
-
-            <!-- 안내 상태바 -->
-            <div class="rfid-status-bar">
-              <span class="rfid-status-dot"></span>
-              <span class="rfid-status-text">RFID 카드 대기 중 — 카드를 리더기에 가까이 대세요</span>
-            </div>
-          </div>
-
-          <!-- Bottom -->
-          <div class="checkout-bottom">
-            <button class="btn-back" onclick="goScreen('main')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M19 12H5M12 19l-7-7 7-7" />
-              </svg>
-              뒤로가기
-            </button>
-          </div>
-        </div>
-      </main>
-
-      <footer class="kiosk-footer">
-        <div class="footer-home">
-          <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
-            <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 11.5L12 4l9 7.5" />
-                <path d="M5.5 10.5V20h13v-9.5" />
-                <path d="M9.5 20v-6h5v6" />
-              </svg>
-            </span>
-            <span class="footer-home-caption">홈 으로</span>
-          </button>
-        </div>
-        <div class="footer-right">
-          <div class="net-status">
-            <span class="net-dot"></span>
-            <span class="net-text">네트워크 정상</span>
-          </div>
-          <button class="btn-emergency">
-            <span>⚠</span> 긴급상황모드
-          </button>
-        </div>
-      </footer>
-    </div>
-
-    <!-- ═══════════════ SCREEN: RETURN SCAN (Step 2) ═══════════════ -->
-<div id="screen-return" class="kiosk-screen animated-bg-screen return-theme">
-      <canvas id="canvas-return" class="bg-canvas"></canvas>
-      
-
-      <header class="kiosk-header">
-        <div class="header-logo">
-          <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
-          <div class="header-title">
-            <span class="title-main">한국남동발전 여수발전본부</span>
-            <span class="title-sub">Smart LOTO System</span>
-          </div>
-        </div>
-        <div class="header-right">
-          <div class="header-clock" id="clock-return"></div>
-          <button class="btn-theme" onclick="toggleTheme()" title="테마 전환">🌓</button>
-        </div>
-      </header>
-
-      <main class="kiosk-main">
-        <div class="checkout-panel return-panel">
-          <div class="checkout-top">
-            <div class="checkout-badge return-badge">STEP 02 : KEY RETURN</div>
-            <h2 class="checkout-title">LOTO 키 반납</h2>
-            <p class="checkout-subtitle">REG TAG를 스캔해 주세요.</p>
-          </div>
-          <div class="checkout-center">
-            <div class="scan-container" onclick="goScreen('return-key-rfid')" title="시뮬레이션: 반납 태그 스캔 후 키 홀더 태깅으로 이동">
-              <div class="scan-frame return-frame">
-                <span class="corner tl"></span>
-                <span class="corner tr"></span>
-                <span class="corner bl"></span>
-                <span class="corner br"></span>
-                <div class="scan-line return-scanline"></div>
-                <div class="scan-icon">
-                  <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- 바코드 세로 바 (굵기와 간격을 불규칙하게) -->
-                    <rect x="8"  y="8" width="3"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="14" y="8" width="1.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="18" y="8" width="4"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="25" y="8" width="1.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="29" y="8" width="2.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="34" y="8" width="1"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="38" y="8" width="3.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="44" y="8" width="1.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="48" y="8" width="2"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="53" y="8" width="4"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="60" y="8" width="1"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="64" y="8" width="3"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="70" y="8" width="1.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="74" y="8" width="2.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="80" y="8" width="1"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="84" y="8" width="4"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="91" y="8" width="2"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="96" y="8" width="1.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="100"y="8" width="3"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="106"y="8" width="1"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="110"y="8" width="2.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <!-- 하단 숫자 -->
-                    <text x="60" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="currentColor" letter-spacing="2" opacity="0.6">2026-YS-045</text>
-                  </svg>
-                </div>
-              </div>
-              <div class="scan-pulse-ring ring1 return-ring"></div>
-              <div class="scan-pulse-ring ring2 return-ring"></div>
-              <p class="scan-hint">바코드 리더기에 RED TAG를 스캔을 시작하세요.</p>
-            </div>
-          </div>
-          <div class="checkout-bottom">
-            <button class="btn-back" onclick="goScreen('main')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M19 12H5M12 19l-7-7 7-7" />
-              </svg>
-              뒤로가기
-            </button>
-          </div>
-        </div>
-      </main>
-
-      <footer class="kiosk-footer">
-        <div class="footer-home">
-          <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
-            <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 11.5L12 4l9 7.5" />
-                <path d="M5.5 10.5V20h13v-9.5" />
-                <path d="M9.5 20v-6h5v6" />
-              </svg>
-            </span>
-            <span class="footer-home-caption">홈 으로</span>
-          </button>
-        </div>
-        <div class="footer-right">
-          <div class="net-status">
-            <span class="net-dot"></span>
-            <span class="net-text">네트워크 정상</span>
-          </div>
-          <button class="btn-emergency">
-            <span>⚠</span> 긴급상황모드
-          </button>
-        </div>
-      </footer>
-    </div>
-
-    <!-- ═══════════════ SCREEN: RETURN LOADING (Step 3) ═══════════════ -->
+    <!-- ═══════════════ SCREEN: RETURN KEY RFID (Step 1) ═══════════════ -->
 <div id="screen-return-key-rfid" class="kiosk-screen animated-bg-screen">
       <header class="kiosk-header">
         <div class="header-logo">
@@ -1297,7 +1072,7 @@
       <main class="kiosk-main">
         <div class="checkout-panel">
           <div class="checkout-top">
-            <div class="checkout-badge">STEP 03 : KEY HOLDER RFID SCAN</div>
+            <div class="checkout-badge">STEP 01 : KEY HOLDER RFID SCAN</div>
             <h2 class="checkout-title">키 홀더 RFID 태깅</h2>
             <p class="checkout-subtitle">키 홀더의 RFID를 아래 리더기에 태깅해 주세요.</p>
           </div>
@@ -1332,7 +1107,7 @@
             </div>
           </div>
           <div class="checkout-bottom">
-            <button class="btn-back" onclick="goScreen('return')">
+            <button class="btn-back" onclick="goScreen('main')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
@@ -1415,7 +1190,7 @@
       </footer>
     </div>
 
-    <!-- ═══════════════ SCREEN: RETURN SLOT (Step 4) ═══════════════ -->
+    <!-- ═══════════════ SCREEN: RETURN SLOT (Step 2) ═══════════════ -->
 <div id="screen-return-slot" class="kiosk-screen animated-bg-screen">
       <header class="kiosk-header">
         <div class="header-logo">
@@ -1434,7 +1209,7 @@
       <main class="kiosk-main">
         <div class="checkout-panel">
           <div class="checkout-top">
-            <div class="checkout-badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1);">STEP 04 : KEY BOX LOCATION</div>
+            <div class="checkout-badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1);">STEP 02 : KEY BOX LOCATION</div>
             <h2 class="checkout-title">LOTO 키 보관함 반납 위치 안내</h2>
             <p class="checkout-subtitle">해당 차단기반 위치와 매칭된 슬롯 번호를 확인해주세요.</p>
           </div>
@@ -1527,7 +1302,7 @@
       </footer>
     </div>
 
-    <!-- ═══════════════ SCREEN: RETURN END (Step 5) ═══════════════ -->
+    <!-- ═══════════════ SCREEN: RETURN END (Step 3) ═══════════════ -->
 <div id="screen-return-end" class="kiosk-screen animated-bg-screen">
       <header class="kiosk-header">
         <div class="header-logo">
@@ -1546,7 +1321,7 @@
       <main class="kiosk-main">
         <div class="checkout-panel completion-panel">
           <div class="checkout-top">
-            <div class="checkout-badge success-badge">STEP 05 : END STATE</div>
+            <div class="checkout-badge success-badge">STEP 03 : END STATE</div>
             <h2 class="checkout-title green-success-text">LOTO 키 반납 완료</h2>
             <p class="checkout-subtitle">정비 조작 정보가 실시간 중앙 관제 DB와 완전히 동기화되었습니다.</p>
           </div>
