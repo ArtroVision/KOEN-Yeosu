@@ -1106,6 +1106,22 @@
               </div>
             </div>
           </div>
+          <nav class="return-step-nav" aria-label="키 반납 진행 단계">
+            <ol class="return-step-list">
+              <li class="return-step-item is-current">
+                <span class="return-step-no">01</span>
+                <span class="return-step-label">키 홀더 RFID</span>
+              </li>
+              <li class="return-step-item">
+                <span class="return-step-no">02</span>
+                <span class="return-step-label">보관함 위치</span>
+              </li>
+              <li class="return-step-item">
+                <span class="return-step-no">03</span>
+                <span class="return-step-label">반납 완료</span>
+              </li>
+            </ol>
+          </nav>
           <div class="checkout-bottom">
             <button class="btn-back" onclick="goScreen('main')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1162,6 +1178,22 @@
             <div class="proto-loader" onclick="goScreen('return-slot')" style="width: 100px; height: 100px; border: 8px solid rgba(255,255,255,0.05); border-top: 8px solid var(--accent-cyan); border-radius: 50%; animation: proto-spin 1s linear infinite; margin-bottom: 40px; cursor: pointer;" title="클릭 시 에러 화면으로 이동"></div>
             <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; font-weight: 700; color: #ffffff;">작업 정보 동기화 및 안전 검증 중</h1>
             <h2 style="font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: 40px; color: var(--text-secondary); font-weight: 400;">GENi 시스템과 연동하여 작업 상태를 확인하고 있습니다...</h2>
+          <nav class="return-step-nav" aria-label="키 반납 진행 단계">
+            <ol class="return-step-list">
+              <li class="return-step-item is-complete">
+                <span class="return-step-no">01</span>
+                <span class="return-step-label">키 홀더 RFID</span>
+              </li>
+              <li class="return-step-item is-current">
+                <span class="return-step-no">02</span>
+                <span class="return-step-label">보관함 위치</span>
+              </li>
+              <li class="return-step-item">
+                <span class="return-step-no">03</span>
+                <span class="return-step-label">반납 완료</span>
+              </li>
+            </ol>
+          </nav>
         </div>
       </main>
 
@@ -1266,6 +1298,22 @@
             </div>
           </div>
 
+          <nav class="return-step-nav" aria-label="키 반납 진행 단계">
+            <ol class="return-step-list">
+              <li class="return-step-item is-complete">
+                <span class="return-step-no">01</span>
+                <span class="return-step-label">키 홀더 RFID</span>
+              </li>
+              <li class="return-step-item is-current">
+                <span class="return-step-no">02</span>
+                <span class="return-step-label">보관함 위치</span>
+              </li>
+              <li class="return-step-item">
+                <span class="return-step-no">03</span>
+                <span class="return-step-label">반납 완료</span>
+              </li>
+            </ol>
+          </nav>
           <div class="checkout-bottom" style="display:flex; justify-content: center; width: 100%;">
             <button class="btn-back" onclick="goScreen('return-key-rfid')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1346,6 +1394,22 @@
             </div>
           </div>
 
+          <nav class="return-step-nav" aria-label="키 반납 진행 단계">
+            <ol class="return-step-list">
+              <li class="return-step-item is-complete">
+                <span class="return-step-no">01</span>
+                <span class="return-step-label">키 홀더 RFID</span>
+              </li>
+              <li class="return-step-item is-complete">
+                <span class="return-step-no">02</span>
+                <span class="return-step-label">보관함 위치</span>
+              </li>
+              <li class="return-step-item is-current">
+                <span class="return-step-no">03</span>
+                <span class="return-step-label">반납 완료</span>
+              </li>
+            </ol>
+          </nav>
           <div class="checkout-bottom">
             <button class="btn-finish" onclick="completeReturnFlowAndGoMain()" hidden>
               키함 열기
