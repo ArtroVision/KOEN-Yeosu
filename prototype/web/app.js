@@ -10,6 +10,12 @@ const checkoutStepLabels = [
   '반출 완료'
 ];
 
+const returnStepLabels = [
+  '키 홀더 RFID',
+  '보관함 위치',
+  '반납 완료'
+];
+
 const checkoutStepByScreen = {
   'checkout-rfid': 1,
   checkout: 2,
@@ -23,6 +29,13 @@ const checkoutStepByScreen = {
   'checkout-insulation-map': 4,
   'checkout-feedback': 5,
   'checkout-end': 6
+};
+
+const returnStepByScreen = {
+  'return-key-rfid': 1,
+  'return-loading': 2,
+  'return-slot': 2,
+  'return-end': 3
 };
 
 function ensureCheckoutStepNav(screen, name) {
@@ -53,12 +66,41 @@ function ensureCheckoutStepNav(screen, name) {
   `;
 }
 
+function ensureReturnStepNav(screen, name) {
+  const currentStep = returnStepByScreen[name];
+  if (!screen || !currentStep) return;
+
+  let nav = screen.querySelector('.return-step-nav');
+  if (!nav) {
+    nav = document.createElement('nav');
+    nav.className = 'return-step-nav';
+    nav.setAttribute('aria-label', '키 반납 진행 단계');
+    screen.appendChild(nav);
+  }
+
+  nav.innerHTML = `
+    <ol class="return-step-list">
+      ${returnStepLabels.map((label, index) => {
+        const stepNo = index + 1;
+        const stateClass = stepNo < currentStep ? ' is-complete' : stepNo === currentStep ? ' is-current' : '';
+        return `
+          <li class="return-step-item${stateClass}">
+            <span class="return-step-no">${String(stepNo).padStart(2, '0')}</span>
+            <span class="return-step-label">${label}</span>
+          </li>
+        `;
+      }).join('')}
+    </ol>
+  `;
+}
+
 function goScreen(name) {
   document.querySelectorAll('.kiosk-screen').forEach(s => s.classList.remove('active'));
   const target = document.getElementById('screen-' + name);
   if (target) {
     target.classList.add('active');
     ensureCheckoutStepNav(target, name);
+    ensureReturnStepNav(target, name);
   }
   if (name === 'status') buildKeyGrid();
 }

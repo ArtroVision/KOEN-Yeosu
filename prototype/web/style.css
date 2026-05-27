@@ -1745,6 +1745,13 @@ body {
   width: 95% !important;
 }
 
+.map-panel .checkout-bottom {
+  margin-bottom: calc(var(--footer-h) + clamp(92px, 11vh, 132px));
+  padding-bottom: 0;
+  position: relative;
+  z-index: 31;
+}
+
 .map-container {
   display: flex;
   flex-direction: column;
