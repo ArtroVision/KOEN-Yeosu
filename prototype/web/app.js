@@ -245,6 +245,11 @@ function startInsulationFlow() {
 }
 
 function selectBreaker(id, markerEl, listEl) {
+  const rootStyle = getComputedStyle(document.documentElement);
+  const bgCard = rootStyle.getPropertyValue('--bg-card').trim();
+  const borderColor = rootStyle.getPropertyValue('--border-color').trim();
+  const accentCyan = rootStyle.getPropertyValue('--accent-cyan').trim() || '#38bdf8';
+
   // Highlight marker
   document.querySelectorAll('.map-marker-btn').forEach(btn => {
     btn.style.transform = 'scale(1)';
@@ -259,12 +264,12 @@ function selectBreaker(id, markerEl, listEl) {
   
   // Highlight list
   document.querySelectorAll('.breaker-list-btn').forEach(btn => {
-    btn.style.background = 'rgba(255,255,255,0.05)';
-    btn.style.borderColor = 'rgba(255,255,255,0.1)';
+    btn.style.background = bgCard;
+    btn.style.borderColor = borderColor;
   });
   if (listEl) {
-    listEl.style.background = 'rgba(56, 189, 248, 0.15)';
-    listEl.style.borderColor = '#38bdf8';
+    listEl.style.background = 'var(--bg-card-hover)';
+    listEl.style.borderColor = accentCyan;
   } else if (!listEl && !markerEl) {
      // fallback if neither is provided
   }

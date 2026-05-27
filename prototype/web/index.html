@@ -813,7 +813,7 @@
       </header>
       
       <main class="kiosk-main" class="kiosk-screen animated-bg-screen">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; align-items: stretch; width: 100%; max-width: 1400px; height: 100%; background: rgba(30, 41, 59, 0.0); border: 1px solid rgba(255,255,255,0.05); padding: 40px;">
+        <div class="checkout-panel" style="display: flex; flex-direction: column; align-items: stretch; width: 100%; max-width: 1400px; height: 100%; background: transparent; border: 1px solid var(--border-color); padding: 40px;">
             <div style="text-align: center; margin-bottom: 30px; width: 100%;">
                 <div class="checkout-badge">절연저항측정 모드</div>
                 <h2 class="checkout-title">차단기반 위치 안내</h2>
@@ -823,7 +823,7 @@
             
             <!-- 3D Map Area -->
             <div style="flex: 1; display: flex; flex-direction: column; gap: 30px; min-height: 0; width: 100%;">
-                <div style="flex: 2; background: rgba(15, 23, 42, 0.8); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                <div style="flex: 2; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
                     <img src="route_map_3d_1.png" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;" alt="3D 발전소 도면" />
                     <!-- Mock map markers -->
                     <button style="position: absolute; top: 15%; left: 38%; background: #ef4444; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(239, 68, 68, 0.5); transition: all 0.2s;" onclick="selectBreaker('CB-A01', this)" class="map-marker-btn">A</button>
@@ -833,27 +833,27 @@
                 
                 <!-- Selection Panel -->
                 <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
-                    <div style="background: rgba(15, 23, 42, 0.8); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); padding: 25px; flex: 1;">
-                        <h3 style="color: #e2e8f0; font-size: 2.3rem; margin-bottom: 20px; font-weight: 600;">작업 차단기 선택</h3>
+                    <div style="background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); padding: 25px; padding-bottom: clamp(100px, 0vh, 100px); flex: 1;">
+                      <h3 style="color: var(--text-primary); font-size: 2.3rem; margin-bottom: 20px; font-weight: 600;">작업 차단기 선택</h3>
                         
                         <div style="display: flex; flex-direction: column; gap: 10px;" id="breaker-list-container">
-                            <button class="breaker-list-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #e2e8f0; padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;" onclick="selectBreaker('CB-A01', null, this)">
+                            <button class="breaker-list-btn" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;" onclick="selectBreaker('CB-A01', null, this)">
                                 <span>A 구역 - 차단기 01</span>
-                                <span style="font-size: 1.5rem; color: #94a3b8;">400V</span>
+                              <span style="font-size: 1.5rem; color: var(--text-secondary);">400V</span>
                             </button>
-                            <button class="breaker-list-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #e2e8f0; padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;" onclick="selectBreaker('CB-B02', null, this)">
+                            <button class="breaker-list-btn" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;" onclick="selectBreaker('CB-B02', null, this)">
                                 <span>B 구역 - 차단기 02</span>
-                                <span style="font-size: 1.5rem; color: #94a3b8;">6.9kV</span>
+                              <span style="font-size: 1.5rem; color: var(--text-secondary);">6.9kV</span>
                             </button>
-                            <button class="breaker-list-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #e2e8f0; padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;" onclick="selectBreaker('CB-C03', null, this)">
+                            <button class="breaker-list-btn" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;" onclick="selectBreaker('CB-C03', null, this)">
                                 <span>C 구역 - 차단기 03</span>
-                                <span style="font-size: 1.5rem; color: #94a3b8;">400V</span>
+                              <span style="font-size: 1.5rem; color: var(--text-secondary);">400V</span>
                             </button>
                         </div>
                         
                         <div style="margin-top: 30px; text-align: center; display: none; background: rgba(56, 189, 248, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.3);" id="breaker-selection-result">
-                            <p style="color: #e2e8f0; font-size: 1.5rem; margin-bottom: 15px;">선택된 차단기: <strong id="selected-breaker-name" style="color: #38bdf8; font-size: 1.3rem; margin-left: 10px;">CB-A01</strong></p>
-                            <button style="background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; font-size: 1.5rem; font-weight: 800; border-radius: 8px; cursor: pointer; width: 100%; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); transition: all 0.2s;" onclick="goScreen('checkout-feedback')">위치 확인 완료</button>
+                            <p style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 15px;">선택된 차단기: <strong id="selected-breaker-name" style="color: var(--accent-cyan); font-size: 1.3rem; margin-left: 10px;">CB-A01</strong></p>
+                            <button style="background: var(--accent-cyan); color: #05263d; border: none; padding: 15px 30px; font-size: 1.5rem; font-weight: 800; border-radius: 8px; cursor: pointer; width: 100%; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); transition: all 0.2s;" onclick="goScreen('checkout-feedback')">위치 확인 완료</button>
                         </div>
                     </div>
                 </div>
