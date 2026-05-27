@@ -1633,19 +1633,33 @@
             </div>
           </div>
 
+          <div class="status-key-side-nav" role="group" aria-label="키함 측면 전환">
+            <button id="status-side-left" class="status-side-btn is-active" onclick="setStatusKeyPage('left')" type="button" aria-label="좌측 키함 보기" title="좌측 키함 보기">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M14.5 5L8 12L14.5 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="status-key-side-label" class="status-side-label">좌측 키함 (1-45)</div>
+            <button id="status-side-right" class="status-side-btn" onclick="setStatusKeyPage('right')" type="button" aria-label="우측 키함 보기" title="우측 키함 보기">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9.5 5L16 12L9.5 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
           <div class="key-grid-wrap">
             <div class="key-grid" id="key-grid"></div>
           </div>
 
-          <!-- <div class="checkout-bottom">
-            <button class="btn-back" onclick="goScreen('main')">
+          <div class="checkout-bottom">
+            <button class="btn-back" onclick="goScreen('status-list')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
               뒤로가기
             </button>
-          </div> -->
+          </div>
         </div>
       </main>
 

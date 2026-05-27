@@ -107,6 +107,7 @@ function goScreen(name) {
 
 // ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??Global LOTO Key State ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??
 let checkedOutKeys = new Set([12, 7, 11, 15, 19, 22, 27, 31, 35, 38, 41, 45]);
+let statusKeyPage = 'left';
 
 // ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??Clock ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??
 function updateClocks() {
@@ -128,12 +129,30 @@ function toggleTheme() {
 }
 
 // ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??Key Grid (Status) ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??
-function buildKeyGrid() {
+function setStatusKeyPage(page) {
+  if (page !== 'left' && page !== 'right') return;
+  const prev = statusKeyPage;
+  statusKeyPage = page;
+  const slideClass = prev === page ? '' : page === 'left' ? 'is-sliding-right' : 'is-sliding-left';
+  buildKeyGrid(slideClass);
+}
+
+function buildKeyGrid(slideClass = '') {
   const grid = document.getElementById('key-grid');
   if (!grid) return;
+
+  const sideLabel = document.getElementById('status-key-side-label');
+  const leftBtn = document.getElementById('status-side-left');
+  const rightBtn = document.getElementById('status-side-right');
+
+  const totalKeys = 90;
+  const pageInfo = statusKeyPage === 'right'
+    ? { start: 46, end: 90, label: '우측 키함 (46-90)' }
+    : { start: 1, end: 45, label: '좌측 키함 (1-45)' };
+
   grid.innerHTML = '';
-  
-  grid.className = 'proto-key-rack';
+
+  grid.className = `key-grid proto-key-rack${slideClass ? ' ' + slideClass : ''}`;
   grid.style.display = 'grid';
   grid.style.gridTemplateColumns = 'repeat(5, 1fr)';
   grid.style.gap = '6px';
@@ -143,20 +162,32 @@ function buildKeyGrid() {
   grid.style.background = '#e5e7eb';
   grid.style.borderRadius = '8px';
   grid.style.border = '1px solid #d1d5db';
-  
-  const totalKeys = 70;
+
+  if (sideLabel) sideLabel.textContent = pageInfo.label;
+  if (leftBtn) {
+    leftBtn.disabled = statusKeyPage === 'left';
+    leftBtn.classList.toggle('is-active', statusKeyPage === 'left');
+  }
+  if (rightBtn) {
+    rightBtn.disabled = statusKeyPage === 'right';
+    rightBtn.classList.toggle('is-active', statusKeyPage === 'right');
+  }
+
   let outCount = 0;
-  
+
   for (let i = 1; i <= totalKeys; i++) {
+    if (checkedOutKeys.has(i)) outCount++;
+  }
+
+  for (let i = pageInfo.start; i <= pageInfo.end; i++) {
     const num = String(i).padStart(2, '0');
     const isOut = checkedOutKeys.has(i);
-    if (isOut) outCount++;
-    
+
     const lineFill = isOut ? '#ef4444' : '#16a34a';
     const bgFill = isOut ? '#fee2e2' : '#f4f5f7'; 
     const strokeColor = isOut ? '#f87171' : '#d1d5db';
     const boxFill = isOut ? '#991b1b' : '#18181b';
-    
+
     const svgStr = `
       <svg viewBox="0 0 160 50" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
         <rect x="1" y="1" width="158" height="48" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
@@ -172,11 +203,11 @@ function buildKeyGrid() {
     cell.title = isOut ? `키 ${i}: 반출 중` : `키 ${i}: 보관 중`;
     grid.appendChild(cell);
   }
-  
+
   const totalEl = document.querySelector('.stat-total .stat-num');
   const outEl = document.querySelector('.stat-out .stat-num');
   const inEl = document.querySelector('.stat-in .stat-num');
-  
+
   if (totalEl) totalEl.textContent = totalKeys;
   if (outEl) outEl.textContent = outCount;
   if (inEl) inEl.textContent = totalKeys - outCount;

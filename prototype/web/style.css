@@ -1066,6 +1066,70 @@ body {
   margin-top: 0.2em;
 }
 
+.status-key-side-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin: 0.9rem 0 0.55rem;
+}
+
+.status-side-btn {
+  width: 4.2rem;
+  min-width: 4.2rem;
+  max-width: 4.2rem;
+  height: 4.2rem;
+  min-height: 4.2rem;
+  max-height: 4.2rem;
+  flex: 0 0 4.2rem;
+  aspect-ratio: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  color: var(--text-primary);
+  border-radius: 0.9rem;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.status-side-btn svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex: 0 0 auto;
+}
+
+.status-side-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.65);
+  box-shadow: 0 12px 30px rgba(6, 182, 212, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.status-side-btn.is-active,
+.status-side-btn:disabled {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.45), rgba(37, 99, 235, 0.4));
+  border-color: rgba(34, 211, 238, 0.9);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2), 0 12px 30px rgba(6, 182, 212, 0.35);
+  cursor: default;
+}
+
+.status-side-label {
+  text-align: center;
+  min-width: 10.8rem;
+  font-size: clamp(1.82rem, 1.15vw, 1rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+}
+
 .key-grid-wrap {
   flex: 1;
   overflow-y: auto;
@@ -1084,6 +1148,38 @@ body {
   grid-template-columns: repeat(6, 1fr);
   gap: 6px;
   margin: 0 auto;
+}
+
+.key-grid.is-sliding-left {
+  animation: key-grid-slide-left 0.24s ease;
+}
+
+.key-grid.is-sliding-right {
+  animation: key-grid-slide-right 0.24s ease;
+}
+
+@keyframes key-grid-slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes key-grid-slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .key-cell {
