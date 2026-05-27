@@ -424,7 +424,7 @@
       <main class="kiosk-main">
         <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%;">
             <div class="proto-loader" onclick="triggerErrorFromLoading()" style="width: 100px; height: 100px; border: 8px solid rgba(255,255,255,0.05); border-top: 8px solid var(--accent-cyan); border-radius: 50%; animation: proto-spin 1s linear infinite; margin-bottom: 40px; cursor: pointer;" title="클릭 시 에러 화면으로 이동"></div>
-            <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; font-weight: 700; color: #ffffff;">작업 정보 동기화 및 안전 검증 중</h1>
+            <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; font-weight: 700; color: var(--text-primary);">작업 정보 동기화 및 안전 검증 중</h1>
             <h2 style="font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: 40px; color: var(--text-secondary); font-weight: 400;">GENi 시스템과 연동하여 작업 상태를 확인하고 있습니다...</h2>
         </div>
       </main>
@@ -1136,7 +1136,7 @@
       <main class="kiosk-main">
         <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%;">
             <div class="proto-loader" onclick="goScreen('return-slot')" style="width: 100px; height: 100px; border: 8px solid rgba(255,255,255,0.05); border-top: 8px solid var(--accent-cyan); border-radius: 50%; animation: proto-spin 1s linear infinite; margin-bottom: 40px; cursor: pointer;" title="클릭 시 에러 화면으로 이동"></div>
-            <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; font-weight: 700; color: #ffffff;">작업 정보 동기화 및 안전 검증 중</h1>
+            <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; font-weight: 700; color: var(--text-primary);">작업 정보 동기화 및 안전 검증 중</h1>
             <h2 style="font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: 40px; color: var(--text-secondary); font-weight: 400;">GENi 시스템과 연동하여 작업 상태를 확인하고 있습니다...</h2>
         </div>
       </main>
@@ -1375,14 +1375,14 @@
       </header>
 
       <main class="kiosk-main" style="align-items: center; justify-content: center;">
-        <div class="checkout-panel" style="width: 100%; max-width: 100%; padding: 40px; background: rgba(30, 41, 59, 0.6);">
-          <div class="checkout-top" style="margin-bottom: 40px; text-align: center;">
+        <div class="checkout-panel status-list-panel" style="width: 100%; max-width: 100%; padding: 40px; background: rgba(30, 41, 59, 0.6);">
+          <div class="checkout-top status-list-header" style="margin-bottom: 40px; text-align: center;">
             <h2 class="checkout-title">작업 리스트 조회</h2>
             <p class="checkout-subtitle">현재 발행 및 진행 중인 작업 목록 현황입니다.</p>
           </div>
 
-          <div style="background: rgba(15, 23, 42, 0.8); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;">
-            <table style="width: 100%; border-collapse: collapse; text-align: center; color: #e2e8f0; white-space: nowrap; table-layout: fixed;">
+          <div class="status-list-table-wrap" style="background: rgba(15, 23, 42, 0.8); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;">
+            <table class="status-list-table" style="width: 100%; border-collapse: collapse; text-align: center; color: #e2e8f0; white-space: nowrap; table-layout: fixed;">
               <thead>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 1.1rem; color: #94a3b8;">
                   <th style="padding: 20px 12px; width: 16%; text-align: center;">발행내역</th>
@@ -1403,7 +1403,7 @@
                   <td style="padding: 20px 12px; text-align: center;">일반 작업</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-014</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1414,7 +1414,7 @@
                   <td style="padding: 20px 12px; text-align: center;">Motor Solo</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-015</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1425,7 +1425,7 @@
                   <td style="padding: 20px 12px; text-align: center;">절연저항 측정</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-016</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1436,7 +1436,7 @@
                   <td style="padding: 20px 12px; text-align: center;">일반 작업</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-017</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1447,7 +1447,7 @@
                   <td style="padding: 20px 12px; text-align: center;">Motor Solo</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-018</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1458,7 +1458,7 @@
                   <td style="padding: 20px 12px; text-align: center;">점검 작업</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-019</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1469,7 +1469,7 @@
                   <td style="padding: 20px 12px; text-align: center;">일반 작업</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-020</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1480,7 +1480,7 @@
                   <td style="padding: 20px 12px; text-align: center;">절연저항 측정</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-021</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr>
@@ -1491,16 +1491,16 @@
                   <td style="padding: 20px 12px; text-align: center;">일반 작업</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-022</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
+          <div class="status-list-action-row" style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
             <!-- <button class="btn-back" style="background: transparent; border: 2px solid #64748b; color: #cbd5e1; padding: 15px 40px; font-size: 1.2rem; font-weight: 600; border-radius: 8px; cursor: pointer;" onclick="goScreen('main')">메인으로 돌아가기</button> -->
-            <button class="btn-back" style="background: #3b82f6; border: none; color: white; padding: 15px 40px; font-size: 1.2rem; font-weight: 600; border-radius: 8px; cursor: pointer;" onclick="goScreen('status')">LOTO 키 보관함 현황</button>
+            <button class="btn-back status-list-primary-btn" style="background: #3b82f6; border: none; color: white; padding: 15px 40px; font-size: 1.2rem; font-weight: 600; border-radius: 8px; cursor: pointer;" onclick="goScreen('status')">LOTO 키 보관함 현황</button>
           </div>
         </div>
       </main>
@@ -1807,7 +1807,7 @@
     </div>
 
     <!-- ═══════════════ SCREEN: EMERGENCY MODE SELECT ═══════════════ -->
-    <div id="screen-emergency-mode-select" class="kiosk-screen animated-bg-screen" style="background-color: #0d1117;">
+    <div id="screen-emergency-mode-select" class="kiosk-screen animated-bg-screen emergency-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -1874,7 +1874,7 @@
     </div>
 
     <!-- ═══════════════ SCREEN: EMERGENCY RETURN PREP (Step 1) ═══════════════ -->
-    <div id="screen-emergency-return-prep" class="kiosk-screen animated-bg-screen" style="background-color: #0d1117;">
+    <div id="screen-emergency-return-prep" class="kiosk-screen animated-bg-screen emergency-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -1944,7 +1944,7 @@
     </div>
 
     <!-- ═══════════════ SCREEN: EMERGENCY KEY RFID (Step 2) ═══════════════ -->
-    <div id="screen-emergency-key-rfid" class="kiosk-screen animated-bg-screen" style="background-color: #0d1117;">
+    <div id="screen-emergency-key-rfid" class="kiosk-screen animated-bg-screen emergency-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -2025,7 +2025,7 @@
     </div>
 
     <!-- ═══════════════ SCREEN: EMERGENCY RETURN SLOT (Step 3) ═══════════════ -->
-    <div id="screen-emergency-return-slot" class="kiosk-screen animated-bg-screen" style="background-color: #0d1117;">
+    <div id="screen-emergency-return-slot" class="kiosk-screen animated-bg-screen emergency-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -2126,7 +2126,7 @@
     </div>
 
     <!-- ═══════════════ SCREEN: EMERGENCY CONFIRM ═══════════════ -->
-    <div id="screen-emergency-confirm" class="kiosk-screen animated-bg-screen" style="background-color: #0d1117;">
+    <div id="screen-emergency-confirm" class="kiosk-screen animated-bg-screen emergency-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -2194,7 +2194,7 @@
     </div>
 
     <!-- ═══════════════ SCREEN: EMERGENCY COMPLETE ═══════════════ -->
-    <div id="screen-emergency-complete" class="kiosk-screen animated-bg-screen" style="background-color: #0d1117;">
+    <div id="screen-emergency-complete" class="kiosk-screen animated-bg-screen emergency-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
