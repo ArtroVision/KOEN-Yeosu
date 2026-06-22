@@ -864,8 +864,8 @@ function toggleSelectiveSlot(i) {
     if (selectiveOpenSlots.has(i)) {
       if (selBg) {
         selBg.setAttribute('fill', '#fee2e2'); // 연한 적색 배경
-        selBg.setAttribute('stroke', '#d1d5db'); // 기본 테두리 유지
-        selBg.setAttribute('stroke-width', '2');
+        selBg.setAttribute('stroke', '#ef4444'); // 적색 테두리로 변경
+        selBg.setAttribute('stroke-width', '4');
       }
       if (selBox) {
         selBox.setAttribute('fill', '#ef4444'); // 적색 내부 박스
