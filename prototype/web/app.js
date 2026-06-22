@@ -161,11 +161,11 @@ function buildKeyGrid(slideClass = '') {
     const boxFill = isOut ? '#991b1b' : '#767171';
 
     return `
-      <svg viewBox="0 0 160 55" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="1" width="158" height="53" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
-        <rect x="52.5" y="7.5" width="55" height="40" rx="4" fill="${boxFill}" />
-        <rect x="35" y="24.5" width="90" height="6" rx="3" fill="#D0CECE" />
-        <text x="80" y="21.5" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
+      <svg viewBox="0 0 160 53" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="158" height="51" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
+        <rect x="52.5" y="6.5" width="55" height="40" rx="4" fill="${boxFill}" />
+        <rect x="35" y="23.5" width="90" height="6" rx="3" fill="#D0CECE" />
+        <text x="80" y="20.5" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
       </svg>
     `;
   }
@@ -833,11 +833,11 @@ function buildSelectiveGrid() {
     cell.id = 'sel-slot-' + i;
     cell.style.cssText = 'display: flex; cursor: pointer; transition: transform 0.1s;';
     cell.innerHTML = `
-      <svg viewBox="0 0 160 55" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
-        <rect class="sel-bg" x="1" y="1" width="158" height="53" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2" />
-        <rect class="sel-box" x="52.5" y="7.5" width="55" height="40" rx="4" fill="#767171" />
-        <rect x="35" y="24.5" width="90" height="6" rx="3" fill="#D0CECE" />
-        <text x="80" y="21.5" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
+      <svg viewBox="0 0 160 53" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
+        <rect class="sel-bg" x="1" y="1" width="158" height="51" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2" />
+        <rect class="sel-box" x="52.5" y="6.5" width="55" height="40" rx="4" fill="#767171" />
+        <rect x="35" y="23.5" width="90" height="6" rx="3" fill="#D0CECE" />
+        <text x="80" y="20.5" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
       </svg>
     `;
     cell.onclick = () => toggleSelectiveSlot(i);
