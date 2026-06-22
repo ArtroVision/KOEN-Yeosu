@@ -913,10 +913,15 @@ function executeSelectiveOpen() {
   if (selectiveOpenSlots.size === 0) return;
 
   const sorted = Array.from(selectiveOpenSlots).sort((a, b) => a - b);
-  const slotNums = sorted.map(n => '#' + String(n).padStart(2, '0'));
+  const slotsHtml = sorted.map(n => {
+    const num = String(n).padStart(2, '0');
+    return `<div style="background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 10px 20px; color: #fcd34d; font-size: 1.6rem; font-weight: 800; font-family: var(--font-mono); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+      <span style="font-size: 1.2rem; color: #f59e0b; margin-right: 4px;">#</span>${num}
+    </div>`;
+  }).join('');
 
   const slotsEl = document.getElementById('selective-complete-slots');
-  if (slotsEl) slotsEl.textContent = slotNums.join(', ');
+  if (slotsEl) slotsEl.innerHTML = slotsHtml;
 
   const msgEl = document.getElementById('selective-complete-msg');
   if (msgEl) msgEl.innerHTML = `선택된 ${sorted.length}개 슬롯이 개방되었습니다.<br>관련 데이터가 시스템에 안전하게 기록되었습니다.`;
