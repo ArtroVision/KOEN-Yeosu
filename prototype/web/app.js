@@ -161,11 +161,11 @@ function buildKeyGrid(slideClass = '') {
     const boxFill = isOut ? '#991b1b' : '#767171';
 
     return `
-      <svg viewBox="0 0 160 60" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="1" width="158" height="58" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
-        <rect x="52.5" y="10" width="55" height="40" rx="4" fill="${boxFill}" />
-        <rect x="35" y="27" width="90" height="6" rx="3" fill="#D0CECE" />
-        <text x="80" y="24" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
+      <svg viewBox="0 0 160 55" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="158" height="53" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
+        <rect x="52.5" y="7.5" width="55" height="40" rx="4" fill="${boxFill}" />
+        <rect x="35" y="24.5" width="90" height="6" rx="3" fill="#D0CECE" />
+        <text x="80" y="21.5" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
       </svg>
     `;
   }
@@ -827,18 +827,25 @@ function buildSelectiveGrid() {
   gridTop.innerHTML = '';
   gridBottom.innerHTML = '';
 
-  function createSlotBtn(i, container) {
+  function createSelectableSlot(i, container) {
     const num = String(i).padStart(2, '0');
-    const btn = document.createElement('button');
-    btn.id = 'sel-slot-' + i;
-    btn.textContent = num;
-    btn.style.cssText = 'padding: 10px 0; font-family: var(--font-mono); font-size: 1rem; font-weight: 700; border-radius: 6px; cursor: pointer; transition: all 0.15s; border: 1.5px solid var(--border-color); background: rgba(255,255,255,0.04); color: var(--text-secondary); text-align: center;';
-    btn.onclick = () => toggleSelectiveSlot(i);
-    container.appendChild(btn);
+    const cell = document.createElement('div');
+    cell.id = 'sel-slot-' + i;
+    cell.style.cssText = 'display: flex; cursor: pointer; transition: transform 0.1s;';
+    cell.innerHTML = `
+      <svg viewBox="0 0 160 55" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
+        <rect class="sel-bg" x="1" y="1" width="158" height="53" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2" />
+        <rect class="sel-box" x="52.5" y="7.5" width="55" height="40" rx="4" fill="#767171" />
+        <rect x="35" y="24.5" width="90" height="6" rx="3" fill="#D0CECE" />
+        <text x="80" y="21.5" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
+      </svg>
+    `;
+    cell.onclick = () => toggleSelectiveSlot(i);
+    container.appendChild(cell);
   }
 
-  for (let i = 1; i <= 45; i++) createSlotBtn(i, gridTop);
-  for (let i = 46; i <= 90; i++) createSlotBtn(i, gridBottom);
+  for (let i = 1; i <= 45; i++) createSelectableSlot(i, gridTop);
+  for (let i = 46; i <= 90; i++) createSelectableSlot(i, gridBottom);
 
   updateSelectiveUI();
 }
