@@ -864,12 +864,12 @@ function toggleSelectiveSlot(i) {
     if (selectiveOpenSlots.has(i)) {
       btn.style.transform = 'scale(1.05)';
       if (selBg) {
-        selBg.setAttribute('fill', '#fef3c7'); // 밝은 주황 배경
-        selBg.setAttribute('stroke', '#f59e0b'); // 주황색 테두리
+        selBg.setAttribute('fill', '#fee2e2'); // 연한 적색 배경
+        selBg.setAttribute('stroke', '#ef4444'); // 적색 테두리
         selBg.setAttribute('stroke-width', '4');
       }
       if (selBox) {
-        selBox.setAttribute('fill', '#f59e0b'); // 주황색 내부 박스
+        selBox.setAttribute('fill', '#ef4444'); // 적색 내부 박스
       }
     } else {
       btn.style.transform = 'scale(1)';
