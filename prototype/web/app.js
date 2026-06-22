@@ -858,16 +858,29 @@ function toggleSelectiveSlot(i) {
   }
   const btn = document.getElementById('sel-slot-' + i);
   if (btn) {
+    const selBg = btn.querySelector('.sel-bg');
+    const selBox = btn.querySelector('.sel-box');
+
     if (selectiveOpenSlots.has(i)) {
-      btn.style.background = 'rgba(245, 158, 11, 0.35)';
-      btn.style.borderColor = '#f59e0b';
-      btn.style.color = '#fcd34d';
-      btn.style.boxShadow = '0 0 10px rgba(245, 158, 11, 0.3)';
+      btn.style.transform = 'scale(1.05)';
+      if (selBg) {
+        selBg.setAttribute('fill', '#fef3c7'); // 밝은 주황 배경
+        selBg.setAttribute('stroke', '#f59e0b'); // 주황색 테두리
+        selBg.setAttribute('stroke-width', '4');
+      }
+      if (selBox) {
+        selBox.setAttribute('fill', '#f59e0b'); // 주황색 내부 박스
+      }
     } else {
-      btn.style.background = 'rgba(255,255,255,0.04)';
-      btn.style.borderColor = 'var(--border-color)';
-      btn.style.color = 'var(--text-secondary)';
-      btn.style.boxShadow = 'none';
+      btn.style.transform = 'scale(1)';
+      if (selBg) {
+        selBg.setAttribute('fill', '#f4f5f7');
+        selBg.setAttribute('stroke', '#d1d5db');
+        selBg.setAttribute('stroke-width', '2');
+      }
+      if (selBox) {
+        selBox.setAttribute('fill', '#767171');
+      }
     }
   }
   updateSelectiveUI();
