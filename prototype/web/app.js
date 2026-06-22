@@ -2,7 +2,7 @@
 
 // ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??Screen Navigation ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??
 const checkoutStepLabels = [
-  '작업자 RFID',
+  '모드 선택',
   'REG TAG',
   '안전 검증',
   '보관함 위치',
@@ -17,7 +17,7 @@ const returnStepLabels = [
 ];
 
 const checkoutStepByScreen = {
-  'checkout-rfid': 1,
+  'checkout-mode': 1,
   checkout: 2,
   'checkout-check': 3,
   'loading-validate': 3,
@@ -138,40 +138,13 @@ function setStatusKeyPage(page) {
 }
 
 function buildKeyGrid(slideClass = '') {
-  const grid = document.getElementById('key-grid');
-  if (!grid) return;
-
-  const sideLabel = document.getElementById('status-key-side-label');
-  const leftBtn = document.getElementById('status-side-left');
-  const rightBtn = document.getElementById('status-side-right');
+  const gridTop = document.getElementById('key-grid-top');
+  const gridBottom = document.getElementById('key-grid-bottom');
+  if (!gridTop || !gridBottom) return;
 
   const totalKeys = 90;
-  const pageInfo = statusKeyPage === 'right'
-    ? { start: 46, end: 90, label: '우측 키함 (46-90)' }
-    : { start: 1, end: 45, label: '좌측 키함 (1-45)' };
-
-  grid.innerHTML = '';
-
-  grid.className = `key-grid proto-key-rack${slideClass ? ' ' + slideClass : ''}`;
-  grid.style.display = 'grid';
-  grid.style.gridTemplateColumns = 'repeat(5, 1fr)';
-  grid.style.gap = '6px';
-  grid.style.width = '100%';
-  grid.style.maxWidth = '900px';
-  grid.style.padding = '10px';
-  grid.style.background = '#e5e7eb';
-  grid.style.borderRadius = '8px';
-  grid.style.border = '1px solid #d1d5db';
-
-  if (sideLabel) sideLabel.textContent = pageInfo.label;
-  if (leftBtn) {
-    leftBtn.disabled = statusKeyPage === 'left';
-    leftBtn.classList.toggle('is-active', statusKeyPage === 'left');
-  }
-  if (rightBtn) {
-    rightBtn.disabled = statusKeyPage === 'right';
-    rightBtn.classList.toggle('is-active', statusKeyPage === 'right');
-  }
+  gridTop.innerHTML = '';
+  gridBottom.innerHTML = '';
 
   let outCount = 0;
 
@@ -179,29 +152,40 @@ function buildKeyGrid(slideClass = '') {
     if (checkedOutKeys.has(i)) outCount++;
   }
 
-  for (let i = pageInfo.start; i <= pageInfo.end; i++) {
+  function createKeySvg(i) {
     const num = String(i).padStart(2, '0');
     const isOut = checkedOutKeys.has(i);
 
-    const lineFill = isOut ? '#ef4444' : '#16a34a';
     const bgFill = isOut ? '#fee2e2' : '#f4f5f7'; 
     const strokeColor = isOut ? '#f87171' : '#d1d5db';
-    const boxFill = isOut ? '#991b1b' : '#18181b';
+    const boxFill = isOut ? '#991b1b' : '#767171';
 
-    const svgStr = `
-      <svg viewBox="0 0 160 50" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="1" width="158" height="48" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
-        <rect x="10" y="12" width="3" height="26" fill="${lineFill}" />
-        <rect x="147" y="12" width="3" height="26" fill="${lineFill}" />
-        <rect x="57.5" y="10" width="45" height="30" rx="4" fill="${boxFill}" />
-        <text x="80" y="31" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">${num}</text>
+    return `
+      <svg viewBox="0 0 160 60" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="158" height="58" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
+        <rect x="52.5" y="10" width="55" height="40" rx="4" fill="${boxFill}" />
+        <rect x="35" y="27" width="90" height="6" rx="3" fill="#D0CECE" />
+        <text x="80" y="24" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
       </svg>
     `;
+  }
+
+  // Render 1-45 keys to gridTop
+  for (let i = 1; i <= 45; i++) {
     const cell = document.createElement('div');
-    cell.innerHTML = svgStr;
+    cell.innerHTML = createKeySvg(i);
     cell.style.display = 'flex';
-    cell.title = isOut ? `키 ${i}: 반출 중` : `키 ${i}: 보관 중`;
-    grid.appendChild(cell);
+    cell.title = checkedOutKeys.has(i) ? `키 ${i}: 반출 중` : `키 ${i}: 보관 중`;
+    gridTop.appendChild(cell);
+  }
+
+  // Render 46-90 keys to gridBottom
+  for (let i = 46; i <= totalKeys; i++) {
+    const cell = document.createElement('div');
+    cell.innerHTML = createKeySvg(i);
+    cell.style.display = 'flex';
+    cell.title = checkedOutKeys.has(i) ? `키 ${i}: 반출 중` : `키 ${i}: 보관 중`;
+    gridBottom.appendChild(cell);
   }
 
   const totalEl = document.querySelector('.stat-total .stat-num');
@@ -217,31 +201,160 @@ function buildKeyGrid(slideClass = '') {
 let ttsSpeech = null;
 let ttsInterval = null;
 
-let normalFlowTimer = null;
+let selectedCheckoutMode = 'normal';
 
-let successFlowTimer = null;
+function selectCheckoutMode(mode) {
+  selectedCheckoutMode = mode;
+  goScreen('checkout');
+}
 
-function startSuccessFlow() {
-  if (successFlowTimer) {
-    clearTimeout(successFlowTimer);
-    successFlowTimer = null;
+function simulateBarcodeScan() {
+  const hasConflict = checkedOutKeys.has(2);
+  runValidationFlow(hasConflict);
+}
+
+let validationTimer = null;
+
+function setValStepStatus(stepNum, statusClass, statusText, symbol = null) {
+  const stepEl = document.getElementById(`val-step-${stepNum}`);
+  if (!stepEl) return;
+  
+  stepEl.className = `val-item ${statusClass}`;
+  
+  const statusEl = stepEl.querySelector('.val-status');
+  if (statusEl) {
+    statusEl.textContent = statusText;
   }
-  goScreen('checkout-mtr-solo');
+  
+  const iconWrapEl = stepEl.querySelector('.val-icon-wrap');
+  if (iconWrapEl) {
+    if (symbol !== null) {
+      iconWrapEl.textContent = symbol;
+    } else {
+      iconWrapEl.textContent = stepNum;
+    }
+  }
 }
 
-function startNormalFlow() {
+function runValidationFlow(hasConflict) {
+  if (validationTimer) {
+    clearTimeout(validationTimer);
+    validationTimer = null;
+  }
+  
   goScreen('loading-validate');
-  normalFlowTimer = setTimeout(() => {
+  
+  setValStepStatus(1, 'val-pending', '대기 중');
+  setValStepStatus(2, 'val-pending', '대기 중');
+  
+  const actionsEl = document.getElementById('validation-result-actions');
+  const btnNext = document.getElementById('btn-validation-next');
+  const btnFail = document.getElementById('btn-validation-fail');
+  if (actionsEl) actionsEl.style.display = 'none';
+  if (btnNext) {
+    btnNext.textContent = '검증 완료 - 다음 단계로';
+    btnNext.style.display = 'none';
+  }
+  if (btnFail) btnFail.style.display = 'none';
+
+  validationTimer = setTimeout(() => {
+    setValStepStatus(1, 'val-loading', '동기화 중...');
+    
+    validationTimer = setTimeout(() => {
+      setValStepStatus(1, 'val-success', '완료', '✓');
+      setValStepStatus(2, 'val-loading', '검증 중...');
+      
+      validationTimer = setTimeout(() => {
+        if (hasConflict) {
+          if (selectedCheckoutMode === 'mtr-solo') {
+            setValStepStatus(2, 'val-warning', '대여 중 (승인 필요)', '⚠');
+            if (actionsEl) {
+              actionsEl.style.display = 'flex';
+              actionsEl.style.justifyContent = 'center';
+            }
+            if (btnNext) {
+              btnNext.textContent = '단독기동 확인 진행';
+              btnNext.style.display = 'block';
+            }
+            if (btnFail) btnFail.style.display = 'none';
+          } else {
+            setValStepStatus(2, 'val-failure', '대여 중 (차단)', '✗');
+            if (actionsEl) {
+              actionsEl.style.display = 'flex';
+              actionsEl.style.justifyContent = 'center';
+            }
+            if (btnFail) btnFail.style.display = 'block';
+            if (btnNext) btnNext.style.display = 'none';
+          }
+        } else {
+          setValStepStatus(2, 'val-success', '완료', '✓');
+          if (actionsEl) {
+            actionsEl.style.display = 'flex';
+            actionsEl.style.justifyContent = 'center';
+          }
+          if (btnNext) {
+            btnNext.textContent = '검증 완료 - 다음 단계로';
+            btnNext.style.display = 'block';
+          }
+          if (btnFail) btnFail.style.display = 'none';
+        }
+      }, 1200);
+      
+    }, 1000);
+    
+  }, 400);
+}
+
+function skipValidationAnimation(hasConflict) {
+  if (validationTimer) {
+    clearTimeout(validationTimer);
+    validationTimer = null;
+  }
+  
+  if (hasConflict) {
+    if (selectedCheckoutMode === 'mtr-solo') {
+      goScreen('checkout-mtr-solo');
+    } else {
+      handleValidationFailure();
+    }
+  } else {
+    setValStepStatus(1, 'val-success', '완료', '✓');
+    setValStepStatus(2, 'val-success', '완료', '✓');
+    
+    const actionsEl = document.getElementById('validation-result-actions');
+    const btnNext = document.getElementById('btn-validation-next');
+    const btnFail = document.getElementById('btn-validation-fail');
+    
+    if (actionsEl) {
+      actionsEl.style.display = 'flex';
+      actionsEl.style.justifyContent = 'center';
+    }
+    if (btnNext) {
+      btnNext.textContent = '검증 완료 - 다음 단계로';
+      btnNext.style.display = 'block';
+    }
+    if (btnFail) btnFail.style.display = 'none';
+  }
+}
+
+function proceedAfterValidation() {
+  if (selectedCheckoutMode === 'mtr-solo' && checkedOutKeys.has(2)) {
+    goScreen('checkout-mtr-solo');
+  } else if (selectedCheckoutMode === 'normal' || selectedCheckoutMode === 'mtr-solo' || selectedCheckoutMode === 'insulation') {
     goScreen('checkout-normal');
-  }, 3000);
+  }
 }
 
-let insulationFlowTimer = null;
-function startInsulationFlow() {
-  goScreen('loading-validate');
-  insulationFlowTimer = setTimeout(() => {
-    goScreen('checkout-insulation-map');
-  }, 3000);
+function handleValidationFailure() {
+  goScreen('checkout-conflict');
+}
+
+function cancelCheckoutFlow() {
+  if (validationTimer) {
+    clearTimeout(validationTimer);
+    validationTimer = null;
+  }
+  goScreen('main');
 }
 
 function selectBreaker(id, markerEl, listEl) {
@@ -278,18 +391,6 @@ function selectBreaker(id, markerEl, listEl) {
   document.getElementById('breaker-selection-result').style.display = 'block';
 }
 
-function triggerErrorFromLoading() {
-  if (normalFlowTimer) {
-    clearTimeout(normalFlowTimer);
-    normalFlowTimer = null;
-  }
-  if (successFlowTimer) {
-    clearTimeout(successFlowTimer);
-    successFlowTimer = null;
-  }
-  startConflictFlow();
-}
-
 function startConflictFlow() {
   goScreen('checkout-conflict');
 }
@@ -320,9 +421,9 @@ function goToStep6End() {
 }
 
 function completeCheckoutFlowAndGoMain() {
-  // 3踰?蹂닿??⑥쓣 '遺덉텧 以??쇰줈 ?ㅼ젙
-  checkedOutKeys.add(3);
-  buildKeyGrid(); // 寃⑸━??諛섏쁺
+  // 2번 보관함을 '불출 됨'으로 설정
+  checkedOutKeys.add(2);
+  buildKeyGrid(); // 격리판 반영
   goScreen('main');
 }
 
@@ -348,8 +449,8 @@ function goToReturnEnd() {
 }
 
 function completeReturnFlowAndGoMain() {
-  // 3踰??щ’??'蹂닿? 以??쇰줈 蹂듦?
-  checkedOutKeys.delete(3);
+  // 2번 슬롯을 '보관 중'으로 복구
+  checkedOutKeys.delete(2);
   buildKeyGrid();
   goScreen('main');
 }

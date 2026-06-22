@@ -42,7 +42,7 @@
           </div>
 
           <div class="nav-buttons">
-            <button class="nav-btn btn-checkout" onclick="goScreen('checkout-rfid')">
+            <button class="nav-btn btn-checkout" onclick="goScreen('checkout-mode')">
               <div class="btn-icon-wrap">
                 <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="3" opacity="0.3" />
@@ -104,6 +104,115 @@
       </footer>
     </div>
 
+    <!-- ═══════════════ SCREEN: CHECKOUT MODE SELECT (Step 1) ═══════════════ -->
+    <div id="screen-checkout-mode" class="kiosk-screen animated-bg-screen">
+      <header class="kiosk-header">
+        <div class="header-logo">
+          <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
+          <div class="header-title">
+            <span class="title-main">한국남동발전 여수발전본부</span>
+            <span class="title-sub">Smart LOTO System</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="header-clock" id="clock-checkout-mode"></div>
+          <button class="btn-theme" onclick="toggleTheme()" title="테마 전환">🌓</button>
+        </div>
+      </header>
+
+      <main class="kiosk-main">
+        <div class="checkout-panel">
+          <!-- Top -->
+          <div class="checkout-top">
+            <div class="checkout-badge">STEP 01 : MODE SELECT</div>
+            <h2 class="checkout-title">반출 모드 선택</h2>
+            <p class="checkout-subtitle">수행할 작업의 LOTO 키 반출 모드를 선택해 주세요.</p>
+          </div>
+
+          <!-- Center: Mode Cards -->
+          <div class="checkout-center flex-col-center">
+            <div class="mode-buttons-container">
+              <!-- Card 1: 일반 작업 -->
+              <button class="mode-card mode-card-normal" onclick="selectCheckoutMode('normal')">
+                <div class="mode-card-icon-wrap">
+                  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="14" y="10" width="36" height="44" rx="4" stroke="currentColor" stroke-width="3"
+                      opacity="0.8" />
+                    <line x1="22" y1="20" x2="42" y2="20" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" />
+                    <line x1="22" y1="28" x2="42" y2="28" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" />
+                    <line x1="22" y1="36" x2="34" y2="36" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" />
+                  </svg>
+                </div>
+                <span class="mode-card-title">일반 LOTO 반출</span>
+                <!-- <span class="mode-card-desc">기본적인 LOTO 절차에 따른 단일 기기 차단 키 반출 작업</span> -->
+              </button>
+
+              <!-- Card 2: Motor Solo -->
+              <button class="mode-card mode-card-mtr" onclick="selectCheckoutMode('mtr-solo')">
+                <div class="mode-card-icon-wrap">
+                  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="3" opacity="0.8" />
+                    <path d="M22 40V24L32 34L42 24V40" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <span class="mode-card-title">Motor Solo</span>
+                <!-- <span class="mode-card-desc">전동기 단독 운전 점검을 위한 다단계 부서 협의 및 최종 승인 반출</span> -->
+              </button>
+
+              <!-- Card 3: 절연저항 측정 -->
+              <button class="mode-card mode-card-insulation" onclick="selectCheckoutMode('insulation')">
+                <div class="mode-card-icon-wrap">
+                  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 40L24 16L32 30L44 10L52 24" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                    <line x1="8" y1="52" x2="56" y2="52" stroke="currentColor" stroke-width="3.5"
+                      stroke-linecap="round" />
+                    <path d="M30 42L26 48H32L30 52L36 46H30L32 42" stroke="currentColor" stroke-width="2"
+                      fill="currentColor" />
+                  </svg>
+                </div>
+                <span class="mode-card-title">절연저항 측정</span>
+                <!-- <span class="mode-card-desc">3D 위치도 기반 작업 대상 차단기 확인 및 저항 측정 전용 LOTO 반출</span> -->
+              </button>
+            </div>
+          </div>
+
+          <!-- Bottom -->
+          <div class="checkout-bottom">
+          </div>
+        </div>
+      </main>
+
+      <footer class="kiosk-footer">
+        <div class="footer-home">
+          <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
+            <span class="footer-home-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M3 11.5L12 4l9 7.5" />
+                <path d="M5.5 10.5V20h13v-9.5" />
+                <path d="M9.5 20v-6h5v6" />
+              </svg>
+            </span>
+            <span class="footer-home-caption">처음으로</span>
+          </button>
+        </div>
+        <div class="footer-right">
+          <div class="net-status">
+            <span class="net-dot"></span>
+            <span class="net-text">네트워크 정상</span>
+          </div>
+          <button class="btn-emergency">
+            <span>⚠</span> 긴급상황모드
+          </button>
+        </div>
+      </footer>
+    </div>
+
     <!-- ═══════════════ SCREEN: CHECKOUT ═══════════════ -->
     <div id="screen-checkout" class="kiosk-screen">
       <canvas id="canvas-checkout" class="bg-canvas"></canvas>
@@ -142,41 +251,37 @@
                 <div class="scan-icon">
                   <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <!-- 바코드 세로 바 (굵기와 간격을 불규칙하게) -->
-                    <rect x="8"  y="8" width="3"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="14" y="8" width="1.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="18" y="8" width="4"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="25" y="8" width="1.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="29" y="8" width="2.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="34" y="8" width="1"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="38" y="8" width="3.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="44" y="8" width="1.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="48" y="8" width="2"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="53" y="8" width="4"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="60" y="8" width="1"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="64" y="8" width="3"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="70" y="8" width="1.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="74" y="8" width="2.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="80" y="8" width="1"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="84" y="8" width="4"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="91" y="8" width="2"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="96" y="8" width="1.5"height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="100"y="8" width="3"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="106"y="8" width="1"  height="62" fill="currentColor" opacity="0.9"/>
-                    <rect x="110"y="8" width="2.5"height="62" fill="currentColor" opacity="0.9"/>
+                    <rect x="8" y="8" width="3" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="14" y="8" width="1.5" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="18" y="8" width="4" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="25" y="8" width="1.5" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="29" y="8" width="2.5" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="34" y="8" width="1" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="38" y="8" width="3.5" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="44" y="8" width="1.5" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="48" y="8" width="2" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="53" y="8" width="4" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="60" y="8" width="1" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="64" y="8" width="3" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="70" y="8" width="1.5" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="74" y="8" width="2.5" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="80" y="8" width="1" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="84" y="8" width="4" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="91" y="8" width="2" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="96" y="8" width="1.5" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="100" y="8" width="3" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="106" y="8" width="1" height="62" fill="currentColor" opacity="0.9" />
+                    <rect x="110" y="8" width="2.5" height="62" fill="currentColor" opacity="0.9" />
                     <!-- 하단 숫자 -->
-                    <text x="60" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="currentColor" letter-spacing="2" opacity="0.6">2026-YS-045</text>
+                    <text x="60" y="84" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9"
+                      fill="currentColor" letter-spacing="2" opacity="0.6">2026-YS-045</text>
                   </svg>
                 </div>
 
-                <!-- 프로토타입: 투명 분기 탭존 (좌=NORMAL / 중=MTR Solo / 우=절연저항) -->
-                <button class="tap-zone tap-zone-left" style="width: 33.33%;" onclick="startNormalFlow()" title="[Proto] NORMAL 스캔 시뮬레이션">
-                  <span class="tap-zone-label">NORMAL</span>
-                </button>
-                <button class="tap-zone tap-zone-right" style="left: 33.33%; right: auto; width: 33.33%;" onclick="startSuccessFlow()" title="[Proto] MTR Solo 스캔 시뮬레이션">
-                  <span class="tap-zone-label">MTR Solo</span>
-                </button>
-                <button class="tap-zone" style="left: 66.66%; width: 33.33%;" onclick="startInsulationFlow()" title="[Proto] 절연저항측정 스캔 시뮬레이션">
-                  <span class="tap-zone-label" style="color: #10b981; background: rgba(16, 185, 129, 0.12);">절연저항</span>
+                <!-- 프로토타입: 바코드 스캔 시뮬레이션 통합 영역 -->
+                <button class="tap-zone" style="width: 100%;" onclick="simulateBarcodeScan()"
+                  title="[Proto] 바코드 스캔 시뮬레이션">
+                  <span class="tap-zone-label">스캔 시뮬레이션 완료하기</span>
                 </button>
               </div>
               <div class="scan-pulse-ring ring1"></div>
@@ -186,14 +291,15 @@
           </div>
           <!-- Bottom -->
           <div class="checkout-bottom">
-        </div>
+          </div>
       </main>
 
       <footer class="kiosk-footer">
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -214,118 +320,6 @@
       </footer>
     </div>
 
-    <!-- ═══════════════ SCREEN: CHECKOUT RFID (Step 2) ═══════════════ -->
-    <div id="screen-checkout-rfid" class="kiosk-screen animated-bg-screen">
-      <header class="kiosk-header">
-        <div class="header-logo">
-          <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
-          <div class="header-title">
-            <span class="title-main">한국남동발전 여수발전본부</span>
-            <span class="title-sub">Smart LOTO System</span>
-          </div>
-        </div>
-        <div class="header-right">
-          <div class="header-clock" id="clock-checkout-rfid"></div>
-          <button class="btn-theme" onclick="toggleTheme()" title="테마 전환">🌓</button>
-        </div>
-      </header>
-
-      <main class="kiosk-main">
-        <div class="checkout-panel">
-          <!-- Top -->
-          <div class="checkout-top">
-            <div class="checkout-badge">STEP 01 : RFID AUTHENTICATION</div>
-            <h2 class="checkout-title">작업자 본인 인증</h2>
-            <p class="checkout-subtitle">RFID 카드를 아래 리더기에 태깅해 주세요.</p>
-          </div>
-
-          <!-- Center: RFID Tap Animation -->
-          <div class="checkout-center flex-col-center">
-            <div class="rfid-reader-wrap" onclick="goScreen('checkout')" title="시뮬레이션: RFID 카드 태깅">
-
-              <!-- NFC 파동 링 -->
-              <div class="rfid-wave-ring rfid-ring-1"></div>
-              <div class="rfid-wave-ring rfid-ring-2"></div>
-              <div class="rfid-wave-ring rfid-ring-3"></div>
-
-              <!-- 리더기 본체 -->
-              <div class="rfid-reader-body">
-                <div class="rfid-reader-top-bar"></div>
-                <!-- NFC 심볼 SVG -->
-                <svg class="rfid-nfc-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- 중앙 원 -->
-                  <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.9"/>
-                  <!-- Arc 1 -->
-                  <path d="M26 26 A19.8 19.8 0 0 1 54 26" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-                  <path d="M26 54 A19.8 19.8 0 0 0 54 54" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-                  <!-- Arc 2 -->
-                  <path d="M17 17 A32.5 32.5 0 0 1 63 17" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
-                  <path d="M17 63 A32.5 32.5 0 0 0 63 63" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
-                </svg>
-                <p class="rfid-reader-label">RFID READER</p>
-              </div>
-
-              <!-- RFID 카드 아이콘 -->
-              <div class="rfid-card-icon">
-                <svg viewBox="0 0 200 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- 카드 외형 -->
-                  <rect x="1" y="1" width="198" height="126" rx="12" stroke="currentColor" stroke-width="1.0" fill="rgba(255,255,255,0.04)"/>
-
-                  <!-- 중앙: NFC 심볼 (작게) + RFID 텍스트 -->
-                  <g transform="translate(72, 64)">
-                    <!-- NFC 웨이브: 중심 점 -->
-                    <circle cx="0" cy="0" r="3.5" fill="currentColor" opacity="0.95"/>
-                    <!-- Arc 1 -->
-                    <path d="M-10 -10 A14.1 14.1 0 0 1 10 -10" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none" opacity="0.9"/>
-                    <path d="M-10 10 A14.1 14.1 0 0 0 10 10" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none" opacity="0.9"/>
-                    <!-- Arc 2 -->
-                    <path d="M-18 -18 A25.5 25.5 0 0 1 18 -18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.55"/>
-                    <path d="M-18 18 A25.5 25.5 0 0 0 18 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.55"/>
-                  </g>
-
-                  <!-- RFID 텍스트 -->
-                  <text x="100" y="69" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="700" fill="currentColor" letter-spacing="3" opacity="0.9" dominant-baseline="middle">RFID</text>
-                </svg>
-              </div>
-            </div>
-
-            <!-- 안내 상태바 -->
-            <div class="rfid-status-bar">
-              <span class="rfid-status-dot"></span>
-              <span class="rfid-status-text">RFID 카드 대기 중 — 카드를 리더기에 가까이 대세요</span>
-            </div>
-          </div>
-
-          <!-- Bottom -->
-          <div class="checkout-bottom">
-          </div>
-        </div>
-      </main>
-
-      <footer class="kiosk-footer">
-        <div class="footer-home">
-          <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
-            <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 11.5L12 4l9 7.5" />
-                <path d="M5.5 10.5V20h13v-9.5" />
-                <path d="M9.5 20v-6h5v6" />
-              </svg>
-            </span>
-            <span class="footer-home-caption">처음으로</span>
-          </button>
-        </div>
-        <div class="footer-right">
-          <div class="net-status">
-            <span class="net-dot"></span>
-            <span class="net-text">네트워크 정상</span>
-          </div>
-          <button class="btn-emergency">
-            <span>⚠</span> 긴급상황모드
-          </button>
-        </div>
-      </footer>
-    </div>
 
     <!-- ═══════════════ SCREEN: CHECKOUT CHECK (Step 3) ═══════════════ -->
     <div id="screen-checkout-check" class="kiosk-screen animated-bg-screen">
@@ -384,7 +378,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -422,10 +417,83 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%;">
-            <div class="proto-loader" onclick="triggerErrorFromLoading()" style="width: 100px; height: 100px; border: 8px solid rgba(255,255,255,0.05); border-top: 8px solid var(--accent-cyan); border-radius: 50%; animation: proto-spin 1s linear infinite; margin-bottom: 40px; cursor: pointer;" title="클릭 시 에러 화면으로 이동"></div>
-            <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; font-weight: 700; color: var(--text-primary);">작업 정보 동기화 및 안전 검증 중</h1>
-            <h2 style="font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: 40px; color: var(--text-secondary); font-weight: 400;">GENi 시스템과 연동하여 작업 상태를 확인하고 있습니다...</h2>
+        <div class="checkout-panel">
+          <!-- Top -->
+          <div class="checkout-top">
+            <div class="checkout-badge">STEP 03 : SAFETY VALIDATION</div>
+            <h2 class="checkout-title">실시간 안전 조치 검증</h2>
+            <p class="checkout-subtitle">해당 차단기반의 LOTO 키 이중 반출 안전 위해 요소를 실시간 검증합니다.</p>
+          </div>
+
+          <!-- Center -->
+          <div class="checkout-center flex-col-center" style="gap: 30px; margin-top: 20px;">
+            <!-- Spinning Loader with Radar Wave -->
+            <div class="validation-radar-container" onclick="skipValidationAnimation(true)"
+              style="position: relative; width: 120px; height: 120px; z-index: 10; cursor: pointer;"
+              title="[시뮬레이션] 이중 반출 감지">
+              <div class="validation-radar-pulse"></div>
+              <div class="proto-loader"
+                style="width: 100%; height: 100%; border: 6px solid rgba(255,255,255,0.03); border-top: 6px solid var(--accent-cyan); border-radius: 50%; animation: proto-spin 1.5s linear infinite; position: absolute; inset: 0;">
+              </div>
+              <div class="validation-radar-core"
+                style="position: absolute; inset: 15px; border-radius: 50%; background: rgba(6, 182, 212, 0.1); border: 1.5px dashed var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--accent-cyan);">
+                ⚡</div>
+            </div>
+
+            <!-- Checklist Container -->
+            <div class="validation-checklist"
+              style="width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; text-align: left; z-index: 10; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);">
+
+              <!-- Check 1: GENi Sync -->
+              <div id="val-step-1" class="val-item val-pending"
+                style="display: flex; align-items: center; justify-content: space-between; padding: 10px 15px; border-radius: 8px; border: 1px solid transparent; transition: all 0.3s;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                  <div class="val-icon-wrap"
+                    style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--text-muted); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; color: var(--text-muted); transition: all 0.3s;">
+                    1</div>
+                  <span class="val-text"
+                    style="font-size: 1.3rem; font-weight: 600; color: var(--text-secondary); transition: all 0.3s;">GENi
+                    작업 정보 동기화</span>
+                </div>
+                <span class="val-status"
+                  style="font-family: var(--font-main); font-size: 1.1rem; font-weight: 700; color: var(--text-muted); transition: all 0.3s;">대기
+                  중</span>
+              </div>
+
+              <!-- Check 2: Real-time Rental & Double Checkout Check -->
+              <div id="val-step-2" class="val-item val-pending"
+                style="display: flex; align-items: center; justify-content: space-between; padding: 10px 15px; border-radius: 8px; border: 1px solid transparent; transition: all 0.3s;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                  <div class="val-icon-wrap"
+                    style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--text-muted); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; color: var(--text-muted); transition: all 0.3s;">
+                    2</div>
+                  <span class="val-text"
+                    style="font-size: 1.3rem; font-weight: 600; color: var(--text-secondary); transition: all 0.3s;">실시간
+                    대여 상태 확인</span>
+                </div>
+                <span class="val-status"
+                  style="font-family: var(--font-main); font-size: 1.1rem; font-weight: 700; color: var(--text-muted); transition: all 0.3s;">대기
+                  중</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Validation result action button (appears after validation completes) -->
+          <div id="validation-result-actions"
+            style="margin-top: 30px; margin-bottom: clamp(100px, 12vh, 140px); display: none; gap: 20px; z-index: 10; width: 100%; max-width: 600px; justify-content: center; align-items: center;">
+            <button id="btn-validation-cancel"
+              style="background: rgba(255,255,255,0.03); border: 1.5px solid var(--border-color); color: var(--text-secondary); padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; flex: 1; text-align: center; transition: all 0.2s;"
+              onmouseover="this.style.background='rgba(255,255,255,0.08)'"
+              onmouseout="this.style.background='rgba(255,255,255,0.03)'" onclick="cancelCheckoutFlow()">반출 취소</button>
+            <button id="btn-validation-next"
+              style="display: none; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: #ffffff; border: none; padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; flex: 1; text-align: center; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);"
+              onclick="proceedAfterValidation()">검증 완료 - 다음 단계로</button>
+            <button id="btn-validation-fail"
+              style="display: none; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #ffffff; border: none; padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; flex: 1; text-align: center; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);"
+              onclick="handleValidationFailure()">검증 실패 - 확인</button>
+          </div>
+
         </div>
       </main>
 
@@ -433,7 +501,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -473,18 +542,36 @@
       <main class="kiosk-main">
         <div class="checkout-panel">
           <div class="checkout-top">
-            <div class="checkout-badge" style="border-color: var(--accent-green); color: var(--accent-green); background: rgba(0,230,118,0.1);">STEP 03 : KEY BOX LOCATION</div>
+            <div class="checkout-badge"
+              style="border-color: var(--accent-green); color: var(--accent-green); background: rgba(0,230,118,0.1);">
+              STEP 04 : KEY BOX LOCATION</div>
             <h2 class="checkout-title">LOTO 키 보관함 위치 안내</h2>
             <p class="checkout-subtitle">해당 차단기반 위치와 매칭된 슬롯 번호를 확인해주세요.</p>
           </div>
 
-          <div class="checkout-center" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 20px;">
+          <div class="checkout-center"
+            style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 20px;">
             <style>
               @keyframes target-slot-pulse {
-                0% { fill: #f4f5f7; stroke: #d1d5db; stroke-width: 2; }
-                50% { fill: rgba(16, 185, 129, 0.3); stroke: #10b981; stroke-width: 4; }
-                100% { fill: #f4f5f7; stroke: #d1d5db; stroke-width: 2; }
+                0% {
+                  fill: #f4f5f7;
+                  stroke: #d1d5db;
+                  stroke-width: 2;
+                }
+
+                50% {
+                  fill: rgba(16, 185, 129, 0.3);
+                  stroke: #10b981;
+                  stroke-width: 4;
+                }
+
+                100% {
+                  fill: #f4f5f7;
+                  stroke: #d1d5db;
+                  stroke-width: 2;
+                }
               }
+
               .target-slot {
                 animation: target-slot-pulse 1.5s infinite;
               }
@@ -492,41 +579,43 @@
 
             <!-- 확대된 목표 슬롯 -->
             <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
-                <span style="font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: bold; color: var(--accent-green); margin-bottom: 15px;">▼ 불출 대상 키 확인 ▼</span>
-                <svg viewBox="0 0 160 50" style="width: 476px; max-width: 90vw; height: auto; filter: drop-shadow(0 4px 6px rgba(16, 185, 129, 0.3)); cursor: pointer;" onclick="goScreen('checkout-feedback')" xmlns="http://www.w3.org/2000/svg">
-                  <!-- 확대된 뷰에서도 똑같이 깜빡이게 적용하려면 class="target-slot" 사용 -->
-                  <rect class="target-slot" x="1" y="1" width="158" height="48" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2"/>
-                  <!-- 좌우 대칭 세로선 (타겟이므로 녹색 표시) -->
-                  <rect x="10" y="12" width="3" height="26" fill="#16a34a" />
-                  <rect x="147" y="12" width="3" height="26" fill="#16a34a" />
-                  <!-- 중앙 번호 박스 -->
-                  <rect x="57.5" y="10" width="45" height="30" rx="4" fill="#18181b" />
-                  <text x="80" y="31" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">02</text>
-                </svg>
+              <span
+                style="font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: bold; color: var(--accent-green); margin-bottom: 15px;">▼
+                불출 대상 키 확인 ▼</span>
+              <svg viewBox="0 0 160 60"
+                style="width: 476px; max-width: 90vw; height: auto; filter: drop-shadow(0 4px 6px rgba(16, 185, 129, 0.3)); cursor: pointer;"
+                onclick="goScreen('checkout-feedback')" xmlns="http://www.w3.org/2000/svg">
+                <!-- 확대된 뷰에서도 똑같이 깜빡이게 적용하려면 class="target-slot" 사용 -->
+                <rect class="target-slot" x="1" y="1" width="158" height="58" rx="6" fill="#f4f5f7" stroke="#d1d5db"
+                  stroke-width="2" />
+                <rect x="52.5" y="10" width="55" height="40" rx="4" fill="#767171" />
+                <rect x="35" y="27" width="90" height="6" rx="3" fill="#16a34a" />
+                <text x="80" y="24" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold"
+                  text-anchor="middle">02</text>
+              </svg>
             </div>
 
-            <div class="proto-key-rack" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db;">
-                <!-- 01~20번 슬롯. 2번은 목표 위치(불출 대상)이므로 배경이 깜빡이게 강조 -->
-                <script>
-                  document.write(Array.from({length: 20}, (_, i) => {
-                    const num = String(i + 1).padStart(2, '0');
-                    const isTarget = (num === '02'); // 02번을 불출해야 하는 목표 키로 설정
-                    const bgClass = isTarget ? 'class="target-slot"' : '';
-                    
-                    const isGreen = ['01','03','05','08','11','18'].includes(num);
-                    // 동그라미를 제거하고, 양쪽 선 색상을 통해 상태를 나타냅니다.
-                    const lineFill = (isTarget || isGreen) ? '#16a34a' : '#1e3a8a';
-                    return `
-                      <svg viewBox="0 0 160 50" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="158" height="48" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2" ${bgClass}/>
-                        <rect x="10" y="12" width="3" height="26" fill="${lineFill}" />
-                        <rect x="147" y="12" width="3" height="26" fill="${lineFill}" />
-                        <rect x="57.5" y="10" width="45" height="30" rx="4" fill="#18181b" />
-                        <text x="80" y="31" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">${num}</text>
+            <div class="proto-key-rack"
+              style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db;">
+              <!-- 01~20번 슬롯. 2번은 목표 위치(불출 대상)이므로 배경이 깜빡이게 강조 -->
+              <script>
+                document.write(Array.from({ length: 20 }, (_, i) => {
+                  const num = String(i + 1).padStart(2, '0');
+                  const isTarget = (num === '02'); // 02번을 불출해야 하는 목표 키로 설정
+                  const bgClass = isTarget ? 'class="target-slot"' : '';
+
+                  const isGreen = ['01', '03', '05', '08', '11', '18'].includes(num);
+                  const lineFill = (isTarget || isGreen) ? '#16a34a' : '#1e3a8a';
+                  return `
+                      <svg viewBox="0 0 160 60" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1" y="1" width="158" height="58" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2" ${bgClass}/>
+                        <rect x="52.5" y="10" width="55" height="40" rx="4" fill="#767171" />
+                        <rect x="35" y="27" width="90" height="6" rx="3" fill="${lineFill}" />
+                        <text x="80" y="24" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
                       </svg>
                     `;
-                  }).join(''));
-                </script>
+                }).join(''));
+              </script>
             </div>
           </div>
 
@@ -539,7 +628,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -577,18 +667,26 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
-            <!-- 에러 아이콘 (빨간 원형 배경에 느낌표) -->
-            <div style="width: 140px; height: 140px; background-color: #ff4b4b; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 35px;">
-                <span style="color: #1a1a2e; font-size: 80px; font-weight: 900;">!</span>
-            </div>
-            
-            <!-- 타이틀 및 부제목 -->
-            <h1 style="color: #ff4b4b; font-size: clamp(3rem, 5vw, 4rem); font-weight: 800; margin-bottom: 20px;">반출 차단</h1>
-            <h2 style="color: var(--text-secondary); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 400; margin-bottom: 60px;">이미 반출된 작업 내역이 있어 해당 키의 반출이 차단되었습니다.</h2>
-            
-            <!-- 확인 버튼 -->
-            <button class="btn-back" style="border: 2px solid #ff4b4b; color: #ff4b4b; padding: 15px 60px; font-size: clamp(1.2rem, 2vw, 1.5rem); border-radius: 12px; background: transparent; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='rgba(255, 75, 75, 0.1)'" onmouseout="this.style.background='transparent'" onclick="stopConflictVoiceAndGoMain()">확인</button>
+        <div class="checkout-panel"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
+          <!-- 에러 아이콘 (빨간 원형 배경에 느낌표) -->
+          <div
+            style="width: 140px; height: 140px; background-color: #ff4b4b; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 35px;">
+            <span style="color: #1a1a2e; font-size: 80px; font-weight: 900;">!</span>
+          </div>
+
+          <!-- 타이틀 및 부제목 -->
+          <h1 style="color: #ff4b4b; font-size: clamp(3rem, 5vw, 4rem); font-weight: 800; margin-bottom: 20px;">반출 차단
+          </h1>
+          <h2
+            style="color: var(--text-secondary); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 400; margin-bottom: 60px;">
+            이미 반출된 작업 내역이 있어 해당 키의 반출이 차단되었습니다.</h2>
+
+          <!-- 확인 버튼 -->
+          <button class="btn-back"
+            style="border: 2px solid #ff4b4b; color: #ff4b4b; padding: 15px 60px; font-size: clamp(1.2rem, 2vw, 1.5rem); border-radius: 12px; background: transparent; cursor: pointer; transition: all 0.2s;"
+            onmouseover="this.style.background='rgba(255, 75, 75, 0.1)'"
+            onmouseout="this.style.background='transparent'" onclick="stopConflictVoiceAndGoMain()">확인</button>
         </div>
       </main>
 
@@ -596,7 +694,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -634,22 +733,31 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
-            
-            <h1 style="color: #ffffff; font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; margin-bottom: 15px;">Motor Solo 단독기동 확인</h1>
-            <h2 style="color: var(--text-secondary); font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 400; margin-bottom: 40px;">[1차] 해당 단위기기의 기동 가능성을 확인하셨습니까?</h2>
-            
-            <!-- 정보 패널 -->
-            <div style="width: 100%; max-width: 800px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px;">
-                <span style="color: var(--text-secondary); font-size: 1.2rem;">작업명</span>
-                <span style="color: #ffffff; font-size: 1.4rem; font-weight: 700;">순환수 펌프 전동기 점검</span>
-            </div>
+        <div class="checkout-panel"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
 
-            <!-- 하단 버튼들 -->
-            <div style="display: flex; gap: 20px;">
-                <button class="btn-back" style="display: flex; justify-content: center; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: #ffffff; border: none; padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 220px; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);" onclick="goScreen('checkout-mtr-solo-step2')">예 (확인 완료)</button>
-                <button class="btn-back" style="display: flex; justify-content: center; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #ffffff; border: none; padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 220px; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);" onclick="goScreen('main')">아니오 (취소)</button>
-            </div>
+          <h1 style="color: #ffffff; font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; margin-bottom: 15px;">
+            Motor Solo 단독기동 확인</h1>
+          <h2
+            style="color: var(--text-secondary); font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 400; margin-bottom: 40px;">
+            [1차] 해당 단위기기의 기동 가능성을 확인하셨습니까?</h2>
+
+          <!-- 정보 패널 -->
+          <div
+            style="width: 100%; max-width: 800px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px;">
+            <span style="color: var(--text-secondary); font-size: 1.2rem;">작업명</span>
+            <span style="color: #ffffff; font-size: 1.4rem; font-weight: 700;">순환수 펌프 전동기 점검</span>
+          </div>
+
+          <!-- 하단 버튼들 -->
+          <div style="display: flex; gap: 20px;">
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: #ffffff; border: none; padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 220px; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);"
+              onclick="goScreen('checkout-normal')">예 (확인 완료)</button>
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #ffffff; border: none; padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 220px; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);"
+              onclick="goScreen('main')">아니오 (취소)</button>
+          </div>
         </div>
       </main>
 
@@ -657,7 +765,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -695,22 +804,31 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
-            
-            <h1 style="color: #ffffff; font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; margin-bottom: 15px;">타 부서 작업 확인</h1>
-            <h2 style="color: var(--text-secondary); font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 400; margin-bottom: 40px;">[2차] 현재 등록된 타 부서 작업사항을 모두 확인하셨습니까?</h2>
-            
-            <!-- 정보 패널 -->
-            <div style="width: 100%; max-width: 800px; background: rgba(255,255,255,0.02); border: 1px solid #fbbf24; border-radius: 12px; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px;">
-                <span style="color: #fbbf24; font-size: 1.2rem;">타 부서 작업 건수</span>
-                <span style="color: #fbbf24; font-size: 1.4rem; font-weight: 700;">2건 존재</span>
-            </div>
+        <div class="checkout-panel"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
 
-            <!-- 하단 버튼들 -->
-            <div style="display: flex; gap: 20px;">
-                <button class="btn-back" style="display: flex; justify-content: center; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: #ffffff; border: none; padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 220px; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);" onclick="goScreen('checkout-mtr-solo-step3')">예 (모두 확인)</button>
-                <button class="btn-back" style="display: flex; justify-content: center; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #ffffff; border: none; padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 220px; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);" onclick="goScreen('main')">아니오 (작업 중단)</button>
-            </div>
+          <h1 style="color: #ffffff; font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; margin-bottom: 15px;">타 부서
+            작업 확인</h1>
+          <h2
+            style="color: var(--text-secondary); font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 400; margin-bottom: 40px;">
+            [2차] 현재 등록된 타 부서 작업사항을 모두 확인하셨습니까?</h2>
+
+          <!-- 정보 패널 -->
+          <div
+            style="width: 100%; max-width: 800px; background: rgba(255,255,255,0.02); border: 1px solid #fbbf24; border-radius: 12px; padding: 25px 40px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px;">
+            <span style="color: #fbbf24; font-size: 1.2rem;">타 부서 작업 건수</span>
+            <span style="color: #fbbf24; font-size: 1.4rem; font-weight: 700;">2건 존재</span>
+          </div>
+
+          <!-- 하단 버튼들 -->
+          <div style="display: flex; gap: 20px;">
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: #ffffff; border: none; padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 220px; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);"
+              onclick="goScreen('checkout-mtr-solo-step3')">예 (모두 확인)</button>
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #ffffff; border: none; padding: 15px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 220px; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);"
+              onclick="goScreen('main')">아니오 (작업 중단)</button>
+          </div>
         </div>
       </main>
 
@@ -718,7 +836,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -756,16 +875,24 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
-            
-            <h1 style="color: #ffb74d; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 800; margin-bottom: 25px;">최종 승인</h1>
-            <h2 style="color: var(--text-secondary); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 400; margin-bottom: 80px;">[3차] 전동기 단독운전을 최종 승인하시겠습니까?</h2>
-            
-            <!-- 하단 버튼들 -->
-            <div style="display: flex; gap: 30px;">
-                <button class="btn-back" style="display: flex; justify-content: center; background: #ffb74d; color: #111827; border: none; padding: 20px 50px; font-size: 1.5rem; font-weight: 800; border-radius: 12px; cursor: pointer; min-width: 280px; box-shadow: 0 10px 25px rgba(255, 183, 77, 0.3);" onclick="goScreen('checkout-normal')">최종 승인 및 Key 반출</button>
-                <button class="btn-back" style="display: flex; justify-content: center; background: transparent; color: #4facfe; border: 2px solid #4facfe; padding: 20px 50px; font-size: 1.5rem; font-weight: 800; border-radius: 12px; cursor: pointer; min-width: 180px;" onclick="goScreen('main')">취소</button>
-            </div>
+        <div class="checkout-panel"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
+
+          <h1 style="color: #ffb74d; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 800; margin-bottom: 25px;">최종 승인
+          </h1>
+          <h2
+            style="color: var(--text-secondary); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 400; margin-bottom: 80px;">
+            [3차] 전동기 단독운전을 최종 승인하시겠습니까?</h2>
+
+          <!-- 하단 버튼들 -->
+          <div style="display: flex; gap: 30px;">
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: #ffb74d; color: #111827; border: none; padding: 20px 50px; font-size: 1.5rem; font-weight: 800; border-radius: 12px; cursor: pointer; min-width: 280px; box-shadow: 0 10px 25px rgba(255, 183, 77, 0.3);"
+              onclick="goScreen('checkout-normal')">최종 승인 및 Key 반출</button>
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: transparent; color: #4facfe; border: 2px solid #4facfe; padding: 20px 50px; font-size: 1.5rem; font-weight: 800; border-radius: 12px; cursor: pointer; min-width: 180px;"
+              onclick="goScreen('main')">취소</button>
+          </div>
         </div>
       </main>
 
@@ -773,7 +900,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -811,61 +939,85 @@
           <button class="btn-theme" onclick="toggleTheme()" title="테마 전환">🌓</button>
         </div>
       </header>
-      
+
       <main class="kiosk-main" class="kiosk-screen animated-bg-screen">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; align-items: stretch; width: 100%; max-width: 1400px; height: 100%; background: transparent; border: 1px solid var(--border-color); padding: 40px;">
-            <div style="text-align: center; margin-bottom: 30px; width: 100%;">
-                <div class="checkout-badge">절연저항측정 모드</div>
-                <h2 class="checkout-title">차단기반 위치 안내</h2>
-                <p class="checkout-subtitle">3D 위치도에서 작업할 차단기반 위치를 선택해 주세요.</p>
-                <!-- <p style="color: var(--text-secondary); font-size: 1.2rem;">3D 위치도에서 작업할 차단기반 위치를 선택해 주세요.</p> -->
+        <div class="checkout-panel"
+          style="display: flex; flex-direction: column; align-items: stretch; width: 100%; max-width: 1400px; height: 100%; background: transparent; border: 1px solid var(--border-color); padding: 40px;">
+          <div style="text-align: center; margin-bottom: 30px; width: 100%;">
+            <div class="checkout-badge">절연저항측정 모드</div>
+            <h2 class="checkout-title">차단기반 위치 안내</h2>
+            <p class="checkout-subtitle">3D 위치도에서 작업할 차단기반 위치를 선택해 주세요.</p>
+            <!-- <p style="color: var(--text-secondary); font-size: 1.2rem;">3D 위치도에서 작업할 차단기반 위치를 선택해 주세요.</p> -->
+          </div>
+
+          <!-- 3D Map Area -->
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 30px; min-height: 0; width: 100%;">
+            <div
+              style="flex: 2; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+              <img src="route_map_3d_1.png"
+                style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;" alt="3D 발전소 도면" />
+              <!-- Mock map markers -->
+              <button
+                style="position: absolute; top: 15%; left: 38%; background: #ef4444; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(239, 68, 68, 0.5); transition: all 0.2s;"
+                onclick="selectBreaker('CB-A01', this)" class="map-marker-btn">A</button>
+              <button
+                style="position: absolute; top: 65%; left: 70%; background: #38bdf8; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(56, 189, 248, 0.5); transition: all 0.2s;"
+                onclick="selectBreaker('CB-B02', this)" class="map-marker-btn">B</button>
+              <button
+                style="position: absolute; top: 68%; left: 25%; background: #10b981; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); transition: all 0.2s;"
+                onclick="selectBreaker('CB-C03', this)" class="map-marker-btn">C</button>
             </div>
-            
-            <!-- 3D Map Area -->
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 30px; min-height: 0; width: 100%;">
-                <div style="flex: 2; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
-                    <img src="route_map_3d_1.png" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;" alt="3D 발전소 도면" />
-                    <!-- Mock map markers -->
-                    <button style="position: absolute; top: 15%; left: 38%; background: #ef4444; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(239, 68, 68, 0.5); transition: all 0.2s;" onclick="selectBreaker('CB-A01', this)" class="map-marker-btn">A</button>
-                    <button style="position: absolute; top: 65%; left: 70%; background: #38bdf8; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(56, 189, 248, 0.5); transition: all 0.2s;" onclick="selectBreaker('CB-B02', this)" class="map-marker-btn">B</button>
-                    <button style="position: absolute; top: 68%; left: 25%; background: #10b981; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); transition: all 0.2s;" onclick="selectBreaker('CB-C03', this)" class="map-marker-btn">C</button>
+
+            <!-- Selection Panel -->
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
+              <div
+                style="background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); padding: 25px; padding-bottom: clamp(100px, 0vh, 100px); flex: 1;">
+                <h3 style="color: var(--text-primary); font-size: 2.3rem; margin-bottom: 20px; font-weight: 600;">작업 차단기
+                  선택</h3>
+
+                <div style="display: flex; flex-direction: column; gap: 10px;" id="breaker-list-container">
+                  <button class="breaker-list-btn"
+                    style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;"
+                    onclick="selectBreaker('CB-A01', null, this)">
+                    <span>A 구역 - 차단기 01</span>
+                    <span style="font-size: 1.5rem; color: var(--text-secondary);">400V</span>
+                  </button>
+                  <button class="breaker-list-btn"
+                    style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;"
+                    onclick="selectBreaker('CB-B02', null, this)">
+                    <span>B 구역 - 차단기 02</span>
+                    <span style="font-size: 1.5rem; color: var(--text-secondary);">6.9kV</span>
+                  </button>
+                  <button class="breaker-list-btn"
+                    style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;"
+                    onclick="selectBreaker('CB-C03', null, this)">
+                    <span>C 구역 - 차단기 03</span>
+                    <span style="font-size: 1.5rem; color: var(--text-secondary);">400V</span>
+                  </button>
                 </div>
-                
-                <!-- Selection Panel -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
-                    <div style="background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); padding: 25px; padding-bottom: clamp(100px, 0vh, 100px); flex: 1;">
-                      <h3 style="color: var(--text-primary); font-size: 2.3rem; margin-bottom: 20px; font-weight: 600;">작업 차단기 선택</h3>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 10px;" id="breaker-list-container">
-                            <button class="breaker-list-btn" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;" onclick="selectBreaker('CB-A01', null, this)">
-                                <span>A 구역 - 차단기 01</span>
-                              <span style="font-size: 1.5rem; color: var(--text-secondary);">400V</span>
-                            </button>
-                            <button class="breaker-list-btn" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;" onclick="selectBreaker('CB-B02', null, this)">
-                                <span>B 구역 - 차단기 02</span>
-                              <span style="font-size: 1.5rem; color: var(--text-secondary);">6.9kV</span>
-                            </button>
-                            <button class="breaker-list-btn" style="background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); padding: 15px 20px; border-radius: 8px; text-align: left; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;" onclick="selectBreaker('CB-C03', null, this)">
-                                <span>C 구역 - 차단기 03</span>
-                              <span style="font-size: 1.5rem; color: var(--text-secondary);">400V</span>
-                            </button>
-                        </div>
-                        
-                        <div style="margin-top: 30px; text-align: center; display: none; background: rgba(56, 189, 248, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.3);" id="breaker-selection-result">
-                            <p style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 15px;">선택된 차단기: <strong id="selected-breaker-name" style="color: var(--accent-cyan); font-size: 1.3rem; margin-left: 10px;">CB-A01</strong></p>
-                            <button style="background: var(--accent-cyan); color: #05263d; border: none; padding: 15px 30px; font-size: 1.5rem; font-weight: 800; border-radius: 8px; cursor: pointer; width: 100%; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); transition: all 0.2s;" onclick="goScreen('checkout-feedback')">위치 확인 완료</button>
-                        </div>
-                    </div>
+
+                <div
+                  style="margin-top: 30px; text-align: center; display: none; background: rgba(56, 189, 248, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.3);"
+                  id="breaker-selection-result">
+                  <p style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 15px;">선택된 차단기: <strong
+                      id="selected-breaker-name"
+                      style="color: var(--accent-cyan); font-size: 1.3rem; margin-left: 10px;">CB-A01</strong></p>
+                  <button
+                    style="background: var(--accent-cyan); color: #05263d; border: none; padding: 15px 30px; font-size: 1.5rem; font-weight: 800; border-radius: 8px; cursor: pointer; width: 100%; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); transition: all 0.2s;"
+                    onclick="goScreen('checkout-feedback')">위치 확인 완료</button>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
       </main>
-      
+
       <footer class="kiosk-footer">
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -905,7 +1057,7 @@
       <main class="kiosk-main">
         <div class="checkout-panel map-panel">
           <div class="checkout-top">
-            <div class="checkout-badge">STEP 04 : 위치 정보 및 경로 안내</div>
+            <div class="checkout-badge">STEP 05 : 위치 정보 및 경로 안내</div>
             <h2 class="checkout-title">위치 정보 및 경로 안내</h2>
             <p class="checkout-subtitle">차단기반 까지의 이동 경로를 확인하세요.</p>
           </div>
@@ -913,8 +1065,8 @@
           <div class="checkout-center flex-col-center">
             <div class="map-container">
               <div class="map-view-wrapper">
-                <img src="route_map_3d.png" class="isometric-map-image" alt="3D 입체 위치도 및 경로 안내" />
-                <div class="map-view-hud-overlay"></div>
+                <img src="sample.gif" class="isometric-map-image" alt="3D 입체 위치도 및 경로 안내" />
+                <!-- <div class="map-view-hud-overlay"></div> -->
               </div>
             </div>
           </div>
@@ -931,7 +1083,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1007,7 +1160,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1028,9 +1182,9 @@
       </footer>
     </div>
 
-    
+
     <!-- ═══════════════ SCREEN: RETURN KEY RFID (Step 1) ═══════════════ -->
-<div id="screen-return-key-rfid" class="kiosk-screen animated-bg-screen">
+    <div id="screen-return-key-rfid" class="kiosk-screen animated-bg-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -1060,25 +1214,31 @@
               <div class="rfid-wave-ring rfid-ring-3"></div>
               <!-- 리더기 본체 -->
               <!-- 리더기 본체 -->
-              <div class="rfid-reader-body" style="position: absolute; bottom: 70%; left: 50%; transform: translateX(-50%); z-index: 1;">
+              <div class="rfid-reader-body"
+                style="position: absolute; bottom: 70%; left: 50%; transform: translateX(-50%); z-index: 1;">
                 <div class="rfid-reader-top-bar"></div>
                 <!-- NFC 심볼 SVG -->
                 <svg class="rfid-nfc-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <!-- 중앙 원 -->
-                  <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.9"/>
+                  <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.9" />
                   <!-- Arc 1 -->
-                  <path d="M26 26 A19.8 19.8 0 0 1 54 26" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-                  <path d="M26 54 A19.8 19.8 0 0 0 54 54" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
+                  <path d="M26 26 A19.8 19.8 0 0 1 54 26" stroke="currentColor" stroke-width="3.5"
+                    stroke-linecap="round" fill="none" opacity="0.85" />
+                  <path d="M26 54 A19.8 19.8 0 0 0 54 54" stroke="currentColor" stroke-width="3.5"
+                    stroke-linecap="round" fill="none" opacity="0.85" />
                   <!-- Arc 2 -->
-                  <path d="M17 17 A32.5 32.5 0 0 1 63 17" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
-                  <path d="M17 63 A32.5 32.5 0 0 0 63 63" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
+                  <path d="M17 17 A32.5 32.5 0 0 1 63 17" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                    fill="none" opacity="0.5" />
+                  <path d="M17 63 A32.5 32.5 0 0 0 63 63" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                    fill="none" opacity="0.5" />
                 </svg>
                 <p class="rfid-reader-label">RFID READER</p>
               </div>
 
               <!-- 키 이미지 (rfid-card-icon 클래스 재활용하여 떠오르는 효과 적용) -->
               <div class="rfid-card-icon" style="position: relative; width: 300px; pointer-events: none; z-index: 2;">
-                <img src="key.png" alt="Key with RFID Fob" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.5));" />
+                <img src="key.png" alt="Key with RFID Fob"
+                  style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.5));" />
               </div>
             </div>
           </div>
@@ -1097,7 +1257,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1118,7 +1279,7 @@
       </footer>
     </div>
 
-<div id="screen-return-loading" class="kiosk-screen animated-bg-screen">
+    <div id="screen-return-loading" class="kiosk-screen animated-bg-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -1134,10 +1295,17 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%;">
-            <div class="proto-loader" onclick="goScreen('return-slot')" style="width: 100px; height: 100px; border: 8px solid rgba(255,255,255,0.05); border-top: 8px solid var(--accent-cyan); border-radius: 50%; animation: proto-spin 1s linear infinite; margin-bottom: 40px; cursor: pointer;" title="클릭 시 에러 화면으로 이동"></div>
-            <h1 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; font-weight: 700; color: var(--text-primary);">작업 정보 동기화 및 안전 검증 중</h1>
-            <h2 style="font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: 40px; color: var(--text-secondary); font-weight: 400;">GENi 시스템과 연동하여 작업 상태를 확인하고 있습니다...</h2>
+        <div class="checkout-panel"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%;">
+          <div class="proto-loader" onclick="goScreen('return-slot')"
+            style="width: 100px; height: 100px; border: 8px solid rgba(255,255,255,0.05); border-top: 8px solid var(--accent-cyan); border-radius: 50%; animation: proto-spin 1s linear infinite; margin-bottom: 40px; cursor: pointer;"
+            title="클릭 시 에러 화면으로 이동"></div>
+          <h1
+            style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; font-weight: 700; color: var(--text-primary);">
+            작업 정보 동기화 및 안전 검증 중</h1>
+          <h2
+            style="font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: 40px; color: var(--text-secondary); font-weight: 400;">
+            GENi 시스템과 연동하여 작업 상태를 확인하고 있습니다...</h2>
         </div>
       </main>
 
@@ -1145,7 +1313,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1167,7 +1336,7 @@
     </div>
 
     <!-- ═══════════════ SCREEN: RETURN SLOT (Step 2) ═══════════════ -->
-<div id="screen-return-slot" class="kiosk-screen animated-bg-screen">
+    <div id="screen-return-slot" class="kiosk-screen animated-bg-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -1185,18 +1354,36 @@
       <main class="kiosk-main">
         <div class="checkout-panel">
           <div class="checkout-top">
-            <div class="checkout-badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1);">STEP 02 : KEY BOX LOCATION</div>
+            <div class="checkout-badge"
+              style="border-color: var(--accent-cyan); color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1);">
+              STEP 02 : KEY BOX LOCATION</div>
             <h2 class="checkout-title">LOTO 키 보관함 반납 위치 안내</h2>
             <p class="checkout-subtitle">해당 차단기반 위치와 매칭된 슬롯 번호를 확인해주세요.</p>
           </div>
 
-          <div class="checkout-center" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 20px;">
+          <div class="checkout-center"
+            style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 20px;">
             <style>
               @keyframes target-slot-pulse {
-                0% { fill: #f4f5f7; stroke: #d1d5db; stroke-width: 2; }
-                50% { fill: rgba(6, 182, 212, 0.3); stroke: #06b6d4; stroke-width: 4; }
-                100% { fill: #f4f5f7; stroke: #d1d5db; stroke-width: 2; }
+                0% {
+                  fill: #f4f5f7;
+                  stroke: #d1d5db;
+                  stroke-width: 2;
+                }
+
+                50% {
+                  fill: rgba(6, 182, 212, 0.3);
+                  stroke: #06b6d4;
+                  stroke-width: 4;
+                }
+
+                100% {
+                  fill: #f4f5f7;
+                  stroke: #d1d5db;
+                  stroke-width: 2;
+                }
               }
+
               .target-slot {
                 animation: target-slot-pulse 1.5s infinite;
               }
@@ -1204,41 +1391,43 @@
 
             <!-- 확대된 목표 슬롯 -->
             <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
-                <span style="font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: bold; color: var(--accent-cyan); margin-bottom: 15px;">▼ 반납 대상 슬롯 확인 ▼</span>
-                <svg viewBox="0 0 160 50" style="width: 476px; max-width: 90vw; height: auto; filter: drop-shadow(0 4px 6px rgba(6, 182, 212, 0.3)); cursor: pointer;" onclick="goScreen('return-end')" xmlns="http://www.w3.org/2000/svg">
-                  <!-- 확대된 뷰에서도 똑같이 깜빡이게 적용하려면 class="target-slot" 사용 -->
-                  <rect class="target-slot" x="1" y="1" width="158" height="48" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2"/>
-                  <!-- 좌우 대칭 세로선 (타겟이므로 녹색 표시) -->
-                  <rect x="10" y="12" width="3" height="26" fill="#16a34a" />
-                  <rect x="147" y="12" width="3" height="26" fill="#16a34a" />
-                  <!-- 중앙 번호 박스 -->
-                  <rect x="57.5" y="10" width="45" height="30" rx="4" fill="#18181b" />
-                  <text x="80" y="31" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">02</text>
-                </svg>
+              <span
+                style="font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: bold; color: var(--accent-cyan); margin-bottom: 15px;">▼
+                반납 대상 슬롯 확인 ▼</span>
+              <svg viewBox="0 0 160 60"
+                style="width: 476px; max-width: 90vw; height: auto; filter: drop-shadow(0 4px 6px rgba(16, 185, 129, 0.3)); cursor: pointer;"
+                onclick="goScreen('return-end')" xmlns="http://www.w3.org/2000/svg">
+                <!-- 확대된 뷰에서도 똑같이 깜빡이게 적용하려면 class="target-slot" 사용 -->
+                <rect class="target-slot" x="1" y="1" width="158" height="58" rx="6" fill="#f4f5f7" stroke="#d1d5db"
+                  stroke-width="2" />
+                <rect x="52.5" y="10" width="55" height="40" rx="4" fill="#18181b" />
+                <rect x="35" y="27" width="90" height="6" rx="3" fill="#16a34a" />
+                <text x="80" y="24" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold"
+                  text-anchor="middle">02</text>
+              </svg>
             </div>
 
-            <div class="proto-key-rack" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db;">
-                <!-- 01~20번 슬롯. 2번은 목표 위치(불출 대상)이므로 배경이 깜빡이게 강조 -->
-                <script>
-                  document.write(Array.from({length: 20}, (_, i) => {
-                    const num = String(i + 1).padStart(2, '0');
-                    const isTarget = (num === '02'); // 02번을 불출해야 하는 목표 키로 설정
-                    const bgClass = isTarget ? 'class="target-slot"' : '';
-                    
-                    const isGreen = ['01','03','05','08','11','18'].includes(num);
-                    // 동그라미를 제거하고, 양쪽 선 색상을 통해 상태를 나타냅니다.
-                    const lineFill = (isTarget || isGreen) ? '#16a34a' : '#1e3a8a';
-                    return `
-                      <svg viewBox="0 0 160 50" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="158" height="48" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2" ${bgClass}/>
-                        <rect x="10" y="12" width="3" height="26" fill="${lineFill}" />
-                        <rect x="147" y="12" width="3" height="26" fill="${lineFill}" />
-                        <rect x="57.5" y="10" width="45" height="30" rx="4" fill="#18181b" />
-                        <text x="80" y="31" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">${num}</text>
+            <div class="proto-key-rack"
+              style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db;">
+              <!-- 01~20번 슬롯. 2번은 목표 위치(불출 대상)이므로 배경이 깜빡이게 강조 -->
+              <script>
+                document.write(Array.from({ length: 20 }, (_, i) => {
+                  const num = String(i + 1).padStart(2, '0');
+                  const isTarget = (num === '02'); // 02번을 불출해야 하는 목표 키로 설정
+                  const bgClass = isTarget ? 'class="target-slot"' : '';
+
+                  const isGreen = ['01', '03', '05', '08', '11', '18'].includes(num);
+                  const lineFill = (isTarget || isGreen) ? '#16a34a' : '#1e3a8a';
+                  return `
+                      <svg viewBox="0 0 160 60" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1" y="1" width="158" height="58" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2" ${bgClass}/>
+                        <rect x="52.5" y="10" width="55" height="40" rx="4" fill="#18181b" />
+                        <rect x="35" y="27" width="90" height="6" rx="3" fill="${lineFill}" />
+                        <text x="80" y="24" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
                       </svg>
                     `;
-                  }).join(''));
-                </script>
+                }).join(''));
+              </script>
             </div>
           </div>
 
@@ -1257,7 +1446,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1279,7 +1469,7 @@
     </div>
 
     <!-- ═══════════════ SCREEN: RETURN END (Step 3) ═══════════════ -->
-<div id="screen-return-end" class="kiosk-screen animated-bg-screen">
+    <div id="screen-return-end" class="kiosk-screen animated-bg-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -1334,7 +1524,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1356,7 +1547,7 @@
     </div>
 
     <!-- ═══════════════ SCREEN: STATUS ═══════════════ -->
-    
+
     <!-- ═══════════════ SCREEN: STATUS LIST (Job List) ═══════════════ -->
     <div id="screen-status-list" class="kiosk-screen animated-bg-screen status-theme">
       <canvas id="canvas-status-list" class="bg-canvas"></canvas>
@@ -1375,14 +1566,17 @@
       </header>
 
       <main class="kiosk-main" style="align-items: center; justify-content: center;">
-        <div class="checkout-panel status-list-panel" style="width: 100%; max-width: 100%; padding: 40px; background: rgba(30, 41, 59, 0.6);">
+        <div class="checkout-panel status-list-panel"
+          style="width: 100%; max-width: 100%; padding: 40px; background: rgba(30, 41, 59, 0.6);">
           <div class="checkout-top status-list-header" style="margin-bottom: 40px; text-align: center;">
             <h2 class="checkout-title">작업 리스트 조회</h2>
             <p class="checkout-subtitle">현재 발행 및 진행 중인 작업 목록 현황입니다.</p>
           </div>
 
-          <div class="status-list-table-wrap" style="background: rgba(15, 23, 42, 0.8); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;">
-            <table class="status-list-table" style="width: 100%; border-collapse: collapse; text-align: center; color: #e2e8f0; white-space: nowrap; table-layout: fixed;">
+          <div class="status-list-table-wrap"
+            style="background: rgba(15, 23, 42, 0.8); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;">
+            <table class="status-list-table"
+              style="width: 100%; border-collapse: collapse; text-align: center; color: #e2e8f0; white-space: nowrap; table-layout: fixed;">
               <thead>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 1.1rem; color: #94a3b8;">
                   <th style="padding: 20px 12px; width: 16%; text-align: center;">발행내역</th>
@@ -1403,7 +1597,10 @@
                   <td style="padding: 20px 12px; text-align: center;">일반 작업</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-014</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn"
+                      style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;"
+                      onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'"
+                      onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1414,7 +1611,10 @@
                   <td style="padding: 20px 12px; text-align: center;">Motor Solo</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-015</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn"
+                      style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;"
+                      onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'"
+                      onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1425,7 +1625,10 @@
                   <td style="padding: 20px 12px; text-align: center;">절연저항 측정</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-016</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn"
+                      style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;"
+                      onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'"
+                      onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1436,7 +1639,10 @@
                   <td style="padding: 20px 12px; text-align: center;">일반 작업</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-017</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn"
+                      style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;"
+                      onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'"
+                      onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1447,7 +1653,10 @@
                   <td style="padding: 20px 12px; text-align: center;">Motor Solo</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-018</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn"
+                      style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;"
+                      onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'"
+                      onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1458,7 +1667,10 @@
                   <td style="padding: 20px 12px; text-align: center;">점검 작업</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-019</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn"
+                      style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;"
+                      onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'"
+                      onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1469,7 +1681,10 @@
                   <td style="padding: 20px 12px; text-align: center;">일반 작업</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-020</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn"
+                      style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;"
+                      onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'"
+                      onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
@@ -1480,7 +1695,10 @@
                   <td style="padding: 20px 12px; text-align: center;">절연저항 측정</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-021</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn"
+                      style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;"
+                      onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'"
+                      onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
                 <tr>
@@ -1491,16 +1709,22 @@
                   <td style="padding: 20px 12px; text-align: center;">일반 작업</td>
                   <td style="padding: 20px 12px; text-align: center;">RT-YS-022</td>
                   <td style="padding: 20px 12px; text-align: center;">
-                    <button class="status-list-loc-btn" style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
+                    <button class="status-list-loc-btn"
+                      style="background: transparent; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s;"
+                      onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'"
+                      onmouseout="this.style.background='transparent'" onclick="goScreen('status-map')">위치 확인</button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <div class="status-list-action-row" style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
+          <div class="status-list-action-row"
+            style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
             <!-- <button class="btn-back" style="background: transparent; border: 2px solid #64748b; color: #cbd5e1; padding: 15px 40px; font-size: 1.2rem; font-weight: 600; border-radius: 8px; cursor: pointer;" onclick="goScreen('main')">메인으로 돌아가기</button> -->
-            <button class="btn-back status-list-primary-btn" style="background: #3b82f6; border: none; color: white; padding: 15px 40px; font-size: 1.2rem; font-weight: 600; border-radius: 8px; cursor: pointer;" onclick="goScreen('status')">LOTO 키 보관함 현황</button>
+            <button class="btn-back status-list-primary-btn"
+              style="background: #3b82f6; border: none; color: white; padding: 15px 40px; font-size: 1.2rem; font-weight: 600; border-radius: 8px; cursor: pointer;"
+              onclick="goScreen('status')">LOTO 키 보관함 현황</button>
           </div>
         </div>
       </main>
@@ -1509,7 +1733,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1530,7 +1755,7 @@
       </footer>
     </div>
 
-<div id="screen-status-map" class="kiosk-screen animated-bg-screen">
+    <div id="screen-status-map" class="kiosk-screen animated-bg-screen">
       <header class="kiosk-header">
         <div class="header-logo">
           <div class="logo-icon"><img src="KOEN.svg" class="logo-img" alt="KOEN" /></div>
@@ -1556,7 +1781,7 @@
           <div class="checkout-center flex-col-center">
             <div class="map-container">
               <div class="map-view-wrapper">
-                <img src="route_map_3d.png" class="isometric-map-image" alt="3D 입체 위치도 및 경로 안내" />
+                <img src="sample.gif" class="isometric-map-image" alt="3D 입체 위치도 및 경로 안내" />
                 <div class="map-view-hud-overlay"></div>
               </div>
             </div>
@@ -1574,7 +1799,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1633,22 +1859,15 @@
             </div>
           </div>
 
-          <div class="status-key-side-nav" role="group" aria-label="키함 측면 전환">
-            <button id="status-side-left" class="status-side-btn is-active" onclick="setStatusKeyPage('left')" type="button" aria-label="좌측 키함 보기" title="좌측 키함 보기">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M14.5 5L8 12L14.5 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <div id="status-key-side-label" class="status-side-label">좌측 키함 (1-45)</div>
-            <button id="status-side-right" class="status-side-btn" onclick="setStatusKeyPage('right')" type="button" aria-label="우측 키함 보기" title="우측 키함 보기">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M9.5 5L16 12L9.5 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-
-          <div class="key-grid-wrap">
-            <div class="key-grid" id="key-grid"></div>
+          <div class="key-grid-wrap" style="flex-direction: column; gap: 20px; overflow-y: auto; justify-content: flex-start; align-items: stretch; padding: 20px 30px;">
+            <div class="key-group-section">
+              <div class="key-group-title" style="font-size: 1.4rem; font-weight: bold; color: var(--accent-cyan); margin-bottom: 10px; text-align: left;">상측 키함 (01-45)</div>
+              <div class="key-grid" id="key-grid-top" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db; margin: 0 auto;"></div>
+            </div>
+            <div class="key-group-section" style="margin-top: 15px;">
+              <div class="key-group-title" style="font-size: 1.4rem; font-weight: bold; color: var(--accent-cyan); margin-bottom: 10px; text-align: left;">하측 키함 (46-90)</div>
+              <div class="key-grid" id="key-grid-bottom" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db; margin: 0 auto;"></div>
+            </div>
           </div>
 
           <div class="checkout-bottom">
@@ -1667,7 +1886,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1727,13 +1947,17 @@
                 <!-- NFC 심볼 SVG -->
                 <svg class="rfid-nfc-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <!-- 중앙 원 -->
-                  <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.9"/>
+                  <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.9" />
                   <!-- Arc 1 -->
-                  <path d="M26 26 A19.8 19.8 0 0 1 54 26" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-                  <path d="M26 54 A19.8 19.8 0 0 0 54 54" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
+                  <path d="M26 26 A19.8 19.8 0 0 1 54 26" stroke="currentColor" stroke-width="3.5"
+                    stroke-linecap="round" fill="none" opacity="0.85" />
+                  <path d="M26 54 A19.8 19.8 0 0 0 54 54" stroke="currentColor" stroke-width="3.5"
+                    stroke-linecap="round" fill="none" opacity="0.85" />
                   <!-- Arc 2 -->
-                  <path d="M17 17 A32.5 32.5 0 0 1 63 17" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
-                  <path d="M17 63 A32.5 32.5 0 0 0 63 63" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
+                  <path d="M17 17 A32.5 32.5 0 0 1 63 17" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                    fill="none" opacity="0.5" />
+                  <path d="M17 63 A32.5 32.5 0 0 0 63 63" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                    fill="none" opacity="0.5" />
                 </svg>
                 <p class="rfid-reader-label">RFID READER</p>
               </div>
@@ -1742,21 +1966,27 @@
               <div class="rfid-card-icon">
                 <svg viewBox="0 0 200 128" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <!-- 카드 외형 -->
-                  <rect x="1" y="1" width="198" height="126" rx="12" stroke="currentColor" stroke-width="1.0" fill="rgba(255,255,255,0.04)"/>
+                  <rect x="1" y="1" width="198" height="126" rx="12" stroke="currentColor" stroke-width="1.0"
+                    fill="rgba(255,255,255,0.04)" />
 
                   <!-- 중앙: NFC 심볼 (작게) + RFID 텍스트 -->
                   <g transform="translate(72, 64)">
                     <!-- NFC 웨이브: 중심 점 -->
-                    <circle cx="0" cy="0" r="3.5" fill="currentColor" opacity="0.95"/>
+                    <circle cx="0" cy="0" r="3.5" fill="currentColor" opacity="0.95" />
                     <!-- Arc 1 -->
-                    <path d="M-10 -10 A14.1 14.1 0 0 1 10 -10" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none" opacity="0.9"/>
-                    <path d="M-10 10 A14.1 14.1 0 0 0 10 10" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none" opacity="0.9"/>
+                    <path d="M-10 -10 A14.1 14.1 0 0 1 10 -10" stroke="currentColor" stroke-width="2.8"
+                      stroke-linecap="round" fill="none" opacity="0.9" />
+                    <path d="M-10 10 A14.1 14.1 0 0 0 10 10" stroke="currentColor" stroke-width="2.8"
+                      stroke-linecap="round" fill="none" opacity="0.9" />
                     <!-- Arc 2 -->
-                    <path d="M-18 -18 A25.5 25.5 0 0 1 18 -18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.55"/>
-                    <path d="M-18 18 A25.5 25.5 0 0 0 18 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.55"/>
+                    <path d="M-18 -18 A25.5 25.5 0 0 1 18 -18" stroke="currentColor" stroke-width="2.2"
+                      stroke-linecap="round" fill="none" opacity="0.55" />
+                    <path d="M-18 18 A25.5 25.5 0 0 0 18 18" stroke="currentColor" stroke-width="2.2"
+                      stroke-linecap="round" fill="none" opacity="0.55" />
                   </g>
                   <!-- RFID 텍스트 -->
-                  <text x="100" y="69" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="700" fill="currentColor" letter-spacing="3" opacity="0.9" dominant-baseline="middle">RFID</text>
+                  <text x="100" y="69" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="700"
+                    fill="currentColor" letter-spacing="3" opacity="0.9" dominant-baseline="middle">RFID</text>
                 </svg>
               </div>
             </div>
@@ -1785,7 +2015,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1823,28 +2054,39 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
-            <h2 class="checkout-title" style="color: #ef4444;">긴급 모드 선택</h2>
-            <!-- <h1 style="color: #ef4444; font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; margin-bottom: 20px;">긴급 모드 선택</h1> -->
-            <p class="checkout-subtitle">수행할 긴급 모드를 선택해 주세요.</p>
-            
-            <!-- 모드 선택 버튼들 -->
-            <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; margin-top: 120px;">
-                <button class="btn-back" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 2px solid #ef4444; padding: 40px; font-size: 1.5rem; font-weight: 700; border-radius: 16px; cursor: pointer; min-width: 320px; transition: all 0.2s;" onmouseover="this.style.background='rgba(239, 68, 68, 0.2)'" onmouseout="this.style.background='rgba(239, 68, 68, 0.1)'" onclick="goScreen('emergency-confirm')">
-                  <span style="font-size: 4rem; margin-bottom: 15px;">🔓</span>
-                  <span style="font-size: 2.3rem; font-weight: 400; color: #fca5a5; margin-top: 10px;">전면 개방 모드</span>
-                  <span style="font-size: 1.5rem; font-weight: 400; color: #fca5a5; margin-top: 10px;">모든 키함을 강제 개방합니다.</span>
-                </button>
-                <button class="btn-back" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(56, 189, 248, 0.1); color: #38bdf8; border: 2px solid #38bdf8; padding: 40px; font-size: 1.5rem; font-weight: 700; border-radius: 16px; cursor: pointer; min-width: 320px; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.2)'" onmouseout="this.style.background='rgba(56, 189, 248, 0.1)'" onclick="goScreen('emergency-return-prep')">
-                  <span style="font-size: 4rem; margin-bottom: 15px;">🔑</span>
-                  <span style="font-size: 2.3rem; font-weight: 400; color: #fca5a5; margin-top: 10px;">키 강제 반환 모드</span>
-                  <span style="font-size: 1.5rem; font-weight: 400; color: #bae6fd; margin-top: 10px;">불출된 키를 반환 처리합니다.</span>
-                </button>
-            </div>
-            
-            <div style="margin-top: 150px;">
-              <button class="btn-back" style="display: flex; justify-content: center; background: rgba(15, 23, 42, 0.6); color: #94a3b8; border: 2px solid #475569; padding: 15px 40px; font-size: 1.2rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 200px;" onclick="goScreen('main')">취소 및 종료</button>
-            </div>
+        <div class="checkout-panel"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
+          <h2 class="checkout-title" style="color: #ef4444;">긴급 모드 선택</h2>
+          <!-- <h1 style="color: #ef4444; font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 800; margin-bottom: 20px;">긴급 모드 선택</h1> -->
+          <p class="checkout-subtitle">수행할 긴급 모드를 선택해 주세요.</p>
+
+          <!-- 모드 선택 버튼들 -->
+          <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; margin-top: 120px;">
+            <button class="btn-back"
+              style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 2px solid #ef4444; padding: 40px; font-size: 1.5rem; font-weight: 700; border-radius: 16px; cursor: pointer; min-width: 320px; transition: all 0.2s;"
+              onmouseover="this.style.background='rgba(239, 68, 68, 0.2)'"
+              onmouseout="this.style.background='rgba(239, 68, 68, 0.1)'" onclick="goScreen('emergency-confirm')">
+              <span style="font-size: 4rem; margin-bottom: 15px;">🔓</span>
+              <span style="font-size: 2.3rem; font-weight: 400; color: #fca5a5; margin-top: 10px;">전면 개방 모드</span>
+              <span style="font-size: 1.5rem; font-weight: 400; color: #fca5a5; margin-top: 10px;">모든 키함을 강제
+                개방합니다.</span>
+            </button>
+            <button class="btn-back"
+              style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(56, 189, 248, 0.1); color: #38bdf8; border: 2px solid #38bdf8; padding: 40px; font-size: 1.5rem; font-weight: 700; border-radius: 16px; cursor: pointer; min-width: 320px; transition: all 0.2s;"
+              onmouseover="this.style.background='rgba(56, 189, 248, 0.2)'"
+              onmouseout="this.style.background='rgba(56, 189, 248, 0.1)'" onclick="goScreen('emergency-return-prep')">
+              <span style="font-size: 4rem; margin-bottom: 15px;">🔑</span>
+              <span style="font-size: 2.3rem; font-weight: 400; color: #fca5a5; margin-top: 10px;">키 강제 반환 모드</span>
+              <span style="font-size: 1.5rem; font-weight: 400; color: #bae6fd; margin-top: 10px;">불출된 키를 반환
+                처리합니다.</span>
+            </button>
+          </div>
+
+          <div style="margin-top: 150px;">
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: rgba(15, 23, 42, 0.6); color: #94a3b8; border: 2px solid #475569; padding: 15px 40px; font-size: 1.2rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 200px;"
+              onclick="goScreen('main')">취소 및 종료</button>
+          </div>
         </div>
       </main>
 
@@ -1852,7 +2094,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1890,31 +2133,42 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
-            <h2 class="checkout-title" style="color: #38bdf8;">키함 문 닫힘 확인</h2>
-            <p class="checkout-subtitle" style="color: #9ca3af; margin-bottom: 40px">전면 개방 모드 종료 후, 모든 키함의 문이 닫혀있는지 확인해 주세요.</p>
+        <div class="checkout-panel"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
+          <h2 class="checkout-title" style="color: #38bdf8;">키함 문 닫힘 확인</h2>
+          <p class="checkout-subtitle" style="color: #9ca3af; margin-bottom: 40px">전면 개방 모드 종료 후, 모든 키함의 문이 닫혀있는지 확인해
+            주세요.</p>
 
-            <!-- 아이콘 -->
-            <div style="width: 40%; height: 40%; display: flex; justify-content: center; align-items: center; margin-bottom: 0px;">
-                <svg viewBox="0 0 160 50" style="width: 476px; max-width: 90vw; height: auto; filter: drop-shadow(0 4px 6px rgba(16, 185, 129, 0.3));" xmlns="http://www.w3.org/2000/svg">
-                  <rect class="target-slot-emerald" x="1" y="1" width="158" height="48" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="1"/>
-                  <rect x="10" y="12" width="3" height="26" fill="#16a34a" />
-                  <rect x="147" y="12" width="3" height="26" fill="#16a34a" />
-                  <rect x="57.5" y="10" width="45" height="30" rx="4" fill="#18181b" />
-                </svg>
-            </div>
+          <!-- 아이콘 -->
+          <div
+            style="width: 40%; height: 40%; display: flex; justify-content: center; align-items: center; margin-bottom: 0px;">
+            <svg viewBox="0 0 160 60"
+              style="width: 476px; max-width: 90vw; height: auto; filter: drop-shadow(0 4px 6px rgba(16, 185, 129, 0.3));"
+              xmlns="http://www.w3.org/2000/svg">
+              <rect class="target-slot-emerald" x="1" y="1" width="158" height="58" rx="6" fill="#f4f5f7"
+                stroke="#d1d5db" stroke-width="1" />
+              <rect x="52.5" y="10" width="55" height="40" rx="4" fill="#767171" />
+              <rect x="35" y="27" width="90" height="6" rx="3" fill="#16a34a" />
+            </svg>
+          </div>
 
-            <!-- 경고 박스 -->
-            <div style="width: 100%; max-width: 800px; background: rgba(10, 15, 25, 0.5); border: 1px solid #0369a1; border-radius: 12px; padding: 30px; display: flex; flex-direction: column; gap: 15px; margin-bottom: 160px; text-align: left;">
-                <!-- <span style="color: #38bdf8; font-size: 1.4rem; font-weight: 700;">안내</span> -->
-                <span style="color: #ffffff; font-size: 1.8rem; font-weight: 400; line-height: 1.6;">키 반환은 모든 문이 닫힌 상태에서 시작해야 정상적으로 해당 키 슬롯만 개방됩니다.</span>
-            </div>
+          <!-- 경고 박스 -->
+          <div
+            style="width: 100%; max-width: 800px; background: rgba(10, 15, 25, 0.5); border: 1px solid #0369a1; border-radius: 12px; padding: 30px; display: flex; flex-direction: column; gap: 15px; margin-bottom: 160px; text-align: left;">
+            <!-- <span style="color: #38bdf8; font-size: 1.4rem; font-weight: 700;">안내</span> -->
+            <span style="color: #ffffff; font-size: 1.8rem; font-weight: 400; line-height: 1.6;">키 반환은 모든 문이 닫힌 상태에서
+              시작해야 정상적으로 해당 키 슬롯만 개방됩니다.</span>
+          </div>
 
-            <!-- 하단 버튼들 -->
-            <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-                <button class="btn-back" style="display: flex; justify-content: center; background: #38bdf8; color: #ffffff; border: none; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px; box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);" onclick="goScreen('emergency-key-rfid')">문 닫힘 확인 완료</button>
-                <button class="btn-back" style="display: flex; justify-content: center; background: rgba(15, 23, 42, 0.6); color: #94a3b8; border: 2px solid #475569; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px;" onclick="goScreen('main')">취소 및 종료</button>
-            </div>
+          <!-- 하단 버튼들 -->
+          <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: #38bdf8; color: #ffffff; border: none; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px; box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);"
+              onclick="goScreen('emergency-key-rfid')">문 닫힘 확인 완료</button>
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: rgba(15, 23, 42, 0.6); color: #94a3b8; border: 2px solid #475569; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px;"
+              onclick="goScreen('main')">취소 및 종료</button>
+          </div>
         </div>
       </main>
 
@@ -1922,7 +2176,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -1962,7 +2217,9 @@
       <main class="kiosk-main">
         <div class="checkout-panel">
           <div class="checkout-top">
-            <div class="checkout-badge" style="border-color: #38bdf8; color: #38bdf8; background: rgba(56, 189, 248, 0.1);">EMERGENCY : RETURN RFID</div>
+            <div class="checkout-badge"
+              style="border-color: #38bdf8; color: #38bdf8; background: rgba(56, 189, 248, 0.1);">EMERGENCY : RETURN
+              RFID</div>
             <h2 class="checkout-title" style="color: #38bdf8;">반환할 키 RFID 스캔</h2>
             <p class="checkout-subtitle">정위치에 넣을 키의 RFID를 아래 리더기에 태깅해 주세요.</p>
           </div>
@@ -1972,22 +2229,28 @@
               <div class="rfid-wave-ring rfid-ring-1" style="border-color: rgba(56,189,248,0.5);"></div>
               <div class="rfid-wave-ring rfid-ring-2" style="border-color: rgba(56,189,248,0.5);"></div>
               <div class="rfid-wave-ring rfid-ring-3" style="border-color: rgba(56,189,248,0.5);"></div>
-              <div class="rfid-reader-body" style="position: absolute; bottom: 70%; left: 50%; transform: translateX(-50%); z-index: 1;">
+              <div class="rfid-reader-body"
+                style="position: absolute; bottom: 70%; left: 50%; transform: translateX(-50%); z-index: 1;">
                 <div class="rfid-reader-top-bar"></div>
                 <svg class="rfid-nfc-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.9"/>
-                  <path d="M26 26 A19.8 19.8 0 0 1 54 26" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-                  <path d="M26 54 A19.8 19.8 0 0 0 54 54" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-                  <path d="M17 17 A32.5 32.5 0 0 1 63 17" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
-                  <path d="M17 63 A32.5 32.5 0 0 0 63 63" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/>
+                  <circle cx="40" cy="40" r="10" fill="currentColor" opacity="0.9" />
+                  <path d="M26 26 A19.8 19.8 0 0 1 54 26" stroke="currentColor" stroke-width="3.5"
+                    stroke-linecap="round" fill="none" opacity="0.85" />
+                  <path d="M26 54 A19.8 19.8 0 0 0 54 54" stroke="currentColor" stroke-width="3.5"
+                    stroke-linecap="round" fill="none" opacity="0.85" />
+                  <path d="M17 17 A32.5 32.5 0 0 1 63 17" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                    fill="none" opacity="0.5" />
+                  <path d="M17 63 A32.5 32.5 0 0 0 63 63" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                    fill="none" opacity="0.5" />
                 </svg>
                 <p class="rfid-reader-label">RFID READER</p>
               </div>
               <div class="rfid-card-icon" style="position: relative; width: 300px; pointer-events: none; z-index: 2;">
-                <img src="key.png" alt="Key with RFID Fob" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.5));" />
+                <img src="key.png" alt="Key with RFID Fob"
+                  style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.5));" />
               </div>
             </div>
-            
+
             <div class="rfid-status-bar" style="background: rgba(56, 189, 248, 0.1); border-color: #38bdf8;">
               <span class="rfid-status-dot" style="background: #38bdf8; box-shadow: 0 0 8px #38bdf8;"></span>
               <span class="rfid-status-text" style="color: #bae6fd;">키 RFID 인식 대기 중...</span>
@@ -2003,7 +2266,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -2043,18 +2307,36 @@
       <main class="kiosk-main">
         <div class="checkout-panel">
           <div class="checkout-top">
-            <div class="checkout-badge" style="border-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.1);">STEP 03 : RETURN LOCATION</div>
+            <div class="checkout-badge"
+              style="border-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.1);">STEP 03 : RETURN
+              LOCATION</div>
             <h2 class="checkout-title" style="color: #10b981;">키 반환 슬롯 위치 안내</h2>
             <p class="checkout-subtitle">인식된 키의 정위치 슬롯이 개방되었습니다. 키를 넣고 문을 닫아주세요.</p>
           </div>
 
-          <div class="checkout-center" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 20px;">
+          <div class="checkout-center"
+            style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 20px;">
             <style>
               @keyframes target-slot-pulse-emerald {
-                0% { fill: rgba(16, 185, 129, 0.1); stroke: #059669; stroke-width: 2; }
-                50% { fill: rgba(16, 185, 129, 0.4); stroke: #34d399; stroke-width: 4; }
-                100% { fill: rgba(16, 185, 129, 0.1); stroke: #059669; stroke-width: 2; }
+                0% {
+                  fill: rgba(16, 185, 129, 0.1);
+                  stroke: #059669;
+                  stroke-width: 2;
+                }
+
+                50% {
+                  fill: rgba(16, 185, 129, 0.4);
+                  stroke: #34d399;
+                  stroke-width: 4;
+                }
+
+                100% {
+                  fill: rgba(16, 185, 129, 0.1);
+                  stroke: #059669;
+                  stroke-width: 2;
+                }
               }
+
               .target-slot-emerald {
                 animation: target-slot-pulse-emerald 1.5s infinite;
               }
@@ -2062,40 +2344,51 @@
 
             <!-- 확대된 목표 슬롯 -->
             <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
-                <span style="font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: bold; color: #10b981; margin-bottom: 15px;">▼ 반납 대상 슬롯 (열림 상태) ▼</span>
-                <svg viewBox="0 0 160 50" style="width: 476px; max-width: 90vw; height: auto; filter: drop-shadow(0 4px 6px rgba(16, 185, 129, 0.3));" xmlns="http://www.w3.org/2000/svg">
-                  <rect class="target-slot-emerald" x="1" y="1" width="158" height="48" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2"/>
-                  <rect x="10" y="12" width="3" height="26" fill="#16a34a" />
-                  <rect x="147" y="12" width="3" height="26" fill="#16a34a" />
-                  <rect x="57.5" y="10" width="45" height="30" rx="4" fill="#18181b" />
-                  <text x="80" y="31" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">05</text>
-                </svg>
+              <span
+                style="font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: bold; color: #10b981; margin-bottom: 15px;">▼
+                반납 대상 슬롯 (열림 상태) ▼</span>
+              <svg viewBox="0 0 160 60"
+                style="width: 476px; max-width: 90vw; height: auto; filter: drop-shadow(0 4px 6px rgba(16, 185, 129, 0.3));"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect class="target-slot-emerald" x="1" y="1" width="158" height="58" rx="6" fill="#f4f5f7"
+                  stroke="#d1d5db" stroke-width="2" />
+                <rect x="52.5" y="10" width="55" height="40" rx="4" fill="#767171" />
+                <rect x="35" y="27" width="90" height="6" rx="3" fill="#16a34a" />
+                <text x="80" y="24" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold"
+                  text-anchor="middle">05</text>
+              </svg>
             </div>
-            
-            <div class="proto-key-rack" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: rgba(30, 41, 59, 0.8); border-radius: 8px; border: 1px solid #475569;">
-                <script>
-                  document.write(Array.from({length: 20}, (_, i) => {
-                    const num = String(i + 1).padStart(2, '0');
-                    const isTarget = (num === '05'); // 05번 슬롯
-                    const bgClass = isTarget ? 'class="target-slot-emerald"' : '';
-                    const lineFill = isTarget ? '#16a34a' : '#1e3a8a';
-                    return `
-                      <svg viewBox="0 0 160 50" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="158" height="48" rx="6" fill="rgba(15, 23, 42, 0.5)" stroke="#334155" stroke-width="2" ${bgClass}/>
-                        <rect x="10" y="12" width="3" height="26" fill="${lineFill}" />
-                        <rect x="147" y="12" width="3" height="26" fill="${lineFill}" />
-                        <rect x="57.5" y="10" width="45" height="30" rx="4" fill="#18181b" />
-                        <text x="80" y="31" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">${num}</text>
+
+            <div class="proto-key-rack"
+              style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: rgba(30, 41, 59, 0.8); border-radius: 8px; border: 1px solid #475569;">
+              <script>
+                document.write(Array.from({ length: 20 }, (_, i) => {
+                  const num = String(i + 1).padStart(2, '0');
+                  const isTarget = (num === '05'); // 05번 슬롯
+                  const bgClass = isTarget ? 'class="target-slot-emerald"' : '';
+                  const lineFill = isTarget ? '#16a34a' : '#1e3a8a';
+                  return `
+                      <svg viewBox="0 0 160 60" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1" y="1" width="158" height="58" rx="6" fill="rgba(15, 23, 42, 0.5)" stroke="#334155" stroke-width="2" ${bgClass}/>
+                        <rect x="52.5" y="10" width="55" height="40" rx="4" fill="#767171" />
+                        <rect x="35" y="27" width="90" height="6" rx="3" fill="${lineFill}" />
+                        <text x="80" y="24" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
                       </svg>
                     `;
-                  }).join(''));
-                </script>
+                }).join(''));
+              </script>
             </div>
           </div>
 
-          <div class="checkout-bottom" style="display:flex; flex-direction: column; align-items: center; width: 100%; gap: 15px; margin-top: 20px;">
-            <button class="btn-finish" style="background: #10b981; color: white; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; border: none; cursor: pointer; min-width: 300px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);" onclick="goScreen('emergency-key-rfid')">다음 키 반환하기</button>
-            <button class="btn-back" style="background: transparent; border: none; color: #94a3b8; padding: 10px 20px; font-size: 1.1rem; font-weight: 700; cursor: pointer; text-decoration: underline; transition: color 0.2s;" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#94a3b8'" onclick="goScreen('main')">모든 키 반환 종료하기</button>
+          <div class="checkout-bottom"
+            style="display:flex; flex-direction: column; align-items: center; width: 100%; gap: 15px; margin-top: 20px;">
+            <button class="btn-finish"
+              style="background: #10b981; color: white; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; border: none; cursor: pointer; min-width: 300px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);"
+              onclick="goScreen('emergency-key-rfid')">다음 키 반환하기</button>
+            <button class="btn-back"
+              style="background: transparent; border: none; color: #94a3b8; padding: 10px 20px; font-size: 1.1rem; font-weight: 700; cursor: pointer; text-decoration: underline; transition: color 0.2s;"
+              onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#94a3b8'"
+              onclick="goScreen('main')">모든 키 반환 종료하기</button>
           </div>
         </div>
       </main>
@@ -2104,7 +2397,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -2142,29 +2436,38 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
-            <!-- 에러 아이콘 -->
-            <div style="width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; margin-bottom: 30px;">
-                <svg viewBox="0 0 24 24" fill="#ef4444" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.4));">
-                    <path d="M12 1.5L22.5 12L12 22.5L1.5 12L12 1.5Z" />
-                    <rect x="10.5" y="6" width="3" height="8" fill="#1a1a2e" rx="1.5" />
-                    <circle cx="12" cy="17" r="1.5" fill="#1a1a2e" />
-                </svg>
-            </div>
-            
-            <h2 class="checkout-title" style="color: #ef4444;">긴급 전면 개방 모드</h2>
-            <p class="checkout-subtitle" style="color: #9ca3af;">긴급 권한이 확인되었습니다. 보관함을 전면 개방하시겠습니까?</p>
-            
-            <!-- 경고 박스 -->
-            <div style="width: 100%; max-width: 800px; background: rgba(20, 10, 10, 0.5); border: 1px solid #7f1d1d; border-radius: 12px; padding: 30px; display: flex; flex-direction: column; gap: 15px; margin-bottom: 160px; margin-top: 160px; text-align: left;">
-                <span style="color: #ffffff; font-size: 1.8rem; font-weight: 400; line-height: 1.6;">전면 개방 시 현재 재고, 사용자, 시간 등의 데이터가 긴급 로그로 저장됩니다.</span>
-            </div>
+        <div class="checkout-panel"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
+          <!-- 에러 아이콘 -->
+          <div
+            style="width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; margin-bottom: 30px;">
+            <svg viewBox="0 0 24 24" fill="#ef4444" xmlns="http://www.w3.org/2000/svg"
+              style="width: 100%; height: 100%; filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.4));">
+              <path d="M12 1.5L22.5 12L12 22.5L1.5 12L12 1.5Z" />
+              <rect x="10.5" y="6" width="3" height="8" fill="#1a1a2e" rx="1.5" />
+              <circle cx="12" cy="17" r="1.5" fill="#1a1a2e" />
+            </svg>
+          </div>
 
-            <!-- 하단 버튼들 -->
-            <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-                <button class="btn-back" style="display: flex; justify-content: center; background: #ef4444; color: #ffffff; border: none; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);" onclick="executeEmergencyOpen()">예, 전면 개방 실행</button>
-                <button class="btn-back" style="display: flex; justify-content: center; background: rgba(15, 23, 42, 0.6); color: #38bdf8; border: 2px solid #0284c7; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px;" onclick="goScreen('main')">취소 및 종료</button>
-            </div>
+          <h2 class="checkout-title" style="color: #ef4444;">긴급 전면 개방 모드</h2>
+          <p class="checkout-subtitle" style="color: #9ca3af;">긴급 권한이 확인되었습니다. 보관함을 전면 개방하시겠습니까?</p>
+
+          <!-- 경고 박스 -->
+          <div
+            style="width: 100%; max-width: 800px; background: rgba(20, 10, 10, 0.5); border: 1px solid #7f1d1d; border-radius: 12px; padding: 30px; display: flex; flex-direction: column; gap: 15px; margin-bottom: 160px; margin-top: 160px; text-align: left;">
+            <span style="color: #ffffff; font-size: 1.8rem; font-weight: 400; line-height: 1.6;">전면 개방 시 현재 재고, 사용자, 시간
+              등의 데이터가 긴급 로그로 저장됩니다.</span>
+          </div>
+
+          <!-- 하단 버튼들 -->
+          <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: #ef4444; color: #ffffff; border: none; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px; box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);"
+              onclick="executeEmergencyOpen()">예, 전면 개방 실행</button>
+            <button class="btn-back"
+              style="display: flex; justify-content: center; background: rgba(15, 23, 42, 0.6); color: #38bdf8; border: 2px solid #0284c7; padding: 20px 40px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 260px;"
+              onclick="goScreen('main')">취소 및 종료</button>
+          </div>
         </div>
       </main>
 
@@ -2172,7 +2475,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />
@@ -2210,19 +2514,26 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
-            
-            <!-- 체크 아이콘 -->
-            <div style="width: 140px; height: 140px; background-color: rgba(16, 185, 129, 0.15); border: 2px solid #10b981; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 35px; box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width: 60px; height: 60px;">
-                    <path d="M20 6L9 17l-5-5" />
-                </svg>
-            </div>
-            
-            <h2 class="checkout-title" style="color: #10b981;">전면 개방 완료</h2>
-            <p class="checkout-subtitle" style="color: #9ca3af; margin-top: 20px; margin-bottom: 160px">보관함의 모든 도어가 개방되었습니다.<br>관련 데이터가 시스템에 안전하게 기록되었습니다.</p>
-            
-            <button class="btn-back" style="display: flex; justify-content: center; background: transparent; border: 2px solid #38bdf8; color: #38bdf8; padding: 20px 60px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer;" onclick="goScreen('main')" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'" onmouseout="this.style.background='transparent'">메인으로 돌아가기</button>
+        <div class="checkout-panel"
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; background: transparent; border: none; box-shadow: none;">
+
+          <!-- 체크 아이콘 -->
+          <div
+            style="width: 140px; height: 140px; background-color: rgba(16, 185, 129, 0.15); border: 2px solid #10b981; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 35px; box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round" style="width: 60px; height: 60px;">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+          </div>
+
+          <h2 class="checkout-title" style="color: #10b981;">전면 개방 완료</h2>
+          <p class="checkout-subtitle" style="color: #9ca3af; margin-top: 20px; margin-bottom: 160px">보관함의 모든 도어가
+            개방되었습니다.<br>관련 데이터가 시스템에 안전하게 기록되었습니다.</p>
+
+          <button class="btn-back"
+            style="display: flex; justify-content: center; background: transparent; border: 2px solid #38bdf8; color: #38bdf8; padding: 20px 60px; font-size: 1.4rem; font-weight: 700; border-radius: 12px; cursor: pointer;"
+            onclick="goScreen('main')" onmouseover="this.style.background='rgba(56, 189, 248, 0.1)'"
+            onmouseout="this.style.background='transparent'">메인으로 돌아가기</button>
         </div>
       </main>
 
@@ -2230,7 +2541,8 @@
         <div class="footer-home">
           <button class="footer-home-btn" onclick="goScreen('main')" aria-label="홈으로 이동">
             <span class="footer-home-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 11.5L12 4l9 7.5" />
                 <path d="M5.5 10.5V20h13v-9.5" />
                 <path d="M9.5 20v-6h5v6" />

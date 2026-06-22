@@ -145,7 +145,7 @@ body {
   z-index: -1;
   pointer-events: none;
   /* Subtle tactical scanlines */
-  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.015) 2px, rgba(255, 255, 255, 0.015) 4px);
   animation: ubi-scanline 10s linear infinite;
   opacity: 0.7;
 }
@@ -155,7 +155,7 @@ body {
 }
 
 [data-theme="light"] .animated-bg-screen::after {
-  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px);
 }
 
 [data-theme="light"] .emergency-screen .checkout-subtitle {
@@ -242,13 +242,23 @@ body {
 }
 
 @keyframes ubi-light-sweep {
-  0% { transform: translate(-10%, -10%) rotate(-15deg); }
-  100% { transform: translate(10%, 10%) rotate(15deg); }
+  0% {
+    transform: translate(-10%, -10%) rotate(-15deg);
+  }
+
+  100% {
+    transform: translate(10%, 10%) rotate(15deg);
+  }
 }
 
 @keyframes ubi-scanline {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 40px; }
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 40px;
+  }
 }
 
 /* ─── Header ─── */
@@ -911,6 +921,7 @@ body {
 }
 
 @keyframes step-current-pulse {
+
   0%,
   100% {
     box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.42), 0 0 20px rgba(6, 182, 212, 0.5);
@@ -1221,9 +1232,12 @@ body {
   border: 1px solid var(--border-color);
   padding: 3%;
 
-  display: flex;              /* Flexbox 활성화 */
-  justify-content: center;    /* 가로 가운데 정렬 */
-  align-items: center;        /* 세로 가운데 정렬 (필요할 경우) */
+  display: flex;
+  /* Flexbox 활성화 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  align-items: center;
+  /* 세로 가운데 정렬 (필요할 경우) */
 }
 
 .key-grid {
@@ -2359,8 +2373,13 @@ body {
   flex-shrink: 0;
 }
 
-.ret-check-dot:nth-child(2) { animation-delay: 0.2s; }
-.ret-check-dot:nth-child(3) { animation-delay: 0.4s; }
+.ret-check-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.ret-check-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 .ret-check-label {
   font-family: var(--font-mono);
@@ -2746,8 +2765,15 @@ body {
 }
 
 @keyframes rfid-wave-expand {
-  0%   { transform: translate(-50%, -50%) scale(0.3); opacity: 0.9; }
-  100% { transform: translate(-50%, -50%) scale(1);   opacity: 0; }
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
 }
 
 /* ── 리더기 본체 ── */
@@ -2761,8 +2787,8 @@ body {
   width: clamp(130px, 32vw, 230px);
   padding: clamp(1rem, 3vw, 1.8rem) clamp(1rem, 2.5vw, 1.5rem);
   background: linear-gradient(160deg,
-    rgba(30, 50, 90, 0.85) 0%,
-    rgba(10, 20, 50, 0.9) 100%);
+      rgba(30, 50, 90, 0.85) 0%,
+      rgba(10, 20, 50, 0.9) 100%);
   border: 1.5px solid rgba(59, 130, 246, 0.5);
   border-radius: 1.2em;
   box-shadow:
@@ -2777,8 +2803,8 @@ body {
 
 [data-theme="light"] .rfid-reader-body {
   background: linear-gradient(160deg,
-    rgba(200, 220, 255, 0.85) 0%,
-    rgba(180, 205, 255, 0.9) 100%);
+      rgba(200, 220, 255, 0.85) 0%,
+      rgba(180, 205, 255, 0.9) 100%);
   border-color: rgba(59, 130, 246, 0.4);
   box-shadow:
     0 0 20px rgba(59, 130, 246, 0.15),
@@ -2786,8 +2812,15 @@ body {
 }
 
 @keyframes rfid-body-glow {
-  0%, 100% { box-shadow: 0 0 30px rgba(59,130,246,0.25), 0 0 60px rgba(59,130,246,0.08), inset 0 1px 0 rgba(255,255,255,0.1); }
-  50%       { box-shadow: 0 0 45px rgba(59,130,246,0.45), 0 0 90px rgba(59,130,246,0.18), inset 0 1px 0 rgba(255,255,255,0.15); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.25), 0 0 60px rgba(59, 130, 246, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 45px rgba(59, 130, 246, 0.45), 0 0 90px rgba(59, 130, 246, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
 }
 
 /* 리더기 상단 LED 바 */
@@ -2801,8 +2834,15 @@ body {
 }
 
 @keyframes rfid-led-pulse {
-  0%, 100% { opacity: 0.4; }
-  50%       { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 /* NFC 심볼 아이콘 */
@@ -2840,8 +2880,15 @@ body {
 }
 
 @keyframes rfid-card-float {
-  0%, 100% { transform: translateY(0px) rotate(-2deg); }
-  50%       { transform: translateY(-10px) rotate(2deg); }
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
 }
 
 /* ── 탭 힌트 문구 ── */
@@ -2856,8 +2903,15 @@ body {
 }
 
 @keyframes rfid-hint-blink {
-  0%, 100% { opacity: 0.5; }
-  50%       { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 /* ── RFID 대기 상태 바 ── */
@@ -2897,7 +2951,8 @@ body {
 
 /* 스캔 브랜치 전용 컨테이너 (scan-frame 기준) */
 .scan-branch-zone .scan-frame {
-  position: relative; /* 탭존 absolute 기준점 */
+  position: relative;
+  /* 탭존 absolute 기준점 */
 }
 
 /* 공통 탭존 — 완전 투명, 커서만 포인터 */
@@ -2915,10 +2970,14 @@ body {
 }
 
 /* 좌측: 일반작업 스캔 */
-.tap-zone-left  { left: 0; }
+.tap-zone-left {
+  left: 0;
+}
 
 /* 우측: MTR Solo 스캔 */
-.tap-zone-right { right: 0; }
+.tap-zone-right {
+  right: 0;
+}
 
 /* 탭존 하단 확인 텍스트 */
 .tap-zone-label {
@@ -3047,9 +3106,17 @@ body {
 }
 
 @keyframes pulse-border-green {
-  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-  70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(16, 185, 129, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }
 
 .proto-sensor-msg {
@@ -3061,8 +3128,13 @@ body {
 }
 
 @keyframes proto-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* ═══════════════════════════════════════════════
@@ -3120,9 +3192,17 @@ body {
   border-radius: inherit;
 }
 
-.btn-scan-branch:hover { transform: translateY(-3%) scale(1.02); }
-.btn-scan-branch:hover::before { opacity: 1; }
-.btn-scan-branch:active { transform: scale(0.97); }
+.btn-scan-branch:hover {
+  transform: translateY(-3%) scale(1.02);
+}
+
+.btn-scan-branch:hover::before {
+  opacity: 1;
+}
+
+.btn-scan-branch:active {
+  transform: scale(0.97);
+}
 
 /* 일반작업 스캔 — 파란 계열 */
 .btn-normal-scan {
@@ -3187,3 +3267,299 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+
+/* ═══════════════════════════════════════════════
+   MODE SELECTION CARD STYLES
+═══════════════════════════════════════════════ */
+.mode-buttons-container {
+  display: flex;
+  gap: clamp(15px, 2.5vw, 30px);
+  width: 100%;
+  max-width: 900px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.mode-card {
+  flex: 1;
+  max-width: 30%;
+  aspect-ratio: 3 / 4;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5em;
+  padding: 40px 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.mode-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.mode-card:hover {
+  transform: translateY(-5%) scale(1.03);
+}
+
+.mode-card:hover::before {
+  opacity: 1;
+}
+
+.mode-card:active {
+  transform: scale(0.97);
+}
+
+.mode-card-icon-wrap {
+  width: clamp(56px, 12vw, 84px);
+  height: clamp(56px, 12vw, 84px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s, transform 0.3s;
+  z-index: 1;
+}
+
+.mode-card-icon-wrap svg {
+  width: 55%;
+  height: 55%;
+}
+
+.mode-card:hover .mode-card-icon-wrap {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.mode-card-normal {
+  border-color: rgba(59, 130, 246, 0.4);
+  color: var(--accent-blue);
+}
+
+.mode-card-normal::before {
+  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15), transparent 70%);
+}
+
+.mode-card-normal:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.35);
+}
+
+.mode-card-normal .mode-card-icon-wrap {
+  color: var(--accent-blue);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.mode-card-mtr {
+  border-color: rgba(245, 158, 11, 0.4);
+  color: var(--accent-orange);
+}
+
+.mode-card-mtr::before {
+  background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.15), transparent 70%);
+}
+
+.mode-card-mtr:hover {
+  border-color: var(--accent-orange);
+  box-shadow: 0 10px 40px rgba(245, 158, 11, 0.35);
+}
+
+.mode-card-mtr .mode-card-icon-wrap {
+  color: var(--accent-orange);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.mode-card-insulation {
+  border-color: rgba(16, 185, 129, 0.4);
+  color: var(--accent-green);
+}
+
+.mode-card-insulation::before {
+  background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15), transparent 70%);
+}
+
+.mode-card-insulation:hover {
+  border-color: var(--accent-green);
+  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.35);
+}
+
+.mode-card-insulation .mode-card-icon-wrap {
+  color: var(--accent-green);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.mode-card-title {
+  font-size: clamp(1.8rem, 2.2vw, 1.7rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  z-index: 1;
+}
+
+.mode-card-desc {
+  font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  padding: 0 10px;
+  z-index: 1;
+}
+
+/* Light theme overrides for mode selection cards */
+[data-theme="light"] .mode-card-title {
+  color: #0f1f3a;
+}
+
+[data-theme="light"] .mode-card-desc {
+  color: #2b4d82;
+}
+
+/* ───────────────────────────────────────────
+   Validation Page Animation Styles
+─────────────────────────────────────────── */
+.validation-radar-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--accent-cyan);
+  animation: radar-ping 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  opacity: 0;
+}
+
+@keyframes radar-ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.val-item.val-pending {
+  border-color: var(--border-color);
+  opacity: 0.5;
+}
+
+.val-item.val-loading {
+  background: rgba(6, 182, 212, 0.06) !important;
+  border-color: rgba(6, 182, 212, 0.2) !important;
+  opacity: 1;
+}
+.val-item.val-loading .val-icon-wrap {
+  border-color: var(--accent-cyan) !important;
+  color: var(--accent-cyan) !important;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+}
+.val-item.val-loading .val-text {
+  color: var(--text-primary) !important;
+}
+.val-item.val-loading .val-status {
+  color: var(--accent-cyan) !important;
+  animation: val-blink 1s infinite alternate;
+}
+
+.val-item.val-success {
+  background: rgba(16, 185, 129, 0.08) !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+  opacity: 1;
+}
+.val-item.val-success .val-icon-wrap {
+  border-color: var(--accent-green) !important;
+  color: var(--accent-green) !important;
+  background: rgba(16, 185, 129, 0.1);
+}
+.val-item.val-success .val-text {
+  color: var(--text-primary) !important;
+}
+.val-item.val-success .val-status {
+  color: var(--accent-green) !important;
+}
+
+.val-item.val-failure {
+  background: rgba(239, 68, 68, 0.08) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  opacity: 1;
+  animation: shake 0.4s ease-in-out;
+}
+.val-item.val-failure .val-icon-wrap {
+  border-color: var(--accent-red) !important;
+  color: var(--accent-red) !important;
+  background: rgba(239, 68, 68, 0.15);
+}
+.val-item.val-failure .val-text {
+  color: #ff8a8a !important;
+}
+.val-item.val-failure .val-status {
+  color: var(--accent-red) !important;
+  font-weight: 800;
+}
+
+.val-item.val-warning {
+  background: rgba(245, 158, 11, 0.08) !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+  opacity: 1;
+}
+.val-item.val-warning .val-icon-wrap {
+  border-color: var(--accent-orange) !important;
+  color: var(--accent-orange) !important;
+  background: rgba(245, 158, 11, 0.15);
+}
+.val-item.val-warning .val-text {
+  color: #ffd8a8 !important;
+}
+.val-item.val-warning .val-status {
+  color: var(--accent-orange) !important;
+  font-weight: 800;
+}
+
+@keyframes val-blink {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* Light theme overrides for validation checklist */
+[data-theme="light"] .val-item.val-pending {
+  border-color: rgba(59, 130, 246, 0.15);
+}
+[data-theme="light"] .val-item.val-loading {
+  background: rgba(2, 132, 199, 0.04) !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+}
+[data-theme="light"] .val-item.val-loading .val-text {
+  color: #0f1f3a !important;
+}
+[data-theme="light"] .val-item.val-success {
+  background: rgba(22, 163, 74, 0.05) !important;
+  border-color: rgba(22, 163, 74, 0.25) !important;
+}
+[data-theme="light"] .val-item.val-success .val-text {
+  color: #0f1f3a !important;
+}
+[data-theme="light"] .val-item.val-failure {
+  background: rgba(220, 38, 38, 0.05) !important;
+  border-color: rgba(220, 38, 38, 0.25) !important;
+}
+[data-theme="light"] .val-item.val-failure .val-text {
+  color: #991b1b !important;
+}
+
+[data-theme="light"] .val-item.val-warning {
+  background: rgba(217, 119, 6, 0.05) !important;
+  border-color: rgba(217, 119, 6, 0.25) !important;
+}
+[data-theme="light"] .val-item.val-warning .val-text {
+  color: #0f1f3a !important;
+}
