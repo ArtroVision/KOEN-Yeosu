@@ -916,7 +916,7 @@ function executeSelectiveOpen() {
   const slotsHtml = sorted.map(n => {
     const num = String(n).padStart(2, '0');
     return `<div style="background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 10px 20px; color: #fcd34d; font-size: 1.6rem; font-weight: 800; font-family: var(--font-mono); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-      <span style="font-size: 1.2rem; color: #f59e0b; margin-right: 4px;">#</span>${num}
+      ${num}
     </div>`;
   }).join('');
 
