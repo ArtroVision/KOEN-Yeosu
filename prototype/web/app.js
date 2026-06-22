@@ -865,8 +865,8 @@ function toggleSelectiveSlot(i) {
       btn.style.transform = 'scale(1.05)';
       if (selBg) {
         selBg.setAttribute('fill', '#fee2e2'); // 연한 적색 배경
-        selBg.setAttribute('stroke', '#ef4444'); // 적색 테두리
-        selBg.setAttribute('stroke-width', '4');
+        selBg.setAttribute('stroke', '#d1d5db'); // 기본 테두리 유지
+        selBg.setAttribute('stroke-width', '2');
       }
       if (selBox) {
         selBox.setAttribute('fill', '#ef4444'); // 적색 내부 박스
