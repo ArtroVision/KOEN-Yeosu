@@ -814,3 +814,94 @@ document.querySelectorAll('.btn-emergency').forEach(btn => {
 function executeEmergencyOpen() {
   goScreen('emergency-complete');
 }
+
+// ═══════════════ Emergency Selective Open Flow ═══════════════
+let selectiveOpenSlots = new Set();
+
+function buildSelectiveGrid() {
+  const gridTop = document.getElementById('selective-grid-top');
+  const gridBottom = document.getElementById('selective-grid-bottom');
+  if (!gridTop || !gridBottom) return;
+
+  selectiveOpenSlots.clear();
+  gridTop.innerHTML = '';
+  gridBottom.innerHTML = '';
+
+  function createSlotBtn(i, container) {
+    const num = String(i).padStart(2, '0');
+    const btn = document.createElement('button');
+    btn.id = 'sel-slot-' + i;
+    btn.textContent = num;
+    btn.style.cssText = 'padding: 10px 0; font-family: var(--font-mono); font-size: 1rem; font-weight: 700; border-radius: 6px; cursor: pointer; transition: all 0.15s; border: 1.5px solid var(--border-color); background: rgba(255,255,255,0.04); color: var(--text-secondary); text-align: center;';
+    btn.onclick = () => toggleSelectiveSlot(i);
+    container.appendChild(btn);
+  }
+
+  for (let i = 1; i <= 45; i++) createSlotBtn(i, gridTop);
+  for (let i = 46; i <= 90; i++) createSlotBtn(i, gridBottom);
+
+  updateSelectiveUI();
+}
+
+function toggleSelectiveSlot(i) {
+  if (selectiveOpenSlots.has(i)) {
+    selectiveOpenSlots.delete(i);
+  } else {
+    selectiveOpenSlots.add(i);
+  }
+  const btn = document.getElementById('sel-slot-' + i);
+  if (btn) {
+    if (selectiveOpenSlots.has(i)) {
+      btn.style.background = 'rgba(245, 158, 11, 0.35)';
+      btn.style.borderColor = '#f59e0b';
+      btn.style.color = '#fcd34d';
+      btn.style.boxShadow = '0 0 10px rgba(245, 158, 11, 0.3)';
+    } else {
+      btn.style.background = 'rgba(255,255,255,0.04)';
+      btn.style.borderColor = 'var(--border-color)';
+      btn.style.color = 'var(--text-secondary)';
+      btn.style.boxShadow = 'none';
+    }
+  }
+  updateSelectiveUI();
+}
+
+function updateSelectiveUI() {
+  const countEl = document.getElementById('selective-open-count');
+  const execBtn = document.getElementById('btn-selective-open-execute');
+  const count = selectiveOpenSlots.size;
+  if (countEl) countEl.textContent = count;
+  if (execBtn) {
+    if (count > 0) {
+      execBtn.style.opacity = '1';
+      execBtn.style.pointerEvents = 'auto';
+    } else {
+      execBtn.style.opacity = '0.5';
+      execBtn.style.pointerEvents = 'none';
+    }
+  }
+}
+
+function executeSelectiveOpen() {
+  if (selectiveOpenSlots.size === 0) return;
+
+  const sorted = Array.from(selectiveOpenSlots).sort((a, b) => a - b);
+  const slotNums = sorted.map(n => '#' + String(n).padStart(2, '0'));
+
+  const slotsEl = document.getElementById('selective-complete-slots');
+  if (slotsEl) slotsEl.textContent = slotNums.join(', ');
+
+  const msgEl = document.getElementById('selective-complete-msg');
+  if (msgEl) msgEl.innerHTML = `선택된 ${sorted.length}개 슬롯이 개방되었습니다.<br>관련 데이터가 시스템에 안전하게 기록되었습니다.`;
+
+  goScreen('emergency-selective-complete');
+}
+
+// Hook: rebuild selective grid when navigating to the screen
+const _originalGoScreen = goScreen;
+goScreen = function(name) {
+  _originalGoScreen(name);
+  if (name === 'emergency-selective-open') {
+    buildSelectiveGrid();
+  }
+};
