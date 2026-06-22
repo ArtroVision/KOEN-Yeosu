@@ -1838,41 +1838,35 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="status-panel">
-          <div class="status-header-row">
-            <div class="checkout-badge status-badge">KEY STATUS</div>
-            <h2 class="checkout-title">현황 보기</h2>
-            <p class="checkout-subtitle">현재 반출 중인 키 보관함 슬롯을 확인할수 있습니다.</p>
+        <div class="status-panel" style="padding: 10px 30px; gap: 10px;">
+          <div class="status-header-row" style="margin-bottom: 0;">
+            <div class="checkout-badge status-badge" style="padding: 0.2em 0.8em; font-size: 0.75rem; margin-bottom: 5px;">KEY STATUS</div>
+            <h2 class="checkout-title" style="font-size: 2.2rem; margin: 0;">현황 보기</h2>
+            <p class="checkout-subtitle" style="font-size: 1.1rem; margin-top: 5px; margin-bottom: 0;">현재 반출 중인 키 보관함 슬롯을 확인할수 있습니다.</p>
           </div>
-          <div class="status-summary">
-            <div class="stat-card stat-total">
-              <div class="stat-num">48</div>
-              <div class="stat-lbl">전체 키</div>
+          <div class="status-summary" style="gap: 15px; margin-bottom: 0;">
+            <div class="stat-card stat-total" style="padding: 10px 15px; border-radius: 0.8em;">
+              <div class="stat-num" style="font-size: 2rem;">90</div>
+              <div class="stat-lbl" style="font-size: 0.9rem;">전체 키</div>
             </div>
-            <div class="stat-card stat-out">
-              <div class="stat-num">12</div>
-              <div class="stat-lbl">반출 중</div>
+            <div class="stat-card stat-out" style="padding: 10px 15px; border-radius: 0.8em;">
+              <div class="stat-num" style="font-size: 2rem;">12</div>
+              <div class="stat-lbl" style="font-size: 0.9rem;">반출 중</div>
             </div>
-            <div class="stat-card stat-in">
-              <div class="stat-num">36</div>
-              <div class="stat-lbl">보관 중</div>
+            <div class="stat-card stat-in" style="padding: 10px 15px; border-radius: 0.8em;">
+              <div class="stat-num" style="font-size: 2rem;">78</div>
+              <div class="stat-lbl" style="font-size: 0.9rem;">보관 중</div>
             </div>
           </div>
 
           <div class="key-grid-wrap"
             style="flex-direction: column; gap: 10px; justify-content: center; align-items: stretch; padding: 0 30px;">
             <div class="key-group-section">
-              <div class="key-group-title"
-                style="font-size: 1.4rem; font-weight: bold; color: var(--accent-cyan); margin-bottom: 5px; text-align: left;">
-                상측 키함 (01-45)</div>
               <div class="key-grid" id="key-grid-top"
                 style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db; margin: 0 auto;">
               </div>
             </div>
             <div class="key-group-section" style="margin-top: 5px;">
-              <div class="key-group-title"
-                style="font-size: 1.4rem; font-weight: bold; color: var(--accent-cyan); margin-bottom: 5px; text-align: left;">
-                하측 키함 (46-90)</div>
               <div class="key-grid" id="key-grid-bottom"
                 style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db; margin: 0 auto;">
               </div>
@@ -2455,13 +2449,13 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="status-panel">
-          <div class="status-header-row" style="text-align: center;">
+        <div class="status-panel" style="padding: 10px 30px; gap: 10px;">
+          <div class="status-header-row" style="text-align: center; margin-bottom: 0;">
             <div class="checkout-badge"
-              style="border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.1);">EMERGENCY :
+              style="border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 0.2em 0.8em; font-size: 0.75rem; margin-bottom: 5px;">EMERGENCY :
               SELECTIVE OPEN</div>
-            <h2 class="checkout-title" style="color: #f59e0b;">선택 개방 모드</h2>
-            <p class="checkout-subtitle">개방할 키함 슬롯을 선택한 후 하단의 개방 실행 버튼을 눌러주세요.
+            <h2 class="checkout-title" style="color: #f59e0b; font-size: 2.2rem; margin: 0;">선택 개방 모드</h2>
+            <p class="checkout-subtitle" style="font-size: 1.1rem; margin-top: 5px; margin-bottom: 0;">개방할 키함 슬롯을 선택한 후 하단의 개방 실행 버튼을 눌러주세요.
               <span
                 style="display: inline-flex; align-items: center; gap: 8px; margin-left: 15px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 4px 14px;">
                 <span style="color: #fcd34d; font-weight: 700;">선택:</span>
@@ -2473,7 +2467,7 @@
           </div>
 
           <div class="key-grid-wrap"
-            style="flex-direction: column; gap: 15px; overflow: hidden; justify-content: center; align-items: stretch; padding: 0 30px;">
+            style="flex-direction: column; gap: 10px; overflow: hidden; justify-content: center; align-items: stretch; padding: 0 30px;">
             <div class="key-group-section">
               <div class="key-grid" id="selective-grid-top"
                 style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; width: 100%; max-width: 900px; padding: 8px; background: rgba(30,30,50,0.5); border-radius: 8px; border: 1px solid var(--border-color); margin: 0 auto;">
