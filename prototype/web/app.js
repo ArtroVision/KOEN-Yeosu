@@ -156,9 +156,9 @@ function buildKeyGrid(slideClass = '') {
     const num = String(i).padStart(2, '0');
     const isOut = checkedOutKeys.has(i);
 
-    const bgFill = isOut ? '#fee2e2' : '#f4f5f7'; 
-    const strokeColor = isOut ? '#f87171' : '#d1d5db';
-    const boxFill = isOut ? '#991b1b' : '#767171';
+    const bgFill = isOut ? '#e0f2fe' : '#f4f5f7'; 
+    const strokeColor = isOut ? '#38bdf8' : '#d1d5db';
+    const boxFill = isOut ? '#0284c7' : '#767171';
 
     return `
       <svg viewBox="0 0 160 53" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
@@ -833,9 +833,9 @@ function buildSelectiveGrid() {
     const cell = document.createElement('div');
     cell.id = 'sel-slot-' + i;
     
-    const bgFill = isOut ? '#fee2e2' : '#f4f5f7'; 
-    const strokeColor = isOut ? '#f87171' : '#d1d5db';
-    const boxFill = isOut ? '#991b1b' : '#767171';
+    const bgFill = isOut ? '#e0f2fe' : '#f4f5f7'; 
+    const strokeColor = isOut ? '#38bdf8' : '#d1d5db';
+    const boxFill = isOut ? '#0284c7' : '#767171';
 
     cell.style.cssText = isOut ? 'display: flex; opacity: 0.7; cursor: not-allowed;' : 'display: flex; cursor: pointer;';
     cell.innerHTML = `
