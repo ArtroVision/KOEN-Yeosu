@@ -831,7 +831,7 @@ function buildSelectiveGrid() {
     const num = String(i).padStart(2, '0');
     const cell = document.createElement('div');
     cell.id = 'sel-slot-' + i;
-    cell.style.cssText = 'display: flex; cursor: pointer; transition: transform 0.1s;';
+    cell.style.cssText = 'display: flex; cursor: pointer;';
     cell.innerHTML = `
       <svg viewBox="0 0 160 53" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
         <rect class="sel-bg" x="1" y="1" width="158" height="51" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2" />
@@ -862,7 +862,6 @@ function toggleSelectiveSlot(i) {
     const selBox = btn.querySelector('.sel-box');
 
     if (selectiveOpenSlots.has(i)) {
-      btn.style.transform = 'scale(1.05)';
       if (selBg) {
         selBg.setAttribute('fill', '#fee2e2'); // 연한 적색 배경
         selBg.setAttribute('stroke', '#d1d5db'); // 기본 테두리 유지
@@ -872,7 +871,6 @@ function toggleSelectiveSlot(i) {
         selBox.setAttribute('fill', '#ef4444'); // 적색 내부 박스
       }
     } else {
-      btn.style.transform = 'scale(1)';
       if (selBg) {
         selBg.setAttribute('fill', '#f4f5f7');
         selBg.setAttribute('stroke', '#d1d5db');
