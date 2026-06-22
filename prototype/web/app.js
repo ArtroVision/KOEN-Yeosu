@@ -829,18 +829,27 @@ function buildSelectiveGrid() {
 
   function createSelectableSlot(i, container) {
     const num = String(i).padStart(2, '0');
+    const isOut = checkedOutKeys.has(i);
     const cell = document.createElement('div');
     cell.id = 'sel-slot-' + i;
-    cell.style.cssText = 'display: flex; cursor: pointer;';
+    
+    const bgFill = isOut ? '#fee2e2' : '#f4f5f7'; 
+    const strokeColor = isOut ? '#f87171' : '#d1d5db';
+    const boxFill = isOut ? '#991b1b' : '#767171';
+
+    cell.style.cssText = isOut ? 'display: flex; opacity: 0.7; cursor: not-allowed;' : 'display: flex; cursor: pointer;';
     cell.innerHTML = `
       <svg viewBox="0 0 160 53" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
-        <rect class="sel-bg" x="1" y="1" width="158" height="51" rx="6" fill="#f4f5f7" stroke="#d1d5db" stroke-width="2" />
-        <rect class="sel-box" x="52.5" y="6.5" width="55" height="40" rx="4" fill="#767171" />
+        <rect class="sel-bg" x="1" y="1" width="158" height="51" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
+        <rect class="sel-box" x="52.5" y="6.5" width="55" height="40" rx="4" fill="${boxFill}" />
         <rect x="35" y="23.5" width="90" height="6" rx="3" fill="#D0CECE" />
         <text x="80" y="20.5" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
       </svg>
     `;
-    cell.onclick = () => toggleSelectiveSlot(i);
+    
+    if (!isOut) {
+      cell.onclick = () => toggleSelectiveSlot(i);
+    }
     container.appendChild(cell);
   }
 
