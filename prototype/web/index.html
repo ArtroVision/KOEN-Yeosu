@@ -1859,14 +1859,23 @@
             </div>
           </div>
 
-          <div class="key-grid-wrap" style="flex-direction: column; gap: 20px; overflow-y: auto; justify-content: flex-start; align-items: stretch; padding: 20px 30px;">
+          <div class="key-grid-wrap"
+            style="flex-direction: column; gap: 20px; overflow-y: auto; justify-content: center; align-items: stretch; padding: 20px 30px;">
             <div class="key-group-section">
-              <div class="key-group-title" style="font-size: 1.4rem; font-weight: bold; color: var(--accent-cyan); margin-bottom: 10px; text-align: left;">상측 키함 (01-45)</div>
-              <div class="key-grid" id="key-grid-top" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db; margin: 0 auto;"></div>
+              <div class="key-group-title"
+                style="font-size: 1.4rem; font-weight: bold; color: var(--accent-cyan); margin-bottom: 10px; text-align: left;">
+                상측 키함 (01-45)</div>
+              <div class="key-grid" id="key-grid-top"
+                style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db; margin: 0 auto;">
+              </div>
             </div>
             <div class="key-group-section" style="margin-top: 15px;">
-              <div class="key-group-title" style="font-size: 1.4rem; font-weight: bold; color: var(--accent-cyan); margin-bottom: 10px; text-align: left;">하측 키함 (46-90)</div>
-              <div class="key-grid" id="key-grid-bottom" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db; margin: 0 auto;"></div>
+              <div class="key-group-title"
+                style="font-size: 1.4rem; font-weight: bold; color: var(--accent-cyan); margin-bottom: 10px; text-align: left;">
+                하측 키함 (46-90)</div>
+              <div class="key-grid" id="key-grid-bottom"
+                style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: #e5e7eb; border-radius: 8px; border: 1px solid #d1d5db; margin: 0 auto;">
+              </div>
             </div>
           </div>
 
@@ -2065,7 +2074,8 @@
             <button class="btn-back"
               style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 2px solid #f59e0b; padding: 35px; font-size: 1.5rem; font-weight: 700; border-radius: 16px; cursor: pointer; min-width: 260px; transition: all 0.2s;"
               onmouseover="this.style.background='rgba(245, 158, 11, 0.2)'"
-              onmouseout="this.style.background='rgba(245, 158, 11, 0.1)'" onclick="goScreen('emergency-selective-open')">
+              onmouseout="this.style.background='rgba(245, 158, 11, 0.1)'"
+              onclick="goScreen('emergency-selective-open')">
               <span style="font-size: 3.5rem; margin-bottom: 12px;">🔐</span>
               <span style="font-size: 2rem; font-weight: 400; color: #fcd34d; margin-top: 8px;">선택 개방 모드</span>
               <span style="font-size: 1.3rem; font-weight: 400; color: #fcd34d; margin-top: 8px;">특정 키함만 선택하여
@@ -2445,53 +2455,43 @@
       </header>
 
       <main class="kiosk-main">
-        <div class="checkout-panel"
-          style="display: flex; flex-direction: column; align-items: center; width: 100%; height: 100%; padding: 3% 4%; gap: 10px; background: transparent; border: none; box-shadow: none;">
-          <div class="checkout-top" style="text-align: center;">
+        <div class="status-panel">
+          <div class="status-header-row" style="text-align: center;">
             <div class="checkout-badge"
               style="border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.1);">EMERGENCY :
               SELECTIVE OPEN</div>
             <h2 class="checkout-title" style="color: #f59e0b;">선택 개방 모드</h2>
-            <p class="checkout-subtitle">개방할 키함 슬롯을 선택한 후 하단의 개방 실행 버튼을 눌러주세요.</p>
+            <p class="checkout-subtitle">개방할 키함 슬롯을 선택한 후 하단의 개방 실행 버튼을 눌러주세요.
+              <span
+                style="display: inline-flex; align-items: center; gap: 8px; margin-left: 15px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 4px 14px;">
+                <span style="color: #fcd34d; font-weight: 700;">선택:</span>
+                <span id="selective-open-count"
+                  style="color: #f59e0b; font-size: 1.4rem; font-weight: 900; font-family: var(--font-mono);">0</span>
+                <span style="color: #fcd34d; font-weight: 700;">개</span>
+              </span>
+            </p>
           </div>
 
-          <!-- 선택 현황 표시 -->
-          <div
-            style="display: flex; align-items: center; gap: 15px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 10px 25px;">
-            <span style="color: #fcd34d; font-size: 1.2rem; font-weight: 700;">선택된 슬롯:</span>
-            <span id="selective-open-count"
-              style="color: #f59e0b; font-size: 1.8rem; font-weight: 900; font-family: var(--font-mono);">0</span>
-            <span style="color: #fcd34d; font-size: 1.2rem; font-weight: 700;">개</span>
-          </div>
-
-          <!-- 키 그리드 영역 -->
-          <div
-            style="flex: 1; width: 100%; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding: 10px 20px;">
-            <div>
-              <div
-                style="font-size: 1.2rem; font-weight: bold; color: var(--accent-cyan); margin-bottom: 8px; text-align: left;">
-                상측 키함 (01-45)</div>
-              <div id="selective-grid-top"
-                style="display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px; width: 100%; padding: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid var(--border-color);">
+          <div class="key-grid-wrap"
+            style="flex-direction: column; gap: 15px; overflow: hidden; justify-content: center; align-items: stretch; padding: 10px 30px;">
+            <div class="key-group-section">
+              <div class="key-grid" id="selective-grid-top"
+                style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; width: 100%; max-width: 900px; padding: 8px; background: rgba(30,30,50,0.5); border-radius: 8px; border: 1px solid var(--border-color); margin: 0 auto;">
               </div>
             </div>
-            <div>
-              <div
-                style="font-size: 1.2rem; font-weight: bold; color: var(--accent-cyan); margin-bottom: 8px; text-align: left;">
-                하측 키함 (46-90)</div>
-              <div id="selective-grid-bottom"
-                style="display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px; width: 100%; padding: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid var(--border-color);">
+            <div class="key-group-section">
+              <div class="key-grid" id="selective-grid-bottom"
+                style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; width: 100%; max-width: 900px; padding: 8px; background: rgba(30,30,50,0.5); border-radius: 8px; border: 1px solid var(--border-color); margin: 0 auto;">
               </div>
             </div>
           </div>
 
-          <!-- 하단 액션 버튼 -->
-          <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; padding-bottom: 10px;">
+          <div class="checkout-bottom" style="display: flex; gap: 20px; justify-content: center; padding: 10px 0;">
             <button id="btn-selective-open-execute" class="btn-back"
-              style="display: flex; justify-content: center; background: #f59e0b; color: #1a1a2e; border: none; padding: 18px 40px; font-size: 1.3rem; font-weight: 800; border-radius: 12px; cursor: pointer; min-width: 260px; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4); opacity: 0.5; pointer-events: none;"
+              style="display: flex; justify-content: center; background: #f59e0b; color: #1a1a2e; border: none; padding: 16px 40px; font-size: 1.3rem; font-weight: 800; border-radius: 12px; cursor: pointer; min-width: 260px; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4); opacity: 0.5; pointer-events: none;"
               onclick="executeSelectiveOpen()">선택 슬롯 개방 실행</button>
             <button class="btn-back"
-              style="display: flex; justify-content: center; background: rgba(15, 23, 42, 0.6); color: #94a3b8; border: 2px solid #475569; padding: 18px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 200px;"
+              style="display: flex; justify-content: center; background: rgba(15, 23, 42, 0.6); color: #94a3b8; border: 2px solid #475569; padding: 16px 40px; font-size: 1.3rem; font-weight: 700; border-radius: 12px; cursor: pointer; min-width: 200px;"
               onclick="goScreen('emergency-mode-select')">뒤로가기</button>
           </div>
         </div>
@@ -2560,8 +2560,7 @@
           <!-- 개방된 슬롯 목록 -->
           <div
             style="width: 100%; max-width: 700px; background: rgba(245, 158, 11, 0.06); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 20px 30px; margin-bottom: 60px; text-align: left;">
-            <span
-              style="color: #fcd34d; font-size: 1.1rem; font-weight: 700; display: block; margin-bottom: 10px;">개방된
+            <span style="color: #fcd34d; font-size: 1.1rem; font-weight: 700; display: block; margin-bottom: 10px;">개방된
               슬롯 번호</span>
             <span id="selective-complete-slots"
               style="color: #f59e0b; font-size: 1.4rem; font-weight: 600; font-family: var(--font-mono); word-break: break-all; line-height: 1.8;"></span>
