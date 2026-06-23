@@ -127,12 +127,10 @@ function getSlotSvgHTML(i, bgFill, strokeColor, boxFill, isSelectiveMode) {
     return `
       <svg viewBox="0 0 160 53" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
         <rect ${selBgClass} x="1" y="1" width="158" height="51" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
-        <rect ${selBoxClass} x="15" y="6.5" width="60" height="40" rx="4" fill="${boxFill}" />
-        <rect x="5" y="23.5" width="80" height="6" rx="3" fill="#D0CECE" />
-        <text x="45" y="22" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">${name1}</text>
-        <rect ${selBoxClass} x="85" y="6.5" width="60" height="40" rx="4" fill="${boxFill}" />
-        <rect x="75" y="23.5" width="80" height="6" rx="3" fill="#D0CECE" />
-        <text x="115" y="22" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">${name2}</text>
+        <rect ${selBoxClass} x="52.5" y="6.5" width="55" height="40" rx="4" fill="${boxFill}" />
+        <rect x="35" y="23.5" width="90" height="6" rx="3" fill="#D0CECE" />
+        <text x="80" y="18" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">${name1}</text>
+        <text x="80" y="41" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">${name2}</text>
       </svg>
     `;
   } else {
