@@ -109,6 +109,44 @@ function goScreen(name) {
 let checkedOutKeys = new Set([12, 7, 11, 15, 19, 22, 27, 31, 35, 38, 41, 45]);
 let statusKeyPage = 'left';
 
+const TOTAL_KEYS = 90;
+let doubleKeySlots = new Set();
+while (doubleKeySlots.size < 5) {
+  doubleKeySlots.add(Math.floor(Math.random() * TOTAL_KEYS) + 1);
+}
+
+function getSlotSvgHTML(i, bgFill, strokeColor, boxFill, isSelectiveMode) {
+  const baseName = 'M' + String(i).padStart(3, '0');
+  const isDouble = doubleKeySlots.has(i);
+  const selBgClass = isSelectiveMode ? 'class="sel-bg"' : '';
+  const selBoxClass = isSelectiveMode ? 'class="sel-box"' : '';
+
+  if (isDouble) {
+    const name1 = baseName + '-1';
+    const name2 = baseName + '-2';
+    return `
+      <svg viewBox="0 0 160 53" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
+        <rect ${selBgClass} x="1" y="1" width="158" height="51" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
+        <rect ${selBoxClass} x="15" y="6.5" width="60" height="40" rx="4" fill="${boxFill}" />
+        <rect x="5" y="23.5" width="80" height="6" rx="3" fill="#D0CECE" />
+        <text x="45" y="22" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">${name1}</text>
+        <rect ${selBoxClass} x="85" y="6.5" width="60" height="40" rx="4" fill="${boxFill}" />
+        <rect x="75" y="23.5" width="80" height="6" rx="3" fill="#D0CECE" />
+        <text x="115" y="22" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">${name2}</text>
+      </svg>
+    `;
+  } else {
+    return `
+      <svg viewBox="0 0 160 53" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
+        <rect ${selBgClass} x="1" y="1" width="158" height="51" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
+        <rect ${selBoxClass} x="52.5" y="6.5" width="55" height="40" rx="4" fill="${boxFill}" />
+        <rect x="35" y="23.5" width="90" height="6" rx="3" fill="#D0CECE" />
+        <text x="80" y="22" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${baseName}</text>
+      </svg>
+    `;
+  }
+}
+
 // ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??Clock ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??
 function updateClocks() {
   const now = new Date();
@@ -153,21 +191,13 @@ function buildKeyGrid(slideClass = '') {
   }
 
   function createKeySvg(i) {
-    const num = String(i).padStart(2, '0');
     const isOut = checkedOutKeys.has(i);
 
     const bgFill = isOut ? '#e0f2fe' : '#f4f5f7'; 
     const strokeColor = isOut ? '#38bdf8' : '#d1d5db';
     const boxFill = isOut ? '#0284c7' : '#767171';
 
-    return `
-      <svg viewBox="0 0 160 53" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="1" width="158" height="51" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
-        <rect x="52.5" y="6.5" width="55" height="40" rx="4" fill="${boxFill}" />
-        <rect x="35" y="23.5" width="90" height="6" rx="3" fill="#D0CECE" />
-        <text x="80" y="20.5" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
-      </svg>
-    `;
+    return getSlotSvgHTML(i, bgFill, strokeColor, boxFill, false);
   }
 
   // Render 1-45 keys to gridTop
@@ -832,7 +862,6 @@ function buildSelectiveGrid() {
   gridBottom.innerHTML = '';
 
   function createSelectableSlot(i, container) {
-    const num = String(i).padStart(2, '0');
     const isOut = checkedOutKeys.has(i);
     const cell = document.createElement('div');
     cell.id = 'sel-slot-' + i;
@@ -842,14 +871,7 @@ function buildSelectiveGrid() {
     const boxFill = isOut ? '#0284c7' : '#767171';
 
     cell.style.cssText = isOut ? 'display: flex; opacity: 0.7; cursor: not-allowed;' : 'display: flex; cursor: pointer;';
-    cell.innerHTML = `
-      <svg viewBox="0 0 160 53" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
-        <rect class="sel-bg" x="1" y="1" width="158" height="51" rx="6" fill="${bgFill}" stroke="${strokeColor}" stroke-width="2" />
-        <rect class="sel-box" x="52.5" y="6.5" width="55" height="40" rx="4" fill="${boxFill}" />
-        <rect x="35" y="23.5" width="90" height="6" rx="3" fill="#D0CECE" />
-        <text x="80" y="20.5" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">${num}</text>
-      </svg>
-    `;
+    cell.innerHTML = getSlotSvgHTML(i, bgFill, strokeColor, boxFill, true);
     
     if (!isOut) {
       cell.onclick = () => toggleSelectiveSlot(i);
@@ -871,27 +893,27 @@ function toggleSelectiveSlot(i) {
   }
   const btn = document.getElementById('sel-slot-' + i);
   if (btn) {
-    const selBg = btn.querySelector('.sel-bg');
-    const selBox = btn.querySelector('.sel-box');
+    const selBgs = btn.querySelectorAll('.sel-bg');
+    const selBoxes = btn.querySelectorAll('.sel-box');
 
     if (selectiveOpenSlots.has(i)) {
-      if (selBg) {
+      selBgs.forEach(selBg => {
         selBg.setAttribute('fill', '#fee2e2'); // 연한 적색 배경
         selBg.setAttribute('stroke', '#ef4444'); // 적색 테두리로 변경
         selBg.setAttribute('stroke-width', '2');
-      }
-      if (selBox) {
+      });
+      selBoxes.forEach(selBox => {
         selBox.setAttribute('fill', '#ef4444'); // 적색 내부 박스
-      }
+      });
     } else {
-      if (selBg) {
+      selBgs.forEach(selBg => {
         selBg.setAttribute('fill', '#f4f5f7');
         selBg.setAttribute('stroke', '#d1d5db');
         selBg.setAttribute('stroke-width', '2');
-      }
-      if (selBox) {
+      });
+      selBoxes.forEach(selBox => {
         selBox.setAttribute('fill', '#767171');
-      }
+      });
     }
   }
   updateSelectiveUI();

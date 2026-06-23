@@ -591,7 +591,7 @@
                 <rect x="52.5" y="10" width="55" height="40" rx="4" fill="#767171" />
                 <rect x="35" y="27" width="90" height="6" rx="3" fill="#16a34a" />
                 <text x="80" y="24" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold"
-                  text-anchor="middle">02</text>
+                  text-anchor="middle">M002</text>
               </svg>
             </div>
 
@@ -600,11 +600,11 @@
               <!-- 01~20번 슬롯. 2번은 목표 위치(불출 대상)이므로 배경이 깜빡이게 강조 -->
               <script>
                 document.write(Array.from({ length: 20 }, (_, i) => {
-                  const num = String(i + 1).padStart(2, '0');
-                  const isTarget = (num === '02'); // 02번을 불출해야 하는 목표 키로 설정
+                  const num = 'M' + String(i + 1).padStart(3, '0');
+                  const isTarget = (num === 'M002'); // 02번을 불출해야 하는 목표 키로 설정
                   const bgClass = isTarget ? 'class="target-slot"' : '';
 
-                  const isGreen = ['01', '03', '05', '08', '11', '18'].includes(num);
+                  const isGreen = ['M001', 'M003', 'M005', 'M008', 'M011', 'M018'].includes(num);
                   const lineFill = (isTarget || isGreen) ? '#16a34a' : '#1e3a8a';
                   return `
                       <svg viewBox="0 0 160 60" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
@@ -1412,11 +1412,11 @@
               <!-- 01~20번 슬롯. 2번은 목표 위치(불출 대상)이므로 배경이 깜빡이게 강조 -->
               <script>
                 document.write(Array.from({ length: 20 }, (_, i) => {
-                  const num = String(i + 1).padStart(2, '0');
-                  const isTarget = (num === '02'); // 02번을 불출해야 하는 목표 키로 설정
+                  const num = 'M' + String(i + 1).padStart(3, '0');
+                  const isTarget = (num === 'M002'); // 02번을 불출해야 하는 목표 키로 설정
                   const bgClass = isTarget ? 'class="target-slot"' : '';
 
-                  const isGreen = ['01', '03', '05', '08', '11', '18'].includes(num);
+                  const isGreen = ['M001', 'M003', 'M005', 'M008', 'M011', 'M018'].includes(num);
                   const lineFill = (isTarget || isGreen) ? '#16a34a' : '#1e3a8a';
                   return `
                       <svg viewBox="0 0 160 60" style="width:100%; height:auto;" xmlns="http://www.w3.org/2000/svg">
@@ -2376,8 +2376,8 @@
               style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 100%; max-width: 900px; padding: 10px; background: rgba(30, 41, 59, 0.8); border-radius: 8px; border: 1px solid #475569;">
               <script>
                 document.write(Array.from({ length: 20 }, (_, i) => {
-                  const num = String(i + 1).padStart(2, '0');
-                  const isTarget = (num === '05'); // 05번 슬롯
+                  const num = 'M' + String(i + 1).padStart(3, '0');
+                  const isTarget = (num === 'M005'); // 05번 슬롯
                   const bgClass = isTarget ? 'class="target-slot-emerald"' : '';
                   const lineFill = isTarget ? '#16a34a' : '#1e3a8a';
                   return `
