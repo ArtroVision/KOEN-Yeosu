@@ -175,6 +175,8 @@ function buildKeyGrid(slideClass = '') {
     const cell = document.createElement('div');
     cell.innerHTML = createKeySvg(i);
     cell.style.display = 'flex';
+    cell.style.cursor = 'pointer';
+    cell.onclick = () => goScreen('status-map');
     cell.title = checkedOutKeys.has(i) ? `키 ${i}: 반출 중` : `키 ${i}: 보관 중`;
     gridTop.appendChild(cell);
   }
@@ -184,6 +186,8 @@ function buildKeyGrid(slideClass = '') {
     const cell = document.createElement('div');
     cell.innerHTML = createKeySvg(i);
     cell.style.display = 'flex';
+    cell.style.cursor = 'pointer';
+    cell.onclick = () => goScreen('status-map');
     cell.title = checkedOutKeys.has(i) ? `키 ${i}: 반출 중` : `키 ${i}: 보관 중`;
     gridBottom.appendChild(cell);
   }
